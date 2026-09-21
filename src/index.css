@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-primary: #a73400;
+  --color-primary-container: #d14300;
+  --color-primary-fixed: #ffdbcf;
+  --color-on-primary: #ffffff;
+  --color-on-primary-fixed: #390c00;
+  --color-on-primary-fixed-variant: #832700;
+
+  --color-surface: #f9f9f8;
+  --color-surface-dim: #dadad9;
+  --color-surface-bright: #f9f9f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f3;
+  --color-surface-container: #eeeeed;
+  --color-surface-container-high: #e8e8e7;
+  --color-surface-container-highest: #e2e2e2;
+
+  --color-on-surface: #1a1c1c;
+  --color-on-surface-variant: #5c4037;
+  --color-secondary: #5c5e63;
+  --color-secondary-container: #dedfe5;
+
+  --color-inverse-surface: #191c20;
+  --color-inverse-on-surface: #f1f1f0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f9f9f8;
+  color: #1a1c1c;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Headings with Outfit & optimized letter-spacing (-0.03em) */
+.font-display-hero,
+.font-headline-xl,
+.font-headline-lg,
+.font-headline-md,
+.font-headline-sm,
+.font-metric-counter {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-mono,
+.font-telemetry {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Supporting text with Plus Jakarta Sans at 500 weight */
+.font-body-lg,
+.font-body-md,
+.font-body-sm,
+.font-label-caps,
+.font-label-ui,
+.font-support-500 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f3f4f3;
+}
+::-webkit-scrollbar-thumb {
+  background: #dadad9;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #907065;
+}
+
+/* SunGrid Mechanical Animation Architecture */
+:root {
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-draw: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-meter: cubic-bezier(0.08, 0.82, 0.17, 1);
+  --ease-mechanical: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Hero Mechanical Blur + Translate Transitions */
+.hero-state-hidden {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(18px);
+  pointer-events: none;
+  transition: opacity 800ms var(--ease-settle), transform 800ms var(--ease-settle), filter 800ms var(--ease-settle);
+  will-change: opacity, transform, filter;
+}
+
+.hero-state-visible {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0px);
+  pointer-events: auto;
+  transition: opacity 800ms var(--ease-settle), transform 800ms var(--ease-settle), filter 800ms var(--ease-settle);
+  will-change: opacity, transform, filter;
+}
+
+/* Scroll Reveal States with High-Contrast Mechanical Impact */
+.scroll-reveal-init {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(4px);
+  transition: opacity 750ms var(--ease-settle), transform 750ms var(--ease-settle), filter 750ms var(--ease-settle);
+  will-change: opacity, transform, filter;
+}
+
+.scroll-reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* Staggered transition delays for card grids */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Mechanical structural settling (inspection mode) */
+.mech-settle {
+  transition: transform 650ms var(--ease-settle), opacity 500ms var(--ease-settle);
+  will-change: transform, opacity;
+}
+
+/* Hairline rule scale expansion */
+.hairline-sweep {
+  transform-origin: left center;
+  transition: transform 900ms var(--ease-draw);
+  will-change: transform;
+}
+
+/* Pulse highlight for telemetry updates */
+@keyframes telemetry-ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 84, 0, 0);
+    border-color: rgba(255, 84, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 16px 2px rgba(255, 84, 0, 0.22);
+    border-color: rgba(255, 84, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 84, 0, 0);
+    border-color: #dedfe5;
+  }
+}
+
+.telemetry-pulse-active {
+  animation: telemetry-ping 900ms var(--ease-settle) forwards;
+}
+
+/* Sine wave scanning glow */
+@keyframes oscilloscope-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(255, 84, 0, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(255, 142, 77, 0.8));
+  }
+}
+
+.oscilloscope-glow {
+  animation: oscilloscope-glow 3s ease-in-out infinite;
+}
+
+/* Modal mechanical spring entrance */
+@keyframes modal-spring {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-spring-in {
+  animation: modal-spring 450ms var(--ease-settle) forwards;
+}
+
+/* Traveling scan beam */
+@keyframes beam-travel {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.beam-travel-active {
+  animation: beam-travel 2.4s linear infinite;
+}

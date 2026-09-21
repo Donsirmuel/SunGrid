@@ -1,0 +1,6 @@
+{
+  "name": "SunGrid Systems",
+  "description": "Engineered, quiet residential and commercial turnkey solar infrastructure for Nigerian homes and facilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
