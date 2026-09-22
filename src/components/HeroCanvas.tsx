@@ -95,9 +95,19 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ onFrameUpdate }) => {
 
   // Immediate start & scroll reveal backup
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // Fail-safe timers: ensure text and CTAs appear smoothly even if video buffering is slow
+    const timer1 = setTimeout(() => {
       triggerLine1Animation();
-    }, 250);
+    }, 150);
+
+    const timer2 = setTimeout(() => {
+      triggerLine2Animation();
+    }, 800);
+
+    const timer3 = setTimeout(() => {
+      triggerPAnimation();
+      triggerCtaAnimation();
+    }, 1600);
 
     const handleScroll = () => {
       const sy = window.scrollY || 0;
@@ -113,7 +123,9 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ onFrameUpdate }) => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
       window.removeEventListener('scroll', handleScroll);
     };
   }, [triggerCtaAnimation, triggerLine1Animation, triggerLine2Animation, triggerPAnimation]);

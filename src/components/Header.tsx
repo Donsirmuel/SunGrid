@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavTab } from '../types';
-import { Sun, ArrowRight, Menu, X, Phone, Calculator, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Menu, X, Phone } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
 
 interface HeaderProps {
   currentTab: NavTab;
@@ -29,23 +30,14 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between text-white border-b border-white/10 bg-neutral-950/80 backdrop-blur-md">
+    <header className="sticky top-0 left-0 right-0 z-50 px-6 sm:px-10 lg:px-16 py-3.5 flex items-center justify-between text-white border-b border-white/10 bg-neutral-950/85 backdrop-blur-md">
       {/* Brand Identity */}
       <button
         onClick={() => handleNavClick('home')}
-        className="flex items-center gap-2.5 group text-left cursor-pointer focus:outline-none"
+        className="group text-left cursor-pointer focus:outline-none transition-transform active:scale-[0.98]"
+        aria-label="SunGrid Systems Home"
       >
-        <div className="w-8 h-8 rounded-full bg-orange-600/20 flex items-center justify-center border border-orange-500/30 group-hover:bg-orange-600/30 transition-colors">
-          <Sun className="w-4.5 h-4.5 text-[#ff5400] transition-transform duration-300 group-hover:rotate-45" />
-        </div>
-        <div className="flex flex-col leading-none">
-          <span className="font-display text-[19px] font-bold text-white tracking-tight">
-            SunGrid
-          </span>
-          <span className="font-mono text-[8.5px] uppercase tracking-[0.2em] text-[#ff5400] font-semibold">
-            Nigeria
-          </span>
-        </div>
+        <BrandLogo surface="on-dark" variant="gradient" size="md" />
       </button>
 
       {/* Desktop Navigation */}

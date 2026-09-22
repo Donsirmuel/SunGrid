@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavTab } from '../types';
 import { HeroCanvas } from './HeroCanvas';
+import { LazyImage } from './LazyImage';
 import { IMAGES } from '../data/assets';
 import { SOLAR_PACKAGES } from '../data/packages';
 import { useScrollTelemetry } from '../hooks/useScrollTelemetry';
@@ -40,29 +41,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
   const lekkiContainerRef = useRef<HTMLDivElement | null>(null);
   const [lekkiInView, setLekkiInView] = useState(false);
 
-  // Precision Mechanical Scroll Reveal Observer with higher threshold (0.25) and dynamic child stagger
+  // General Scroll Reveal Observer for noticeable mechanical entry animations
   useEffect(() => {
-    const revealElements = Array.from(
-      document.querySelectorAll<HTMLElement>('.scroll-reveal-init')
-    );
-
-    // Group child elements sharing the same container to apply rhythmic mechanical stagger
-    const containerGroups = new Map<HTMLElement, HTMLElement[]>();
-    revealElements.forEach((el) => {
-      const parent = el.parentElement || document.body;
-      if (!containerGroups.has(parent)) {
-        containerGroups.set(parent, []);
-      }
-      containerGroups.get(parent)!.push(el);
-    });
-
-    // Assign sequential mechanical stagger delays (e.g. 0ms, 120ms, 240ms, 360ms)
-    containerGroups.forEach((children) => {
-      children.forEach((child, idx) => {
-        child.style.transitionDelay = `${idx * 110}ms`;
-      });
-    });
-
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -77,10 +57,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
           }
         });
       },
-      { threshold: 0.25, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
     );
 
-    revealElements.forEach((el) => revealObserver.observe(el));
+    const elements = document.querySelectorAll('.scroll-reveal-init');
+    elements.forEach((el) => revealObserver.observe(el));
     if (metricsSectionRef.current) revealObserver.observe(metricsSectionRef.current);
     if (lekkiContainerRef.current) revealObserver.observe(lekkiContainerRef.current);
 
@@ -181,8 +162,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
 
         {/* Hero Copy Overlay positioned in open dusk sky negative space */}
         <div className="relative z-10 max-w-2xl px-6 sm:px-12 lg:px-16 pt-24 pb-20 text-left pointer-events-none">
-          {/* Main Headline with Outfit & -0.03em tracking */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Outfit'] font-bold tracking-[-0.03em] text-white leading-[1.08]">
+          {/* Main Headline with Space Grotesk & -0.03em tracking */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Space_Grotesk'] font-bold tracking-[-0.03em] text-white leading-[1.08]">
             <span 
               id="hero-synced-line-1"
               className="block drop-shadow-md hero-state-hidden"
@@ -671,13 +652,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
             {/* Package 1: Flat */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 scroll-reveal-init delay-100">
               <div>
-                <div className="w-full h-52 rounded-2xl overflow-hidden mb-5 bg-neutral-200">
-                  <img
-                    src={IMAGES.compactApartment}
-                    alt="Small Flat Solar Inverter and Battery"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <LazyImage
+                  src={IMAGES.compactApartment}
+                  alt="Small Flat Solar Inverter and Battery"
+                  className="w-full h-52 rounded-2xl mb-5"
+                />
                 <div className="flex items-baseline justify-between mb-1">
                   <h3 className="font-headline-md text-xl font-bold text-[#1a1c1c]">
                     Small Flat & Apartment
@@ -710,13 +689,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                 MOST POPULAR IN NIGERIA
               </div>
               <div>
-                <div className="w-full h-52 rounded-2xl overflow-hidden mb-5 bg-neutral-200">
-                  <img
-                    src={IMAGES.modernDuplexExterior}
-                    alt="Duplex Family Solar Installation"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <LazyImage
+                  src={IMAGES.modernDuplexExterior}
+                  alt="Duplex Family Solar Installation"
+                  className="w-full h-52 rounded-2xl mb-5"
+                />
                 <div className="flex items-baseline justify-between mb-1">
                   <h3 className="font-headline-md text-xl font-bold text-[#1a1c1c]">
                     Duplex & Family Home
@@ -746,13 +723,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
             {/* Package 3: Mansion & Commercial */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 scroll-reveal-init delay-300">
               <div>
-                <div className="w-full h-52 rounded-2xl overflow-hidden mb-5 bg-neutral-200">
-                  <img
-                    src={IMAGES.industrialRackRoom}
-                    alt="Commercial Solar Microgrid"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <LazyImage
+                  src={IMAGES.industrialRackRoom}
+                  alt="Commercial Solar Microgrid"
+                  className="w-full h-52 rounded-2xl mb-5"
+                />
                 <div className="flex items-baseline justify-between mb-1">
                   <h3 className="font-headline-md text-xl font-bold text-[#1a1c1c]">
                     Large Mansion & Clinic
@@ -840,12 +815,12 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
 
             <div className="lg:col-span-6">
               <div className="relative w-full h-[340px] sm:h-[400px] rounded-2xl overflow-hidden bg-[#f3f4f3] shadow-inner">
-                <img
+                <LazyImage
                   src={IMAGES.nomadStation}
                   alt="SunGrid Nomad Portable Power Station"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full"
                 />
-                <div className="absolute bottom-4 right-4 backdrop-blur-md bg-white/90 px-4 py-1.5 rounded-full shadow-md flex items-center gap-2 border border-white/60">
+                <div className="absolute bottom-4 right-4 backdrop-blur-md bg-white/90 px-4 py-1.5 rounded-full shadow-md flex items-center gap-2 border border-white/60 z-10">
                   <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
                   <span className="font-label-caps text-xs text-[#1a1c1c] font-bold">
                     10-Year Built-to-Last Battery
@@ -968,16 +943,17 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
               ref={lekkiContainerRef}
               className="lg:col-span-8 h-80 sm:h-96 lg:h-[440px] overflow-hidden relative bg-neutral-900"
             >
-              <img
+              <LazyImage
                 src={IMAGES.lekkiVillaDusk}
                 alt="Luxury Lekki Phase 1 Villa with Solar Microgrid"
+                placeholderColor="bg-neutral-900"
                 className="w-full h-full object-cover transition-transform duration-1000 will-change-transform"
                 style={{
                   transform: lekkiInView ? 'scale(1.0)' : 'scale(1.07)',
                   transitionTimingFunction: 'var(--ease-settle)'
                 }}
               />
-              <div className="absolute top-4 left-4 bg-neutral-950/80 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full font-label-caps text-[10px] uppercase tracking-wider">
+              <div className="absolute top-4 left-4 bg-neutral-950/80 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full font-label-caps text-[10px] uppercase tracking-wider z-10">
                 Lekki Phase 1, Lagos • Flagship Residential
               </div>
             </div>
@@ -1012,12 +988,12 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white rounded-3xl overflow-hidden border border-[#dedfe5] shadow-sm flex flex-col scroll-reveal-init delay-100">
               <div className="h-64 sm:h-72 w-full overflow-hidden relative">
-                <img
+                <LazyImage
                   src={IMAGES.maitamaAbuja}
                   alt="Maitama Abuja solar townhouse"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full"
                 />
-                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1 rounded-full font-label-caps text-[10px] uppercase">
+                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1 rounded-full font-label-caps text-[10px] uppercase z-10">
                   Maitama, Abuja
                 </div>
               </div>
@@ -1048,12 +1024,12 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
 
             <div className="bg-white rounded-3xl overflow-hidden border border-[#dedfe5] shadow-sm flex flex-col scroll-reveal-init delay-200">
               <div className="h-64 sm:h-72 w-full overflow-hidden relative">
-                <img
+                <LazyImage
                   src={IMAGES.medicalClinicVI}
                   alt="Victoria Island medical diagnostic center"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full"
                 />
-                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1 rounded-full font-label-caps text-[10px] uppercase">
+                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1 rounded-full font-label-caps text-[10px] uppercase z-10">
                   Victoria Island, Lagos
                 </div>
               </div>

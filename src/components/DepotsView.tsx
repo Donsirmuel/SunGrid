@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavTab, RegionalHub } from '../types';
 import { REGIONAL_HUBS } from '../data/depots';
 import { IMAGES } from '../data/assets';
+import { LazyImage } from './LazyImage';
 import { 
   MapPin, 
   Phone, 
@@ -210,13 +211,13 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
             {/* Right: Hub Facility Visual & Live Dispatch Feed */}
             <div className="lg:col-span-6 space-y-4">
               <div className="w-full h-64 sm:h-72 rounded-2xl overflow-hidden relative shadow-sm border border-[#dedfe5] group">
-                <img
+                <LazyImage
                   src={IMAGES.industrialRackRoom}
                   alt={`${activeHub.name} Facility`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 text-white z-10 pointer-events-none">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     <p className="font-headline-sm text-sm font-bold">

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavTab } from '../types';
 import { IMAGES } from '../data/assets';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { LazyImage } from './LazyImage';
 import { 
   ShieldCheck, 
   BatteryCharging, 
@@ -13,11 +13,11 @@ import {
   ChevronDown, 
   ChevronUp, 
   Plus, 
-  Minus, 
-  Sparkles, 
-  Award, 
-  Zap, 
-  Phone 
+  Minus,
+  Sparkles,
+  Award,
+  Zap,
+  Phone
 } from 'lucide-react';
 
 interface PricingViewProps {
@@ -38,9 +38,6 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
   const [openFaqs, setOpenFaqs] = useState<{ [key: number]: boolean }>({
     0: true // first open by default
   });
-
-  // Precision mechanical scroll reveal with 0.25 threshold and dynamic stagger
-  useScrollReveal({ threshold: 0.25, rootMargin: '0px 0px -40px 0px', staggerDelayMs: 90 });
 
   const toggleSpec = (id: string) => {
     setOpenSpecs((prev) => ({
@@ -165,7 +162,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {/* Card 1: 3.5kVA Urban */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow scroll-reveal-init">
+            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-3 py-0.5 rounded-full bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
@@ -233,7 +230,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             </div>
 
             {/* Card 2: 5kVA Executive (Most Popular) */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border-2 border-primary shadow-lg relative scale-[1.02] z-10 scroll-reveal-init">
+            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border-2 border-primary shadow-lg relative scale-[1.02] z-10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-0.5 rounded-full bg-primary text-white font-label-caps text-[10px] uppercase tracking-wider font-bold shadow-sm">
                 MOST POPULAR
               </div>
@@ -304,7 +301,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             </div>
 
             {/* Card 3: 10kVA Estate */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow scroll-reveal-init">
+            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-3 py-0.5 rounded-full bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
@@ -372,7 +369,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             </div>
 
             {/* Card 4: 20kVA Industrial */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow scroll-reveal-init">
+            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-3 py-0.5 rounded-full bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
@@ -719,22 +716,22 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
 
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="h-64 rounded-2xl overflow-hidden relative shadow-sm">
-                <img
+                <LazyImage
                   src={IMAGES.telemetryAudit}
                   alt="Precision Surge Telemetry Inspection"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[#1a1c1c] font-label-caps text-[10px] font-bold">
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[#1a1c1c] font-label-caps text-[10px] font-bold z-10">
                   Precision Surge Telemetry
                 </div>
               </div>
               <div className="h-64 rounded-2xl overflow-hidden relative shadow-sm">
-                <img
+                <LazyImage
                   src={IMAGES.roofArraySunny}
                   alt="Tier-1 Bifacial Solar Mounts"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[#1a1c1c] font-label-caps text-[10px] font-bold">
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[#1a1c1c] font-label-caps text-[10px] font-bold z-10">
                   Tier-1 Bifacial Solar Mounts
                 </div>
               </div>

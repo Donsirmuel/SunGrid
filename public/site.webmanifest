@@ -13,6 +13,11 @@
       "type": "image/svg+xml"
     },
     {
+      "src": "/icon-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    },
+    {
       "src": "/apple-touch-icon.png",
       "sizes": "512x512",
       "type": "image/png"

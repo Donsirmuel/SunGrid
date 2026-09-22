@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Outfit", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-grotesk: "Space Grotesk", sans-serif;
   --font-body: "Plus Jakarta Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
@@ -111,10 +112,10 @@ body {
 
 /* Scroll Reveal States with High-Contrast Mechanical Impact */
 .scroll-reveal-init {
-  opacity: 0;
-  transform: translateY(32px);
-  filter: blur(4px);
-  transition: opacity 750ms var(--ease-settle), transform 750ms var(--ease-settle), filter 750ms var(--ease-settle);
+  opacity: 0.05;
+  transform: translateY(20px);
+  filter: blur(2px);
+  transition: opacity 600ms var(--ease-settle), transform 600ms var(--ease-settle), filter 600ms var(--ease-settle);
   will-change: opacity, transform, filter;
 }
 

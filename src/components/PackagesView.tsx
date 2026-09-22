@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavTab, SolarPackage } from '../types';
 import { SOLAR_PACKAGES } from '../data/packages';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { LazyImage } from './LazyImage';
 import { 
   CheckCircle2, 
   ChevronDown, 
@@ -12,10 +12,10 @@ import {
   ShieldCheck, 
   ArrowRight, 
   Calculator, 
-  Sparkles, 
-  RefreshCw, 
-  Layers, 
-  BatteryCharging 
+  Sparkles,
+  RefreshCw,
+  Layers,
+  BatteryCharging
 } from 'lucide-react';
 
 interface PackagesViewProps {
@@ -29,9 +29,6 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
     'duplex-executive': true // Duplex open by default as in design
   });
   const [simulatorState, setSimulatorState] = useState<'grid' | 'blackout'>('blackout');
-
-  // Precision mechanical scroll reveal with 0.25 threshold and dynamic stagger
-  useScrollReveal({ threshold: 0.25, rootMargin: '0px 0px -40px 0px', staggerDelayMs: 90 });
 
   const filterCategories = [
     { id: 'all', label: 'All Packages' },
@@ -104,7 +101,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
             return (
               <div
                 key={pkg.id}
-                className={`flex flex-col justify-between rounded-2xl bg-white p-6 transition-all duration-300 relative scroll-reveal-init ${
+                className={`flex flex-col justify-between rounded-2xl bg-white p-6 transition-all duration-300 relative ${
                   isFeatured
                     ? 'ring-2 ring-primary shadow-xl md:-translate-y-2'
                     : 'border border-[#dedfe5] shadow-sm hover:shadow-md'
@@ -119,13 +116,13 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                 <div>
                   {/* Image container */}
                   <div className="relative w-full h-44 rounded-xl overflow-hidden bg-neutral-200 mb-5">
-                    <img
+                    <LazyImage
                       src={pkg.image}
                       alt={pkg.name}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
                     <span
-                      className={`absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md ${
+                      className={`absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md z-10 ${
                         isFeatured
                           ? 'bg-primary text-white'
                           : 'bg-white/90 text-[#1a1c1c]'

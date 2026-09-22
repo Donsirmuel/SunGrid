@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavTab } from '../types';
-import { Sun, Phone, ShieldCheck, Award } from 'lucide-react';
+import { Phone, ShieldCheck, Award } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
   onSelectTab: (tab: NavTab) => void;
@@ -14,16 +15,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12">
           {/* Col 1 & 2: Brand and Mission */}
           <div className="lg:col-span-2 flex flex-col items-start">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
-                <Sun className="w-4 h-4 text-primary" />
-              </div>
-              <span className="font-headline-md text-[22px] font-bold text-[#1a1c1c] tracking-tight">
-                SunGrid
-              </span>
-              <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-primary/10 text-primary">
-                Nigeria
-              </span>
+            <div className="mb-4">
+              <BrandLogo surface="on-light" variant="flat-orange" size="lg" />
             </div>
 
             <p className="font-body-md text-[14px] text-[#5c4037]/90 max-w-sm mb-6 leading-relaxed">
