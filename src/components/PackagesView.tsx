@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavTab, SolarPackage } from '../types';
 import { SOLAR_PACKAGES } from '../data/packages';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import { 
   CheckCircle2, 
   ChevronDown, 
@@ -11,10 +12,10 @@ import {
   ShieldCheck, 
   ArrowRight, 
   Calculator, 
-  Sparkles,
-  RefreshCw,
-  Layers,
-  BatteryCharging
+  Sparkles, 
+  RefreshCw, 
+  Layers, 
+  BatteryCharging 
 } from 'lucide-react';
 
 interface PackagesViewProps {
@@ -28,6 +29,9 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
     'duplex-executive': true // Duplex open by default as in design
   });
   const [simulatorState, setSimulatorState] = useState<'grid' | 'blackout'>('blackout');
+
+  // Precision mechanical scroll reveal with 0.25 threshold and dynamic stagger
+  useScrollReveal({ threshold: 0.25, rootMargin: '0px 0px -40px 0px', staggerDelayMs: 90 });
 
   const filterCategories = [
     { id: 'all', label: 'All Packages' },
@@ -100,7 +104,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
             return (
               <div
                 key={pkg.id}
-                className={`flex flex-col justify-between rounded-2xl bg-white p-6 transition-all duration-300 relative ${
+                className={`flex flex-col justify-between rounded-2xl bg-white p-6 transition-all duration-300 relative scroll-reveal-init ${
                   isFeatured
                     ? 'ring-2 ring-primary shadow-xl md:-translate-y-2'
                     : 'border border-[#dedfe5] shadow-sm hover:shadow-md'

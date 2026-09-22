@@ -40,8 +40,29 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
   const lekkiContainerRef = useRef<HTMLDivElement | null>(null);
   const [lekkiInView, setLekkiInView] = useState(false);
 
-  // General Scroll Reveal Observer for noticeable mechanical entry animations
+  // Precision Mechanical Scroll Reveal Observer with higher threshold (0.25) and dynamic child stagger
   useEffect(() => {
+    const revealElements = Array.from(
+      document.querySelectorAll<HTMLElement>('.scroll-reveal-init')
+    );
+
+    // Group child elements sharing the same container to apply rhythmic mechanical stagger
+    const containerGroups = new Map<HTMLElement, HTMLElement[]>();
+    revealElements.forEach((el) => {
+      const parent = el.parentElement || document.body;
+      if (!containerGroups.has(parent)) {
+        containerGroups.set(parent, []);
+      }
+      containerGroups.get(parent)!.push(el);
+    });
+
+    // Assign sequential mechanical stagger delays (e.g. 0ms, 120ms, 240ms, 360ms)
+    containerGroups.forEach((children) => {
+      children.forEach((child, idx) => {
+        child.style.transitionDelay = `${idx * 110}ms`;
+      });
+    });
+
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -56,11 +77,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
+      { threshold: 0.25, rootMargin: '0px 0px -40px 0px' }
     );
 
-    const elements = document.querySelectorAll('.scroll-reveal-init');
-    elements.forEach((el) => revealObserver.observe(el));
+    revealElements.forEach((el) => revealObserver.observe(el));
     if (metricsSectionRef.current) revealObserver.observe(metricsSectionRef.current);
     if (lekkiContainerRef.current) revealObserver.observe(lekkiContainerRef.current);
 

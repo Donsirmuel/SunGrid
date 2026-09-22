@@ -1,0 +1,21 @@
+{
+  "name": "SunGrid Systems Nigeria",
+  "short_name": "SunGrid",
+  "description": "Engineered, quiet residential and commercial turnkey solar infrastructure for Nigerian homes and facilities.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#12161a",
+  "theme_color": "#12161a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
