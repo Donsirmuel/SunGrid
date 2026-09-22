@@ -509,7 +509,7 @@ Please send formal quote & schedule a site inspection.`;
                     <div className="bg-white p-4 rounded-2xl shadow-xs border border-[#dedfe5] space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider">
-                          Peak Continuous
+                          Normal Running Load
                         </span>
                         <span className="text-[10px] font-mono text-neutral-400">
                           {loadPercentage}%
@@ -531,20 +531,18 @@ Please send formal quote & schedule a site inspection.`;
                           }}
                         />
                       </div>
-                      <div className="flex justify-between text-[9px] font-mono text-[#5c5e63]">
-                        <span>0kW</span>
-                        <span>7.5kW</span>
-                        <span>15kW</span>
-                      </div>
+                      <p className="text-[10px] text-[#5c4037] leading-tight font-medium">
+                        Total power needed while appliances are active
+                      </p>
                     </div>
 
                     <div className="bg-white p-4 rounded-2xl shadow-xs border border-[#dedfe5] space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider">
-                          Surge Buffer
+                          Starting Surge (kVA)
                         </span>
                         <span className="text-[10px] font-mono text-primary font-semibold">
-                          Surge Headroom
+                          Trip Protection
                         </span>
                       </div>
                       <div className="flex items-baseline gap-1">
@@ -564,7 +562,7 @@ Please send formal quote & schedule a site inspection.`;
                         />
                       </div>
                       <p className="text-[10px] text-[#5c4037] leading-tight font-medium">
-                        Instant sub-cycle compressor isolation
+                        Extra kick required when AC or water pumps kick on
                       </p>
                     </div>
                   </div>

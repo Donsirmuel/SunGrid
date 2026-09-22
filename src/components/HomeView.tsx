@@ -248,13 +248,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
 
             <div className="flex flex-col md:px-10 md:border-l md:border-[#dedfe5] scroll-reveal-init delay-200">
               <span className="font-label-caps text-[11px] text-[#5c5e63] uppercase tracking-widest mb-1.5 font-bold">
-                Verified Grid Uptime
+                Continuous Power (No Blackouts)
               </span>
               <div className="font-metric-counter text-4xl lg:text-5xl text-primary font-bold tracking-tight mb-1 tabular-nums">
                 {counterUptime > 0 ? counterUptime.toFixed(2) : '99.98'}<span className="text-[#1a1c1c]">%</span>
               </div>
               <p className="font-body-sm text-[13px] text-[#5c4037]/90 leading-relaxed font-medium">
-                Sub-4ms automatic transfer. Inverter AC compressors, gaming PCs, and Starlink dishes don't reboot.
+                Instant 4ms switchover: faster than the blink of an eye. Your air conditioners, TVs, and Wi-Fi keep running without flickering or restarting when NEPA trips.
               </p>
             </div>
 
@@ -724,25 +724,25 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
             <div className="bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 scroll-reveal-init delay-300">
               <div>
                 <LazyImage
-                  src={IMAGES.industrialRackRoom}
-                  alt="Commercial Solar Microgrid"
+                  src={IMAGES.commercialFacility}
+                  alt="Commercial & Industrial Solar Facility"
                   className="w-full h-52 rounded-2xl mb-5"
                 />
                 <div className="flex items-baseline justify-between mb-1">
                   <h3 className="font-headline-md text-xl font-bold text-[#1a1c1c]">
-                    Large Mansion & Clinic
+                    Commercial & Industrial Facility
                   </h3>
                   <span className="text-xs font-semibold text-[#5c5e63]">25kVA 3-Phase</span>
                 </div>
-                <p className="font-body-sm text-[13px] text-[#5c4037] mb-5">
-                  Heavy-duty commercial grade power for large estates, diagnostic labs, and offices.
+                <p className="font-body-sm text-[13px] text-[#5c4037] mb-5 font-medium">
+                  Runs entire 3-phase facilities: passenger elevators, medical labs, central air-conditioning, and factory production lines uninterrupted.
                 </p>
                 <div className="mb-4">
                   <div className="font-metric-counter text-3xl font-bold text-[#1a1c1c]">
                     ₦19,400,000
                   </div>
                   <span className="text-xs text-[#5c5e63]">
-                    Includes 32 panels, 30.72 kWh rack & industrial rack cabinet
+                    Includes 32 Tier-1 panels, 30.72 kWh lithium server rack & certified engineering sign-off
                   </span>
                 </div>
               </div>
@@ -779,9 +779,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                 Plug & Play Power Anywhere.
               </h2>
               <p className="font-body-md text-[#5c4037] mb-6 leading-relaxed font-medium">
-                Living in a rented apartment or moving often? Zero roof mounting required. Powers
-                refrigerators, workstations, and TVs right away. Charge from wall AC in 84 minutes or
-                portable panels on your balcony.
+                Living in a rented apartment or moving often? Zero roof mounting required. Compact desktop form factor with dual universal AC outlets, digital telemetry display, and built-in carry handle. Powers refrigerators, workstations, and TVs right away. Charge from wall AC in 84 minutes or portable panels on your balcony.
               </p>
 
               <div className="grid grid-cols-3 gap-4 py-4 border-y border-[#dedfe5] mb-6">

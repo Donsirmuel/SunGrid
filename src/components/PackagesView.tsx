@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavTab, SolarPackage } from '../types';
 import { SOLAR_PACKAGES } from '../data/packages';
 import { LazyImage } from './LazyImage';
+import { DailyEnergyYieldChart } from './DailyEnergyYieldChart';
 import { 
   CheckCircle2, 
   ChevronDown, 
@@ -13,7 +14,6 @@ import {
   ArrowRight, 
   Calculator, 
   Sparkles,
-  RefreshCw,
   Layers,
   BatteryCharging
 } from 'lucide-react';
@@ -28,7 +28,6 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
   const [expandedSpecs, setExpandedSpecs] = useState<{ [key: string]: boolean }>({
     'duplex-executive': true // Duplex open by default as in design
   });
-  const [simulatorState, setSimulatorState] = useState<'grid' | 'blackout'>('blackout');
 
   const filterCategories = [
     { id: 'all', label: 'All Packages' },
@@ -162,6 +161,14 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                     </span>
                   </div>
 
+                  {/* Simple Plain-English Summary Banner */}
+                  {pkg.simpleSummary && (
+                    <div className="mb-4 p-2.5 rounded-xl bg-[#fdf2ec] border border-[#ffdbcf] text-xs text-[#5c4037] leading-relaxed flex items-start gap-2">
+                      <Zap className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                      <span>{pkg.simpleSummary}</span>
+                    </div>
+                  )}
+
                   {/* Highlights List */}
                   <div
                     className={`space-y-2 py-3 rounded-xl px-3 mb-4 ${
@@ -181,7 +188,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                     onClick={() => toggleSpecs(pkg.id)}
                     className="flex items-center justify-between w-full font-label-ui text-xs text-[#5c5e63] hover:text-primary transition-colors py-2 cursor-pointer border-t border-dashed border-[#dedfe5]"
                   >
-                    <span className="font-semibold">Hardware Architecture</span>
+                    <span className="font-semibold">Hardware Specs & What They Mean</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-300 ${
                         isOpen ? 'rotate-180 text-primary' : 'text-[#5c5e63]'
@@ -192,30 +199,69 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                   {/* Specs Content with smooth collapsible layout */}
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+                      isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <div className="pt-2 pb-3 space-y-1.5 text-xs text-[#5c4037] border-b border-[#dedfe5]">
-                      <div className="flex justify-between">
-                        <span className="text-neutral-500">Inverter:</span>
-                        <span className="text-[#1a1c1c] font-medium text-right">{pkg.specs.inverter}</span>
+                    <div className="pt-2 pb-3 space-y-2.5 text-xs text-[#5c4037] border-b border-[#dedfe5]">
+                      <div>
+                        <div className="flex justify-between items-baseline">
+                          <span className="text-neutral-500 font-medium">Inverter:</span>
+                          <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.inverter}</span>
+                        </div>
+                        {pkg.specs.plainMeaning?.inverterExplanation && (
+                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
+                            💡 {pkg.specs.plainMeaning.inverterExplanation}
+                          </p>
+                        )}
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-neutral-500">Battery:</span>
-                        <span className="text-[#1a1c1c] font-medium text-right">{pkg.specs.battery}</span>
+
+                      <div>
+                        <div className="flex justify-between items-baseline">
+                          <span className="text-neutral-500 font-medium">Battery:</span>
+                          <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.battery}</span>
+                        </div>
+                        {pkg.specs.plainMeaning?.batteryExplanation && (
+                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
+                            🔋 {pkg.specs.plainMeaning.batteryExplanation}
+                          </p>
+                        )}
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-neutral-500">Solar Array:</span>
-                        <span className="text-[#1a1c1c] font-medium text-right">{pkg.specs.solarArray}</span>
+
+                      <div>
+                        <div className="flex justify-between items-baseline">
+                          <span className="text-neutral-500 font-medium">Solar Array:</span>
+                          <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.solarArray}</span>
+                        </div>
+                        {pkg.specs.plainMeaning?.solarExplanation && (
+                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
+                            ☀️ {pkg.specs.plainMeaning.solarExplanation}
+                          </p>
+                        )}
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-neutral-500">Switch Speed:</span>
-                        <span className="text-primary font-semibold text-right">{pkg.specs.transferSpeed}</span>
+
+                      <div>
+                        <div className="flex justify-between items-baseline">
+                          <span className="text-neutral-500 font-medium">Switch Speed:</span>
+                          <span className="text-primary font-semibold text-right">{pkg.specs.transferSpeed}</span>
+                        </div>
+                        {pkg.specs.plainMeaning?.switchExplanation && (
+                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
+                            ⚡ {pkg.specs.plainMeaning.switchExplanation}
+                          </p>
+                        )}
                       </div>
+
                       {pkg.specs.protection && (
-                        <div className="flex justify-between">
-                          <span className="text-neutral-500">Protection:</span>
-                          <span className="text-[#1a1c1c] font-medium text-right">{pkg.specs.protection}</span>
+                        <div>
+                          <div className="flex justify-between items-baseline">
+                            <span className="text-neutral-500 font-medium">Surge Protection:</span>
+                            <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.protection}</span>
+                          </div>
+                          {pkg.specs.plainMeaning?.protectionExplanation && (
+                            <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
+                              🛡️ {pkg.specs.plainMeaning.protectionExplanation}
+                            </p>
+                          )}
                         </div>
                       )}
                     </div>
@@ -241,163 +287,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
         </div>
       </section>
 
-      {/* SECTION: INTERACTIVE ZERO-FLICKER REAL-TIME TRANSFER SIMULATOR */}
+      {/* SECTION: D3.JS DAILY ENERGY YIELD & LOAD CURVE VISUALIZATION */}
       <section className="w-full bg-[#f3f4f3] py-16 lg:py-20 border-y border-[#dedfe5]">
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left: Engineering Narrative */}
-            <div className="lg:col-span-5">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#ffdbcf] text-primary font-label-caps text-[11px] uppercase tracking-wider mb-3 font-bold">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                Grid Immunity
-              </span>
-              <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mb-4">
-                Zero Flickering. 0ms Real-Time Transfer.
-              </h2>
-              <p className="font-body-md text-sm sm:text-base text-[#5c4037] mb-6 leading-relaxed">
-                When the national grid trips or collapses, standard inverters cause smart TVs to reboot, desktop PCs
-                to crash, and air conditioners to hum loudly. SunGrid's ultra-fast transfer relay switches sources
-                in less than 4 milliseconds — faster than a single AC electrical cycle.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-full bg-white border border-[#dedfe5] flex items-center justify-center text-primary shrink-0 shadow-xs">
-                    <Zap className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-headline-sm text-sm font-bold text-[#1a1c1c]">
-                      Sensitive Electronics Shield
-                    </h4>
-                    <p className="text-xs text-[#5c4037] mt-0.5">
-                      Starlink never reboots, gaming consoles keep running, and surgical/clinic equipment maintains continuous voltage.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-full bg-white border border-[#dedfe5] flex items-center justify-center text-primary shrink-0 shadow-xs">
-                    <VolumeX className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-headline-sm text-sm font-bold text-[#1a1c1c]">
-                      Whisper-Quiet Operation
-                    </h4>
-                    <p className="text-xs text-[#5c4037] mt-0.5">
-                      Zero fumes, zero rattling diesel noise. Just silent, clean autonomous current flowing through your breaker box.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Interactive Waveform Simulator Card */}
-            <div className="lg:col-span-7">
-              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-[#dedfe5] relative overflow-hidden">
-                <div className="flex items-center justify-between pb-4 mb-6 bg-[#f3f4f3] rounded-2xl px-4 py-3">
-                  <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold">
-                    Live Grid Loss Simulation
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => setSimulatorState(simulatorState === 'grid' ? 'blackout' : 'grid')}
-                      className="px-3 py-1 rounded-full text-xs font-semibold bg-white text-primary border border-primary/20 shadow-xs hover:bg-primary/10 transition-colors flex items-center gap-1 cursor-pointer"
-                    >
-                      <RefreshCw className="w-3 h-3 animate-spin" />
-                      <span>{simulatorState === 'grid' ? 'Simulate Grid Drop' : 'Restore Grid'}</span>
-                    </button>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                      Active
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  {/* Standard Nigerian Inverter Behavior */}
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-[#5c5e63]">Standard Roadside Inverter Switch</span>
-                      <span className="text-rose-600 font-bold">
-                        {simulatorState === 'blackout' ? '2,000ms Delay • Systems Crash & Reboot' : 'Grid Active • Normal Voltage'}
-                      </span>
-                    </div>
-                    <div className="h-6 w-full bg-[#dedfe5] rounded-full overflow-hidden flex transition-all">
-                      <div className={`h-full ${simulatorState === 'blackout' ? 'bg-neutral-500' : 'bg-neutral-700'} w-1/3 flex items-center justify-center text-[10px] text-white font-mono font-bold transition-colors`}>
-                        GRID
-                      </div>
-                      <div className={`h-full flex items-center justify-center text-[10px] font-bold w-1/3 transition-all ${
-                        simulatorState === 'blackout' 
-                          ? 'bg-rose-500 text-white animate-pulse' 
-                          : 'bg-neutral-300 text-neutral-600'
-                      }`}>
-                        {simulatorState === 'blackout' ? 'BLACKOUT GAP (2s)' : 'STANDBY'}
-                      </div>
-                      <div className={`h-full ${simulatorState === 'blackout' ? 'bg-neutral-700' : 'bg-neutral-400'} w-1/3 flex items-center justify-center text-[10px] text-white font-mono font-bold transition-colors`}>
-                        INVERTER
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* SunGrid Seamless Switch */}
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-[#1a1c1c] font-bold flex items-center gap-1">
-                        <CheckCircle2 className="w-4 h-4 text-primary" /> SunGrid Microgrid Inverter
-                      </span>
-                      <span className="text-primary font-bold">&lt;3.8ms Perceived • 100% Continuity</span>
-                    </div>
-                    <div className="h-6 w-full bg-gradient-to-r from-primary via-[#ff8e4d] to-primary rounded-full overflow-hidden flex items-center justify-center text-white font-label-caps text-[10px] tracking-wider font-bold shadow-sm relative">
-                      <span className="relative z-10">CONTINUOUS UNBROKEN SINE WAVE (ZERO REBOOT)</span>
-                      <div className="absolute inset-0 bg-white/20 beam-travel-active pointer-events-none" />
-                    </div>
-                  </div>
-
-                  {/* SVG Synchronized Sine Wave Graphic with Oscilloscope Glow */}
-                  <div className="p-4 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] relative overflow-hidden">
-                    <div className="flex justify-between items-center text-[#5c5e63] font-label-caps text-[10px] uppercase mb-2">
-                      <span>Grid Input (230V AC @ 50Hz)</span>
-                      <span className="text-primary font-bold flex items-center gap-1">
-                        <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-                        Sub-Cycle Transfer Synchronization
-                      </span>
-                    </div>
-
-                    <div className="relative">
-                      <svg
-                        className="w-full h-16 text-primary oscilloscope-glow"
-                        fill="none"
-                        viewBox="0 0 600 64"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M0 32 Q 37.5 0, 75 32 T 150 32 T 225 32 T 300 32 T 375 32 T 450 32 T 525 32 T 600 32"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeWidth="2.5"
-                        />
-                        <path
-                          d="M300 8 L300 56"
-                          opacity="0.6"
-                          stroke="#a73400"
-                          strokeDasharray="3 3"
-                          strokeWidth="1.5"
-                        />
-                        <circle cx="300" cy="32" fill="#a73400" r="5" className="animate-pulse" />
-                      </svg>
-                    </div>
-
-                    <div className="flex justify-between text-[#5c4037] text-[11px] mt-1 font-medium font-mono">
-                      <span>Public Grid (NEPA/DisCo)</span>
-                      <span className="text-primary font-bold">Transfer Event &lt;3.8ms</span>
-                      <span>SunGrid Blade Battery Wave</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <DailyEnergyYieldChart onSelectPackage={onOpenQuote} />
         </div>
       </section>
 

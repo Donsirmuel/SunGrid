@@ -11,6 +11,7 @@ export interface SolarPackage {
   monthlyInstallment?: number;
   image: string;
   description: string;
+  simpleSummary?: string;
   highlights: string[];
   specs: {
     inverter: string;
@@ -19,6 +20,13 @@ export interface SolarPackage {
     transferSpeed: string;
     surgeTolerance?: string;
     protection?: string;
+    plainMeaning?: {
+      inverterExplanation?: string;
+      batteryExplanation?: string;
+      solarExplanation?: string;
+      switchExplanation?: string;
+      protectionExplanation?: string;
+    };
   };
 }
 

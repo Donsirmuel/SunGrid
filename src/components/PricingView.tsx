@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavTab } from '../types';
 import { IMAGES } from '../data/assets';
 import { LazyImage } from './LazyImage';
+import { SolarRoiCalculator } from './SolarRoiCalculator';
 import { 
   ShieldCheck, 
   BatteryCharging, 
@@ -26,9 +27,6 @@ interface PricingViewProps {
 }
 
 export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuote }) => {
-  // Fuel Slider state
-  const [fuelSpend, setFuelSpend] = useState<number>(350000);
-  
   // Package full spec toggles
   const [openSpecs, setOpenSpecs] = useState<{ [key: string]: boolean }>({
     'duplex': false
@@ -52,11 +50,6 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
       [idx]: !prev[idx]
     }));
   };
-
-  // Calculations for fuel slider
-  const solarInstallment = Math.round(fuelSpend * 0.50);
-  const monthlySavings = fuelSpend - solarInstallment;
-  const threeYearSavings = (monthlySavings * 24) + (fuelSpend * 12); // After 24mo payoff, 100% of fuel is retained!
 
   const faqs = [
     {
@@ -183,23 +176,23 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 <ul className="space-y-2 text-xs text-[#5c4037]">
                   <li className="flex items-start gap-2 text-[#1a1c1c] font-medium">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Supports 1 Inverter AC (1.0HP)</span>
+                    <span>Powers 1 bedroom Inverter AC (1.0HP) overnight</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>5.12kWh Tier-1 LiFePO4 Battery</span>
+                    <span>5.12kWh Long-Life Lithium Battery (10+ yr lifespan)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>6x 550W Monocrystalline PVs</span>
+                    <span>6 Rooftop Solar Panels (550W High-Efficiency)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>0.5HP Surface Water Pump</span>
+                    <span>Pumps water to overhead tank (0.5HP pump)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Fridge, TV, Wi-Fi & LED Lighting</span>
+                    <span>Runs fridge, TV, Starlink Wi-Fi & LED lights 24/7</span>
                   </li>
                 </ul>
               </div>
@@ -209,15 +202,15 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                   onClick={() => toggleSpec('urban')}
                   className="text-xs font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer"
                 >
-                  <span>View full specs</span>
+                  <span>Specs & Plain Meaning</span>
                   {openSpecs['urban'] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                 </button>
                 {openSpecs['urban'] && (
-                  <div className="text-xs text-[#5c4037] pb-3 space-y-1">
-                    <p>• Pure sine wave hybrid inverter</p>
-                    <p>• 16mm heavy gauge copper core DC cables</p>
-                    <p>• Surge protection (SPD) & dual disconnects</p>
-                    <p>• 1-day typical deployment</p>
+                  <div className="text-xs text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3 rounded-xl mb-3">
+                    <p><strong className="text-[#1a1c1c]">Pure Sine Inverter:</strong> Clean current with zero flickering or hum.</p>
+                    <p><strong className="text-[#1a1c1c]">100% Copper Cables:</strong> Heavy 16mm wiring prevents dangerous overheating.</p>
+                    <p><strong className="text-[#1a1c1c]">Surge Protector (SPD):</strong> Absorbs sudden NEPA high-voltage spikes safely.</p>
+                    <p><strong className="text-[#1a1c1c]">1-Day Setup:</strong> Fully installed and tested within 24 hours.</p>
                   </div>
                 )}
                 <button
@@ -254,23 +247,23 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 <ul className="space-y-2 text-xs text-[#5c4037]">
                   <li className="flex items-start gap-2 text-[#1a1c1c] font-medium">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Runs 3 Inverter ACs (1.5HP)</span>
+                    <span>Runs 3 Inverter ACs (1.5HP) overnight silently</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>10.24kWh LiFePO4 Dual Pack</span>
+                    <span>10.24kWh Blade Lithium Battery (EV-grade safety cells)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>12x 580W Tier-1 Bifacial Solar</span>
+                    <span>12 Bifacial Solar Panels (catches front & reflected sunlight)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>1HP Deep Well / Borehole Pumping</span>
+                    <span>Effortless 1.0HP borehole water pumping anytime</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Freezer, Refrigerator, Home Audio</span>
+                    <span>Runs deep freezer, refrigerator & home cinema 24/7</span>
                   </li>
                 </ul>
               </div>
@@ -280,15 +273,15 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                   onClick={() => toggleSpec('duplex')}
                   className="text-xs font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer"
                 >
-                  <span>View full specs</span>
+                  <span>Specs & Plain Meaning</span>
                   {openSpecs['duplex'] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                 </button>
                 {openSpecs['duplex'] && (
-                  <div className="text-xs text-[#5c4037] pb-3 space-y-1">
-                    <p>• High-Yield Hybrid Inverter (Zero-Flicker &lt;4ms)</p>
-                    <p>• Dual MPPT trackers for shaded roofs</p>
-                    <p>• 4-point chemical copper earthing array</p>
-                    <p>• Cloud mobile app live telemetry</p>
+                  <div className="text-xs text-[#5c4037] pb-3 space-y-2 bg-[#fdf2ec] p-3 rounded-xl mb-3">
+                    <p><strong className="text-[#1a1c1c]">Instant Handover (&lt;4ms):</strong> Zero flicker when grid cuts off; TV and computers won't restart.</p>
+                    <p><strong className="text-[#1a1c1c]">Dual MPPT Solar Brain:</strong> Produces high electricity even if part of your roof has shade.</p>
+                    <p><strong className="text-[#1a1c1c]">Chemical Earthing:</strong> Real copper ground rod protecting from thunder and grid surges.</p>
+                    <p><strong className="text-[#1a1c1c]">Smartphone App:</strong> See live solar generation and battery percent on your phone.</p>
                   </div>
                 )}
                 <button
@@ -322,23 +315,23 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 <ul className="space-y-2 text-xs text-[#5c4037]">
                   <li className="flex items-start gap-2 text-[#1a1c1c] font-medium">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Powers 6 ACs simultaneously</span>
+                    <span>Powers 5–7 ACs simultaneously across all building wings</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>20.48kWh High-C Modular Bank</span>
+                    <span>20.48kWh High-Capacity Server Rack Lithium Storage</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>20x 600W High Efficiency Solar</span>
+                    <span>20 Ultra-High Efficiency Solar Panels (600W each)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>2HP Heavy Duty Submersible Pump</span>
+                    <span>Heavy-duty borehole submersible pump (2.0HP)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Microwave, Induction & Gate Motor</span>
+                    <span>Microwave, electric cooker, elevator & motorized gate</span>
                   </li>
                 </ul>
               </div>
@@ -348,15 +341,15 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                   onClick={() => toggleSpec('estate')}
                   className="text-xs font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer"
                 >
-                  <span>View full specs</span>
+                  <span>Specs & Plain Meaning</span>
                   {openSpecs['estate'] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                 </button>
                 {openSpecs['estate'] && (
-                  <div className="text-xs text-[#5c4037] pb-3 space-y-1">
-                    <p>• Parallel dual-stack industrial inverters</p>
-                    <p>• Zero flicker (&lt;4ms transfer switchover)</p>
-                    <p>• Master changeover isolation switchboard</p>
-                    <p>• Full on-site engineering sign-off</p>
+                  <div className="text-xs text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3 rounded-xl mb-3">
+                    <p><strong className="text-[#1a1c1c]">Dual Industrial Inverters:</strong> Two machines working in tandem so you never experience blackout if one needs service.</p>
+                    <p><strong className="text-[#1a1c1c]">Clean Sine Wave:</strong> Safe for medical lab equipment, home elevators, and sensitive audio systems.</p>
+                    <p><strong className="text-[#1a1c1c]">Changeover Board:</strong> One master switch neatly controlling your entire estate grid.</p>
+                    <p><strong className="text-[#1a1c1c]">Registered Engineer:</strong> NERC-certified engineer conducts final safety check before handover.</p>
                   </div>
                 )}
                 <button
@@ -373,16 +366,16 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-3 py-0.5 rounded-full bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
-                    20kVA Industrial
+                    25kVA Commercial
                   </span>
-                  <span className="text-xs text-[#5c5e63]">Offices/Hospitals</span>
+                  <span className="text-xs text-[#5c5e63]">Offices / Clinics</span>
                 </div>
                 <div>
                   <p className="text-xs text-[#5c5e63]">All-Inclusive Turnkey</p>
                   <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight">
                     ₦24.5M
                   </h3>
-                  <p className="text-xs text-primary font-bold mt-0.5">Custom installment plan</p>
+                  <p className="text-xs text-primary font-bold mt-0.5">Flexible corporate financing</p>
                 </div>
 
                 <div className="w-full h-px bg-[#dedfe5] my-4" />
@@ -390,23 +383,23 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 <ul className="space-y-2 text-xs text-[#5c4037]">
                   <li className="flex items-start gap-2 text-[#1a1c1c] font-medium">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Full Facility / All Three Phases</span>
+                    <span>Powers whole office or clinic across all 3 phases</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>40.96kWh Rackmount Server LiFePO4</span>
+                    <span>40.96kWh Rackmount Server Lithium Bank</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>36x 650W Tier-1 TopCon Modules</span>
+                    <span>36 Commercial High-Density Solar Panels (650W each)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Server racks, cold rooms & elevators</span>
+                    <span>Runs server racks, cold rooms, HVAC & passenger lifts</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span>Auto generator synchronizer</span>
+                    <span>Generator synchronizer (cranks generator only if needed)</span>
                   </li>
                 </ul>
               </div>
@@ -416,15 +409,15 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                   onClick={() => toggleSpec('industrial')}
                   className="text-xs font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer"
                 >
-                  <span>View full specs</span>
+                  <span>Specs & Plain Meaning</span>
                   {openSpecs['industrial'] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                 </button>
                 {openSpecs['industrial'] && (
-                  <div className="text-xs text-[#5c4037] pb-3 space-y-1">
-                    <p>• 3-Phase balancing & harmonic filtering</p>
-                    <p>• Class T fused busbar isolation units</p>
-                    <p>• Dedicated on-site engineer on commissioning</p>
-                    <p>• 2-year included quarterly maintenance</p>
+                  <div className="text-xs text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3 rounded-xl mb-3">
+                    <p><strong className="text-[#1a1c1c]">3-Phase Balancing:</strong> Equal current on all 3 phases so heavy motors don't burn out.</p>
+                    <p><strong className="text-[#1a1c1c]">Class T Fused Protection:</strong> Rapid electrical safety fuses cutting off faults in milliseconds.</p>
+                    <p><strong className="text-[#1a1c1c]">Engineer On-Site:</strong> Supervised startup with full compliance safety certificate.</p>
+                    <p><strong className="text-[#1a1c1c]">2-Yr Service Included:</strong> Quarterly maintenance visits keeping panels clean and batteries balanced.</p>
                   </div>
                 )}
                 <button
@@ -439,168 +432,34 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
         </div>
       </section>
 
-      {/* SECTION: PAY SMALL-SMALL FINANCING & FUEL SLIDER */}
+      {/* SECTION: PAY SMALL-SMALL FINANCING & UPGRADED SOLAR ROI CALCULATOR */}
       <section id="financing-calculator" className="w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 py-16 lg:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left: Explanatory copy */}
-          <div className="lg:col-span-5 flex flex-col">
-            <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold mb-1">
-              Zero Upfront Barrier
-            </span>
-            <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mb-4">
-              Switch to Solar Today. Pay Small-Small.
-            </h2>
-            <p className="font-body-md text-sm sm:text-base text-[#5c4037] mb-6 leading-relaxed">
-              Do not let fuel price spikes choke your family's cash flow. Spread your solar installation
-              across 12, 24, or 36 low-interest monthly installments backed by Nigeria’s leading clean energy bank partners.
-            </p>
+        <SolarRoiCalculator onSelectPackage={onOpenQuote} />
 
-            <div className="flex flex-col gap-2 mb-6">
-              <p className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider">
-                Financed In Partnership With
-              </p>
-              <div className="flex items-center gap-3 flex-wrap">
-                <div className="px-4 py-2 bg-white rounded-xl border border-[#dedfe5] font-headline-sm text-xs sm:text-sm font-bold text-[#1a1c1c] shadow-xs">
-                  Carbon Zero
-                </div>
-                <div className="px-4 py-2 bg-white rounded-xl border border-[#dedfe5] font-headline-sm text-xs sm:text-sm font-bold text-[#1a1c1c] shadow-xs">
-                  Sterling Bank
-                </div>
-                <div className="px-4 py-2 bg-white rounded-xl border border-[#dedfe5] font-headline-sm text-xs sm:text-sm font-bold text-[#1a1c1c] shadow-xs">
-                  FirstBank CleanTech
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2.5 text-xs text-[#5c4037]">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                <span>Instant BVN-based pre-qualification within 15 minutes</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                <span>Zero penalty for early full loan liquidation</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                <span>Solar hardware active immediately upon 20% down payment</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Interactive ROI Calculator */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-[#dedfe5]">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h3 className="font-headline-md text-xl sm:text-2xl font-bold text-[#1a1c1c]">
-                  Fuel vs. Solar Calculator
-                </h3>
-                <p className="text-xs text-[#5c4037]">See how much you save every single month</p>
-              </div>
-              <div className="w-12 h-12 rounded-2xl bg-[#ffdbcf]/60 flex items-center justify-center text-primary">
-                <Calculator className="w-6 h-6" />
-              </div>
-            </div>
-
-            {/* Slider */}
-            <div className="mb-8">
-              <div className="flex justify-between items-baseline mb-2">
-                <label className="text-xs font-semibold text-[#1a1c1c]">
-                  Your Current Generator Fuel & Servicing / Mo:
-                </label>
-                <span className="font-headline-md text-2xl font-bold text-primary tabular-nums">
-                  ₦{fuelSpend.toLocaleString('en-NG')}
-                </span>
-              </div>
-
-              <input
-                type="range"
-                min={100000}
-                max={1200000}
-                step={25000}
-                value={fuelSpend}
-                onChange={(e) => setFuelSpend(parseInt(e.target.value, 10))}
-                className="w-full h-2.5 bg-[#dedfe5] rounded-lg appearance-none cursor-pointer accent-primary"
-              />
-
-              <div className="flex justify-between font-label-caps text-[10px] text-[#5c5e63] mt-2 font-semibold">
-                <span>₦100k / mo</span>
-                <span>₦600k / mo</span>
-                <span>₦1.2M / mo</span>
-              </div>
-
-              {/* Comparative Mechanical Fuel vs Solar Bar */}
-              <div className="mt-4 p-3.5 bg-neutral-900 rounded-2xl text-white space-y-2 border border-neutral-800">
-                <div className="flex justify-between text-[10px] font-label-caps text-neutral-400 font-semibold">
-                  <span className="flex items-center gap-1.5 text-neutral-400">
-                    <span className="w-2 h-2 rounded-full bg-rose-500" />
-                    Generator Fuel Burned (Sunk Loss)
-                  </span>
-                  <span className="flex items-center gap-1.5 text-emerald-400">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                    Solar Asset Build (Retained)
-                  </span>
-                </div>
-                <div className="w-full h-3 bg-neutral-800 rounded-full overflow-hidden flex p-0.5 border border-white/5">
-                  <div 
-                    className="h-full bg-gradient-to-r from-rose-500 to-rose-600 rounded-l-full transition-all duration-300"
-                    style={{ 
-                      width: '50%',
-                      transitionTimingFunction: 'var(--ease-meter)'
-                    }}
-                  />
-                  <div 
-                    className="h-full bg-gradient-to-r from-emerald-500 to-primary rounded-r-full transition-all duration-300"
-                    style={{ 
-                      width: '50%',
-                      transitionTimingFunction: 'var(--ease-meter)'
-                    }}
-                  />
-                </div>
-                <div className="flex justify-between text-[10px] font-mono">
-                  <span className="text-neutral-400">Fixed Cost: ₦{solarInstallment.toLocaleString('en-NG')}</span>
-                  <span className="text-emerald-400 font-bold">Monthly Cash Surplus: +₦{monthlySavings.toLocaleString('en-NG')}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Interactive Result Bento */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-              <div className="bg-[#f9f9f8] rounded-2xl p-5 border border-[#dedfe5]">
-                <p className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider">
-                  Predictable Solar Installment
-                </p>
-                <p className="font-metric-counter text-2xl sm:text-3xl font-bold text-[#1a1c1c] mt-1">
-                  ₦{solarInstallment.toLocaleString('en-NG')}
-                </p>
-                <p className="text-xs text-[#5c4037] mt-1">24-month fixed plan</p>
-              </div>
-
-              <div className="bg-[#ffdbcf]/40 rounded-2xl p-5 border border-primary/20">
-                <p className="font-label-caps text-[10px] text-primary uppercase font-bold tracking-wider">
-                  Instant Monthly Cash In Pocket
-                </p>
-                <p className="font-metric-counter text-2xl sm:text-3xl font-bold text-primary mt-1">
-                  +₦{monthlySavings.toLocaleString('en-NG')}
-                </p>
-                <p className="text-xs text-[#5c4037] mt-1">Kept in your pocket from Day 1</p>
-              </div>
-            </div>
-
-            {/* 3-Year Projection */}
-            <div className="flex items-center justify-between p-4 rounded-2xl bg-[#f3f4f3] border border-[#dedfe5]">
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
-                <div>
-                  <p className="text-xs font-bold text-[#1a1c1c]">3-Year Projected Retained Wealth</p>
-                  <p className="text-[11px] text-[#5c4037]">
-                    Total cumulative savings once solar loan is completely paid off
-                  </p>
-                </div>
-              </div>
-              <span className="font-headline-sm text-lg sm:text-xl font-bold text-primary">
-                ₦{threeYearSavings.toLocaleString('en-NG')}
+        {/* Banking Partners & Pre-qualification Guarantee */}
+        <div className="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-[#dedfe5] shadow-xs">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-5">
+              <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
+                Zero Upfront Barrier
               </span>
+              <h3 className="font-headline-md text-xl sm:text-2xl font-bold text-[#1a1c1c] tracking-tight mt-1">
+                Spread Across 12, 24, or 36 Months
+              </h3>
+              <p className="font-body-sm text-xs sm:text-sm text-[#5c4037] mt-1.5 leading-relaxed">
+                Backed by Nigeria’s leading clean energy bank desks. Hardware activated immediately upon standard 20% down payment with zero penalty for early liquidation.
+              </p>
+            </div>
+            <div className="md:col-span-7 flex flex-wrap items-center gap-3">
+              <div className="px-5 py-3 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] text-xs font-bold text-[#1a1c1c] flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-primary" /> Carbon Zero Finance
+              </div>
+              <div className="px-5 py-3 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] text-xs font-bold text-[#1a1c1c] flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-primary" /> Sterling Bank Alternative Energy
+              </div>
+              <div className="px-5 py-3 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] text-xs font-bold text-[#1a1c1c] flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-primary" /> FirstBank CleanTech Desk
+              </div>
             </div>
           </div>
         </div>

@@ -43,13 +43,13 @@ export const HERO_FRAMES = [
 
 export const IMAGES = {
   // Lekki Phase 1 flagship villa dusk
-  lekkiVillaDusk: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD5ZPlkt48yMGC4y2gE8PWnZL60CnUG8h3JaTw2qlwMX7Ds3LEsoxXevGsHIcHcdjiHIezigkHvlclgmTsY56Ntatpu9HtJmz-UykLAzpgF76g9SMUzrf_a5nnuYnPmoiyCyJ1-ywYAcMZ3m4l9VyHbVMtFOvFPsOcV3pQgc3aCECG_EjHghntW0ZdnXWtGU1_G7YolM9B1ZJEn6Q728R7gHBQ8RlfpVr_7W1JLIvXLnN10ojHRx7gz',
+  lekkiVillaDusk: '/lekki-duplex-dusk.webp',
   // Certified engineer installing wall-mounted inverter and lithium battery
   engineerInstall: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCaS-gDrgrTPS20TbWthsv3b53Qa-4zFDOuN_GJsKTt6b4JZ0vya9XMavBZ8ThppAF4ZZ_JCxY7xbQDpWpnFYcQ274E7X2rbIrBrekYH1eMe9X3G-VQlFYmyPZe5nRXbw45kK_ZOv9USLRCi_F0UK2RkTQSaAso5E1sRwXUzsLM3vhBC6ORe5VNI1l_6EL-ilL5RdR0ILmHz7WR7c50jy1lH0HiptR2pV61Jk-xWnV4K6ogJv6kWuKm',
   // Lekki Phase 1 family duplex sunny
   lekkiDuplexSunny: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDYuQQbTOCrJHgURv6I3yGWC8s7h-Gv8DYFqEeHxGQL8eVsv-_XPvLdO1J0cQB2V92qixXmDjPAwBQEy62zXVtgRWv4ZRCgnQZbfNtvIJpynk2mGg-wdiiRfmPRssr79ZPCsyd3JeCdStnK3rWihlQP_qpZc6oqO7QdeO7Q8feGlZwJ7ted5Ts-gu1zEzGGq19RtIKGQxwNJK_8pMx_TijVU42bSHcFVprFzZuD4_Fbc3cZo1We7CsH',
   // Maitama Abuja diplomat home
-  maitamaAbuja: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCwdpPpk_KD3X31kw-AjiyH8BkThjep1sG0CwR90B0KsaHV_niDmnXJrS-kbmAYnCYeO6Tm0xvJynteRGlT_k0yIZOm5S-iif-jLZjqSOfX5yt6Eg9z4-kqtSvCEIFo6hPQfeLLYm7RaBLKJ-yifJ4CLbWVkAk4SU71XKQLcjPzilUISjOv6SAM8AZKPT7xMmaT8ZZLMwQ01WpPUfHqieai7o272obWa-lJ2YeUjo-B9izbkeNs7pka',
+  maitamaAbuja: '/maitama-abuja-townhouse.webp',
   // Old GRA Port Harcourt executive residence
   oldGraPH: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBavvOlMrvUP4ovY7h6YmFEhjclGblSlhfZALWcWxyd9-jjQGQy5MW46jV5RZBpaoraz07bXcqDyQ-PaBIkXeoRsJn0mzWtJrIoEl8fWatFzqDLkwUtNR-PgyCVP5NWB4pCoGiZC4y-IM0w2yGqBg8d8IP3TuwHU25LpNFb20_lYbgIglj9wzXugcrYt2SBKvZTNlnnH-hQ0qLHde8FC1D6o0JRnbNW0FNns1RyhnDrIoOoeuMk4B75',
   // Magodo Phase 2 detached home with terracotta roof
@@ -62,12 +62,14 @@ export const IMAGES = {
   roofArraySunny: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDqKCDTmWfZI_xA-MxVhIM1GPltOFY2kn1LoEtoo62YrZQRtfBLGff4RxEM-8yDsVCkP8eyr6FiNgCwe6CsUpkLVz9Q6vfV70seBB23g8jEjUyutd0W_IDPoJo8VXl3KIyORtIDE8dr_6gkMsrW1vQjPqqfbxPKC2jWuqeUDo-GTYn3oduxOlpxOP6M9w_hd-fVD_Wh1EF2rwJoqccFi3gUskzJF2HEsp0LYx4VtwT2nkofqpuLWch8',
   // Compact apartment battery & inverter
   compactApartment: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUtT5xy9lM1Q2w-tBB88NI5pn0ZbRrMAB97cf0BAmqrSKj2vsrh2rJOEljOk4lQMZ3wxc4neoCDGwKdFRTDzqdTx80HDBvnw70JilwxUJuVfjgYECkh-0MiHwg4HWhqY92xvfll5Ej4_sInxPZXAfDbpUqCE4NX4_Qmit3ewpCqTLdCARiGV4-UaJZ5gWl9uf4GwS0qYTItjreYjtYTPvnVMT8m__c7asbmarqrx87lzNsq3wOlAaZ',
-  // Modern duplex exterior
-  modernDuplexExterior: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBPfBnxuWU4hdGxqdhu6e31a2On_rbjvRWewATye9rEZ_k-jKoNZ9MxkX5QBWudPltasNDIOnvdNBEKmkrbgCJddINFpWe056CkOBJpORRwbVOC3cKa2EZx4d-abkkwp4okA7hgHNK-EgxjY5YPnNV9408nDd0omNgks792B8XAzjcoVKCfPLSTTs6l2g_AEcOX2PKW8pbmfpVGcSg6er_5FzCZdvEvXlHWUbk6bslHQnJJdbs6-SAu',
-  // Industrial high-voltage solar rack server room
-  industrialRackRoom: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBVEXHg2o4lQXdEqYwBvniXWdLhoKCzBI7hbwBMH6-csKciiPzzKzv-BMdCpN1WlcDygF2UmjHZMhqhBV7s42uVzKjX8j95VKmdWS0rQFxENl8pJplhnKBXGq3IPFRfHMTQvyd6itV9KTfEybk4mVa8YSgzng_NWLoRgTjl7QpLinMRzw03VN9TXT_i7L2s8uFvedwOwWZqexAPSGKMXJaYG8sjw12FgkkCg1gue1f_BtcKusQt1K0H',
-  // Nomad Portable Power Station
-  nomadStation: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCuaQVgKVbuKt7RvHDrw9nrczK_s9xxLXdHk-EZzwjb1cpjKmIUg4DWD2o_T-dtZpvKJmE1pjhRKC51Jv20kAqnQVXBBCaIcdo7nGdu7p23zq-wK4tUQSj1hLwZNCoTcvJL_9N3hsEDmukhnUu_c31u2MDdlaZga854WbHs9o3o_Th3vfgdZ59m3PUBTgtOKvOBL2s2RIwJiGYGFJm6ccaz4o2rpdf3pm2L_nI5GtitMoG2hNE-WDCa',
+  // Modern duplex exterior (User-provided residential installation with solar roof)
+  modernDuplexExterior: '/duplex-solar-roof.webp',
+  // Industrial high-voltage solar rack server room & commercial solar facility
+  industrialRackRoom: '/commercial-solar-facility.webp',
+  // Commercial & Industrial facility warehouse rooftop microgrid
+  commercialFacility: '/commercial-solar-facility.webp',
+  // Nomad Portable Power Station / Compact Home Solar Unit
+  nomadStation: '/sungrid-nomad-compact.webp',
   // Studio nomad unit
   nomadStudio: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDpCGu5K4JhsNTcmYrGoMchciVuP4p8oJvN9qzBRa3KJE_SJT55PbgP8TEnYao0kwyG9beA7rDRk_HFb8yvq5fNC9nS7KCijnQI23fu_FIAF6AelKfVk6r22_EIX9syvnWZ201lsR84Spxei5AqbUHWvRVmyvfumtNRUZIDz3XR5I9txTdo4Jics3ZGZHvsVEqMpNbhEbz2QY98z_e3QNK06NG_yD7WZIpVk8pTP6LTn0GWP4DyDBKe',
   // Ikoyi mansion solar roof
@@ -75,5 +77,5 @@ export const IMAGES = {
   // Guzape townhouse terrace
   guzapeTownhouse: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBeCs-mPzfPDlwspNv9GTTl-9zFXC93tVFIbi9k71rFIcqXqdNe6QTHhSvca6VKYFZKqd1qiQ9oaEbswl1VTrWONW8_9Oyxnc-Q2idmLixIWpYzkmn-HgagN34p1DYcIVf16xD5yqV55ebG_VO_JJeBoA6OaaAl87C4_QkTgNiA46TZEUyt0j46GQ_V22l48g2CvJoJ5iuHBol1k6nV0tWirMGe-99HgZEGo2nxt522PoD-XrxDWecn',
   // VI medical clinic
-  medicalClinicVI: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDWMXBXYtnLvSUPiqFS2j-jqz_STGIsBg7ytz6BDmcKALo9Ttrcddo1mR968L9Z5dKK6Y0k-Tn6uTFMK2o7V9XcQMZb_6IQxUX3fcuiL9m3BM0QDi_TfUvwdORf2ZUZpW3puH78UtnCyXx_FiWhrYa49sFMr2sVbpVFCdVHE2APpWL7gMUAYjcQwyzAnLoBt8FQ90y0JwRbq5__eXawuWZyAy_B0I1OC0lKm3fRV3T5eZBupwtXzq6H'
+  medicalClinicVI: '/apex-diagnostics-solar.webp'
 };
