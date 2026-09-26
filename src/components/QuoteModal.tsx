@@ -65,7 +65,7 @@ Please assign a certified engineer to review our distribution board and provide 
         {/* Modal Header */}
         <div className="bg-[#12161a] text-white p-6 sm:p-8 flex items-start justify-between relative overflow-hidden">
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-[#ff8e4d] text-xs font-semibold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-primary/20 text-[#ff8e4d] text-xs font-semibold uppercase tracking-wider mb-2">
               <Zap className="w-3.5 h-3.5" />
               <span>Certified NERC Engineering Audit</span>
             </div>
@@ -73,13 +73,13 @@ Please assign a certified engineer to review our distribution board and provide 
               Request a System Sizing Audit
             </h3>
             <p className="text-sm text-neutral-300 mt-1 max-w-md">
-              Zero pushy salespeople. You will speak directly with an electrical engineer who calculates
-              your continuous and inductive surge demands.
+              Speak directly with an electrical engineer who reviews your appliances and calculates
+              your startup surges and continuous load.
             </p>
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer relative z-10"
+            className="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer relative z-10"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -90,7 +90,7 @@ Please assign a certified engineer to review our distribution board and provide 
         <div className="p-6 sm:p-8 max-h-[75vh] overflow-y-auto">
           {submitted ? (
             <div className="text-center py-8 space-y-6">
-              <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+              <div className="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="space-y-2">
@@ -110,14 +110,14 @@ Please assign a certified engineer to review our distribution board and provide 
                   href={`https://wa.me/2348007864743?text=${generateWhatsAppMessage()}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#10b981] hover:bg-emerald-600 text-white font-semibold text-sm transition-all shadow-md"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#10b981] hover:bg-emerald-600 text-white font-semibold text-sm transition-all shadow-md"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>Open Direct on WhatsApp Now</span>
                 </a>
                 <button
                   onClick={onClose}
-                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-sm font-semibold transition-colors"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-sm font-semibold transition-colors"
                 >
                   Close Window
                 </button>
@@ -266,7 +266,7 @@ Please assign a certified engineer to review our distribution board and provide 
                   className="text-xs font-semibold text-primary hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <FileText className="w-3.5 h-3.5" />
-                  <span>{showFormalLineItems ? 'Hide Line-Item Audit Scope' : 'Show Included Turnkey Line-Items (Zero Add-ons)'}</span>
+                  <span>{showFormalLineItems ? 'Hide Line-Item Audit Scope' : 'Show Included Turnkey Line-Items (All-Inclusive Scope)'}</span>
                 </button>
 
                 {showFormalLineItems && (
@@ -293,7 +293,7 @@ Please assign a certified engineer to review our distribution board and provide 
                     </div>
                     <div className="flex justify-between">
                       <span>Commissioning & Logistics:</span>
-                      <span>Zero 'settle-boys' surcharges; full 24-hr hot-swap coverage</span>
+                      <span>Delivery, site labor, community relations & 24-hr swap warranty included</span>
                     </div>
                   </div>
                 )}
@@ -303,7 +303,7 @@ Please assign a certified engineer to review our distribution board and provide 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary hover:bg-primary-container text-white font-semibold text-sm transition-all shadow-[0_4px_20px_rgba(167,52,0,0.3)] flex items-center justify-center gap-2 group cursor-pointer"
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-semibold text-sm transition-all shadow-[0_4px_20px_rgba(167,52,0,0.3)] flex items-center justify-center gap-2 group cursor-pointer"
                 >
                   <span>Dispatch Engineering Audit</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

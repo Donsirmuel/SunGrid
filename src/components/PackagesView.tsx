@@ -13,9 +13,10 @@ import {
   ShieldCheck, 
   ArrowRight, 
   Calculator, 
-  Sparkles,
   Layers,
-  BatteryCharging
+  BatteryCharging,
+  Sun,
+  Lightbulb
 } from 'lucide-react';
 
 interface PackagesViewProps {
@@ -54,31 +55,26 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
       {/* SECTION: HERO HEADER */}
       <section className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 pt-12 sm:pt-16 pb-12 w-full">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#ffdbcf] text-primary font-label-caps text-xs uppercase tracking-wider mb-4 font-bold">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            Certified Turnkey Energy • Tier-1 Guaranteed
-          </span>
-
           <h1 className="font-display-hero text-3xl sm:text-4xl lg:text-5xl text-[#1a1c1c] tracking-tight mb-4 font-bold">
             Reliable Solar Packages for Every Nigerian Home.
           </h1>
 
           <p className="font-body-lg text-base sm:text-lg text-[#5c4037] max-w-2xl font-normal leading-relaxed">
-            Built with genuine Tier-1 bifacial panels, long-life lithium storage, and certified fire-safe
-            installation. Turnkey peace of mind engineered for the reality of the Nigerian grid.
+            Complete solar installations with high-efficiency bifacial panels, Grade-A lithium batteries,
+            and surface-trunked wiring designed for Nigerian grid conditions.
           </p>
 
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-8 p-1.5 rounded-full bg-[#e8e8e7]/70 backdrop-blur-sm border border-[#dedfe5]">
+          {/* Category Filter Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 mt-8 p-1.5 rounded-xl bg-[#eeeeed] border border-[#dedfe5]">
             {filterCategories.map((cat) => {
               const active = selectedCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-5 py-2 rounded-full font-label-ui text-xs sm:text-sm transition-all duration-200 cursor-pointer ${
+                  className={`px-4 py-2 rounded-lg font-label-ui text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                     active
-                      ? 'bg-white text-[#1a1c1c] font-bold shadow-sm'
+                      ? 'bg-white text-primary font-bold shadow-xs border border-[#dedfe5]'
                       : 'text-[#5c5e63] hover:text-[#1a1c1c]'
                   }`}
                 >
@@ -107,7 +103,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                 }`}
               >
                 {isFeatured && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-0.5 rounded-full bg-primary text-white font-label-caps text-[10px] uppercase tracking-wider font-bold shadow-sm">
+                  <div className="absolute -top-3 left-6 px-3 py-1 rounded-md bg-primary text-white font-label-caps text-[10px] uppercase tracking-wider font-bold shadow-xs">
                     {pkg.badge || "Nigeria's #1 Most Selected"}
                   </div>
                 )}
@@ -121,10 +117,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
                     <span
-                      className={`absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md z-10 ${
+                      className={`absolute top-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider backdrop-blur-md z-10 ${
                         isFeatured
                           ? 'bg-primary text-white'
-                          : 'bg-white/90 text-[#1a1c1c]'
+                          : 'bg-white/95 text-[#1a1c1c] shadow-xs'
                       }`}
                     >
                       {pkg.powerKva}
@@ -209,8 +205,9 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                           <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.inverter}</span>
                         </div>
                         {pkg.specs.plainMeaning?.inverterExplanation && (
-                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
-                            💡 {pkg.specs.plainMeaning.inverterExplanation}
+                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
+                            <Lightbulb className="w-3 h-3 text-amber-600 shrink-0 mt-0.5" />
+                            <span>{pkg.specs.plainMeaning.inverterExplanation}</span>
                           </p>
                         )}
                       </div>
@@ -221,8 +218,9 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                           <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.battery}</span>
                         </div>
                         {pkg.specs.plainMeaning?.batteryExplanation && (
-                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
-                            🔋 {pkg.specs.plainMeaning.batteryExplanation}
+                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
+                            <BatteryCharging className="w-3 h-3 text-emerald-600 shrink-0 mt-0.5" />
+                            <span>{pkg.specs.plainMeaning.batteryExplanation}</span>
                           </p>
                         )}
                       </div>
@@ -233,8 +231,9 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                           <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.solarArray}</span>
                         </div>
                         {pkg.specs.plainMeaning?.solarExplanation && (
-                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
-                            ☀️ {pkg.specs.plainMeaning.solarExplanation}
+                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
+                            <Sun className="w-3 h-3 text-amber-500 shrink-0 mt-0.5" />
+                            <span>{pkg.specs.plainMeaning.solarExplanation}</span>
                           </p>
                         )}
                       </div>
@@ -245,8 +244,9 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                           <span className="text-primary font-semibold text-right">{pkg.specs.transferSpeed}</span>
                         </div>
                         {pkg.specs.plainMeaning?.switchExplanation && (
-                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
-                            ⚡ {pkg.specs.plainMeaning.switchExplanation}
+                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
+                            <Zap className="w-3 h-3 text-primary shrink-0 mt-0.5" />
+                            <span>{pkg.specs.plainMeaning.switchExplanation}</span>
                           </p>
                         )}
                       </div>
@@ -258,8 +258,9 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                             <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.protection}</span>
                           </div>
                           {pkg.specs.plainMeaning?.protectionExplanation && (
-                            <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug">
-                              🛡️ {pkg.specs.plainMeaning.protectionExplanation}
+                            <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
+                              <ShieldCheck className="w-3 h-3 text-primary shrink-0 mt-0.5" />
+                              <span>{pkg.specs.plainMeaning.protectionExplanation}</span>
                             </p>
                           )}
                         </div>
@@ -272,7 +273,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                 <div className="pt-5">
                   <button
                     onClick={() => onOpenQuote(pkg.name)}
-                    className={`w-full py-3 rounded-full font-label-ui text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    className={`w-full py-3 rounded-xl font-label-ui text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                       isFeatured
                         ? 'bg-primary hover:bg-primary-container text-white shadow-md'
                         : 'bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c]'
@@ -298,13 +299,13 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
       <section className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 py-16 lg:py-20 w-full">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
-            Engineering Integrity
+            Installation Standards
           </span>
           <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
             What’s Inside Every Turnkey SunGrid Box
           </h2>
           <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2">
-            We never cut corners on hidden safety items. Every screw, breaker, and wire is specified to surpass extreme tropical heat and humidity.
+            Every breaker, cable, and mounting bracket is chosen to withstand tropical humidity and prolonged peak heat.
           </p>
         </div>
 
@@ -318,7 +319,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
               100% Pure Copper
             </h4>
             <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
-              Zero aluminum alloys. We use heavy gauge electrolytic oxygen-free copper conduits to eliminate heating and voltage loss under continuous heavy draw.
+              We use thick electrolytic copper cabling (never aluminum or copper-clad wire) to prevent heat buildup and voltage drop under continuous heavy loads.
             </p>
           </div>
 
@@ -331,7 +332,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
               Whisper Inverter
             </h4>
             <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
-              Smart magnetic cooling architecture keeps operating sound below 25 decibels—quieter than a light rustle of leaves in your hallway.
+              Smart magnetic cooling architecture keeps operating sound below 25 decibels, quieter than a light rustle of leaves in your hallway.
             </p>
           </div>
 
@@ -374,21 +375,21 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
               Not sure which package fits your appliances?
             </h3>
             <p className="font-body-md text-sm text-[#5c4037]">
-              Run our interactive 2-minute load calculator or book a certified SunGrid engineer for an on-site structural and energy audit anywhere in Lagos, Abuja, or Port Harcourt.
+              Use our 2-minute load calculator or book an on-site audit to have an electrical engineer evaluate your distribution board and roof space in Lagos, Abuja, or Port Harcourt.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
             <button
               onClick={() => onSelectTab('calculator')}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-white text-[#1a1c1c] font-label-ui text-xs sm:text-sm font-semibold hover:bg-neutral-50 transition-colors shadow-sm cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-[#1a1c1c] font-label-ui text-xs sm:text-sm font-semibold hover:bg-neutral-50 transition-colors shadow-sm cursor-pointer"
             >
               <Calculator className="w-4 h-4 mr-2 text-primary" />
               <span>Use Load Calculator</span>
             </button>
             <button
               onClick={() => onOpenQuote()}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-colors shadow-sm cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-colors shadow-sm cursor-pointer"
             >
               <span>Book Free Home Visit</span>
             </button>

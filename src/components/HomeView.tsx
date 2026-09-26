@@ -4,6 +4,7 @@ import { HeroCanvas } from './HeroCanvas';
 import { LazyImage } from './LazyImage';
 import { IMAGES } from '../data/assets';
 import { SOLAR_PACKAGES } from '../data/packages';
+import { SHARED_METRICS } from '../config/metrics';
 import { useScrollTelemetry } from '../hooks/useScrollTelemetry';
 import { 
   Sun, 
@@ -82,17 +83,17 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
       // Decelerating mechanical ease (Power3.out equivalent: 1 - Math.pow(1 - progress, 3))
       const ease = 1 - Math.pow(1 - progress, 3);
 
-      setCounterFuel(Math.round(ease * 950));
-      setCounterUptime(Number((ease * 99.98).toFixed(2)));
-      setCounterHomes(Math.round(ease * 2840));
+      setCounterFuel(Math.round(ease * SHARED_METRICS.dieselSavings.averageLitersMonthly));
+      setCounterUptime(Number((ease * SHARED_METRICS.uptime.percentage).toFixed(2)));
+      setCounterHomes(Math.round(ease * SHARED_METRICS.homesAndIndustries.count));
 
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
         // Guarantee exact audited numbers
-        setCounterFuel(950);
-        setCounterUptime(99.98);
-        setCounterHomes(2840);
+        setCounterFuel(SHARED_METRICS.dieselSavings.averageLitersMonthly);
+        setCounterUptime(SHARED_METRICS.uptime.percentage);
+        setCounterHomes(SHARED_METRICS.homesAndIndustries.count);
       }
     };
 
@@ -162,8 +163,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
 
         {/* Hero Copy Overlay positioned in open dusk sky negative space */}
         <div className="relative z-10 max-w-2xl px-6 sm:px-12 lg:px-16 pt-24 pb-20 text-left pointer-events-none">
-          {/* Main Headline with Space Grotesk & -0.03em tracking */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Space_Grotesk'] font-bold tracking-[-0.03em] text-white leading-[1.08]">
+          {/* Main Headline with Outfit exclusively & -0.03em tracking */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Outfit'] font-bold tracking-[-0.03em] text-white leading-[1.08]">
             <span 
               id="hero-synced-line-1"
               className="block drop-shadow-md hero-state-hidden"
@@ -183,10 +184,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
             id="hero-synced-p"
             className="mt-6 text-sm sm:text-base text-neutral-300 font-['Plus_Jakarta_Sans'] font-medium leading-relaxed max-w-xl hero-state-hidden"
           >
-            No smoky generators, no midnight diesel runs, and zero flickering lights when NEPA trips. Just clean, steady solar keeping your ACs, freezers, and internet on 24/7.
+            Keep your air conditioning, refrigerators, and WiFi running without generator noise or petrol runs when the national grid fails.
           </p>
 
-          {/* Single Focused Call-to-Action Pill matching reference */}
+          {/* Focused Call-to-Action buttons */}
           <div 
             id="hero-synced-cta" 
             className="mt-8 flex items-center gap-4 hero-state-hidden"
@@ -196,7 +197,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                 const el = document.getElementById('home-sizer-section');
                 el?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#b93800] hover:bg-[#a03000] text-white font-['Plus_Jakarta_Sans'] font-medium rounded-full text-sm sm:text-[15px] transition-all shadow-lg shadow-[#b93800]/30 cursor-pointer active:scale-95 pointer-events-auto border border-orange-500/20"
+              className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#b93800] hover:bg-[#a03000] text-white font-['Plus_Jakarta_Sans'] font-medium rounded-xl text-sm sm:text-[15px] transition-all shadow-lg shadow-[#b93800]/30 cursor-pointer active:scale-95 pointer-events-auto border border-orange-500/20"
             >
               <span>Check Your Home Sizing</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
@@ -206,7 +207,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
 
             <button
               onClick={() => onOpenQuote()}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-['Plus_Jakarta_Sans'] font-medium text-sm backdrop-blur-sm border border-white/15 transition-all cursor-pointer pointer-events-auto active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-['Plus_Jakarta_Sans'] font-medium text-sm backdrop-blur-sm border border-white/15 transition-all cursor-pointer pointer-events-auto active:scale-95"
             >
               <span>Get a Free Quote</span>
             </button>
@@ -239,7 +240,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                 Fuel Money Saved
               </span>
               <div className="font-metric-counter text-4xl lg:text-5xl text-[#1a1c1c] font-bold tracking-tight mb-1 tabular-nums">
-                ₦{counterFuel > 0 ? counterFuel : 950}M<span className="text-primary">+</span>
+                ₦{counterFuel > 0 ? counterFuel : SHARED_METRICS.dieselSavings.averageLitersMonthly}M<span className="text-primary">+</span>
               </div>
               <p className="font-body-sm text-[13px] text-[#5c4037]/90 leading-relaxed font-medium">
                 Real diesel and petrol expenses kept in the pockets of families across Lagos, Abuja, Port Harcourt, and Ibadan.
@@ -248,25 +249,25 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
 
             <div className="flex flex-col md:px-10 md:border-l md:border-[#dedfe5] scroll-reveal-init delay-200">
               <span className="font-label-caps text-[11px] text-[#5c5e63] uppercase tracking-widest mb-1.5 font-bold">
-                Continuous Power (No Blackouts)
+                {SHARED_METRICS.uptime.label}
               </span>
               <div className="font-metric-counter text-4xl lg:text-5xl text-primary font-bold tracking-tight mb-1 tabular-nums">
-                {counterUptime > 0 ? counterUptime.toFixed(2) : '99.98'}<span className="text-[#1a1c1c]">%</span>
+                {counterUptime > 0 ? counterUptime.toFixed(2) : SHARED_METRICS.uptime.percentage.toFixed(2)}<span className="text-[#1a1c1c]">%</span>
               </div>
               <p className="font-body-sm text-[13px] text-[#5c4037]/90 leading-relaxed font-medium">
-                Instant 4ms switchover: faster than the blink of an eye. Your air conditioners, TVs, and Wi-Fi keep running without flickering or restarting when NEPA trips.
+                {SHARED_METRICS.uptime.description}
               </p>
             </div>
 
             <div className="flex flex-col md:pl-10 md:border-l md:border-[#dedfe5] scroll-reveal-init delay-300">
               <span className="font-label-caps text-[11px] text-[#5c5e63] uppercase tracking-widest mb-1.5 font-bold">
-                Homes & Facilities Powered
+                {SHARED_METRICS.homesAndIndustries.label}
               </span>
               <div className="font-metric-counter text-4xl lg:text-5xl text-[#1a1c1c] font-bold tracking-tight mb-1 tabular-nums">
-                {counterHomes > 0 ? counterHomes.toLocaleString() : '2,840'}<span className="text-primary">+</span>
+                {counterHomes > 0 ? counterHomes.toLocaleString() : SHARED_METRICS.homesAndIndustries.count}<span className="text-primary">{SHARED_METRICS.homesAndIndustries.suffix}</span>
               </div>
               <p className="font-body-sm text-[13px] text-[#5c4037]/90 leading-relaxed font-medium">
-                From residential flats in Victoria Island to multi-story duplexes in Maitama and diagnostic clinics.
+                {SHARED_METRICS.homesAndIndustries.description}
               </p>
             </div>
           </div>
@@ -335,7 +336,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                     </div>
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs transition-colors ${
+                    className={`w-6 h-6 rounded-md flex items-center justify-center text-xs transition-colors ${
                       selectedHomeAppliances.ac
                         ? 'bg-primary text-white font-bold'
                         : 'bg-[#dadad9] text-transparent'
@@ -371,7 +372,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                     </div>
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs transition-colors ${
+                    className={`w-6 h-6 rounded-md flex items-center justify-center text-xs transition-colors ${
                       selectedHomeAppliances.freezer
                         ? 'bg-primary text-white font-bold'
                         : 'bg-[#dadad9] text-transparent'
@@ -407,7 +408,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                     </div>
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs transition-colors ${
+                    className={`w-6 h-6 rounded-md flex items-center justify-center text-xs transition-colors ${
                       selectedHomeAppliances.pump
                         ? 'bg-primary text-white font-bold'
                         : 'bg-[#dadad9] text-transparent'
@@ -439,11 +440,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                       <div className="font-label-ui text-sm font-semibold text-[#1a1c1c]">
                         Starlink & Home WiFi
                       </div>
-                      <div className="text-xs text-[#5c4037]">Zero reboot on grid cut</div>
+                      <div className="text-xs text-[#5c4037]">Stays connected when grid cuts</div>
                     </div>
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs transition-colors ${
+                    className={`w-6 h-6 rounded-md flex items-center justify-center text-xs transition-colors ${
                       selectedHomeAppliances.starlink
                         ? 'bg-primary text-white font-bold'
                         : 'bg-[#dadad9] text-transparent'
@@ -479,7 +480,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                     </div>
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs transition-colors ${
+                    className={`w-6 h-6 rounded-md flex items-center justify-center text-xs transition-colors ${
                       selectedHomeAppliances.tv
                         ? 'bg-primary text-white font-bold'
                         : 'bg-[#dadad9] text-transparent'
@@ -515,7 +516,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                     </div>
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs transition-colors ${
+                    className={`w-6 h-6 rounded-md flex items-center justify-center text-xs transition-colors ${
                       selectedHomeAppliances.lights
                         ? 'bg-primary text-white font-bold'
                         : 'bg-[#dadad9] text-transparent'
@@ -548,7 +549,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                 <span className="font-label-caps text-[11px] text-[#ff8e4d] uppercase tracking-wider font-bold">
                   Recommended System Match
                 </span>
-                <span className="px-3 py-1 rounded-full bg-white/10 text-white font-label-caps text-[11px] font-semibold flex items-center gap-1.5">
+                <span className="px-2.5 py-1 rounded-md bg-white/10 text-white font-label-caps text-[11px] font-semibold flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff5400] animate-pulse"></span>
                   Instant Sizing
                 </span>
@@ -591,9 +592,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                     {Math.min(100, Math.round((quickPeakWatts / 4500) * 100))}% Safe Inverter Buffer
                   </span>
                 </div>
-                <div className="w-full h-2 bg-neutral-900 rounded-full overflow-hidden p-0.5 border border-white/10">
+                <div className="w-full h-2 bg-neutral-900 rounded-sm overflow-hidden p-0.5 border border-white/10">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-[#ff8e4d] to-primary transition-all duration-700"
+                    className="h-full rounded-xs bg-gradient-to-r from-emerald-500 via-[#ff8e4d] to-primary transition-all duration-700"
                     style={{
                       width: `${Math.min(100, Math.max(12, Math.round((quickPeakWatts / 4500) * 100)))}%`,
                       transitionTimingFunction: 'var(--ease-meter)'
@@ -618,14 +619,14 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
             <div className="pt-6 space-y-3">
               <button
                 onClick={() => onSelectTab('pricing')}
-                className="w-full inline-flex items-center justify-center rounded-full bg-primary hover:bg-primary-container px-6 py-3.5 font-label-ui text-sm text-white font-semibold shadow-lg transition-all cursor-pointer"
+                className="w-full inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-container px-6 py-3.5 font-label-ui text-sm text-white font-semibold shadow-lg transition-all cursor-pointer"
               >
                 <span>View Transparent Pricing for This Setup</span>
                 <ArrowRight className="ml-2 w-4 h-4" />
               </button>
               <div className="flex items-center justify-between text-[11px] text-neutral-400 px-1">
                 <span>Backed by 10-Yr Hardware Warranty</span>
-                <span>Zero-tripping SLA</span>
+                <span>Surge-tested installation guarantee</span>
               </div>
             </div>
           </div>
@@ -677,7 +678,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
               </div>
               <button
                 onClick={() => onOpenQuote('Small Flat (3.5kVA)')}
-                className="w-full py-3 rounded-full bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-sm font-semibold transition-colors mt-4 cursor-pointer"
+                className="w-full py-3 rounded-xl bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-sm font-semibold transition-colors mt-4 cursor-pointer"
               >
                 Choose Small Flat Setup
               </button>
@@ -685,7 +686,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
 
             {/* Package 2: Duplex (Flagship Most Popular) */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-2 border-primary shadow-2xl relative md:-translate-y-2.5 z-20 transition-all duration-300 hover:-translate-y-3.5 scroll-reveal-init delay-200">
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary text-white font-label-caps text-[10px] uppercase font-bold tracking-wider shadow-sm">
+              <div className="absolute -top-3 left-6 px-3 py-1 rounded-md bg-primary text-white font-label-caps text-[10px] uppercase font-bold tracking-wider shadow-xs">
                 MOST POPULAR IN NIGERIA
               </div>
               <div>
@@ -714,7 +715,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
               </div>
               <button
                 onClick={() => onOpenQuote('Duplex Family Home (10kVA)')}
-                className="w-full py-3 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold shadow-md transition-colors mt-4 cursor-pointer"
+                className="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold shadow-md transition-colors mt-4 cursor-pointer"
               >
                 Order Duplex Setup
               </button>
@@ -748,7 +749,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
               </div>
               <button
                 onClick={() => onOpenQuote('Large Mansion (25kVA)')}
-                className="w-full py-3 rounded-full bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-sm font-semibold transition-colors mt-4 cursor-pointer"
+                className="w-full py-3 rounded-xl bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-sm font-semibold transition-colors mt-4 cursor-pointer"
               >
                 Request Commercial Audit
               </button>
@@ -772,14 +773,14 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-6 flex flex-col justify-center">
               <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold mb-2">
-                Renter Friendly • Zero Roof Mounting
+                Renter Friendly • No Roof Installation Needed
               </span>
               <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] tracking-tight mb-4 font-bold">
                 SunGrid Nomad: <br />
                 Plug & Play Power Anywhere.
               </h2>
               <p className="font-body-md text-[#5c4037] mb-6 leading-relaxed font-medium">
-                Living in a rented apartment or moving often? Zero roof mounting required. Compact desktop form factor with dual universal AC outlets, digital telemetry display, and built-in carry handle. Powers refrigerators, workstations, and TVs right away. Charge from wall AC in 84 minutes or portable panels on your balcony.
+                Living in a rented apartment or moving often? No drilling or roof mounting needed. The compact desktop unit includes dual universal AC outlets, a clear digital battery readout, and a built-in carry handle. It powers refrigerators, workstations, and televisions straight out of the box. Recharges from any standard wall socket in 84 minutes, or plugs directly into portable balcony solar panels.
               </p>
 
               <div className="grid grid-cols-3 gap-4 py-4 border-y border-[#dedfe5] mb-6">
@@ -800,7 +801,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onOpenQuote('SunGrid Nomad Station (2.4kW)')}
-                  className="inline-flex items-center justify-center rounded-full bg-[#12161a] hover:bg-black px-7 py-3 font-label-ui text-sm text-white font-semibold transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center rounded-xl bg-[#12161a] hover:bg-black px-7 py-3 font-label-ui text-sm text-white font-semibold transition-all cursor-pointer"
                 >
                   <span>Order Nomad 2400</span>
                   <ArrowRight className="ml-2 w-4 h-4" />
@@ -818,7 +819,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   alt="SunGrid Nomad Portable Power Station"
                   className="w-full h-full"
                 />
-                <div className="absolute bottom-4 right-4 backdrop-blur-md bg-white/90 px-4 py-1.5 rounded-full shadow-md flex items-center gap-2 border border-white/60 z-10">
+                <div className="absolute bottom-4 right-4 backdrop-blur-md bg-white/90 px-3 py-1.5 rounded-lg shadow-md flex items-center gap-2 border border-white/60 z-10">
                   <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
                   <span className="font-label-caps text-xs text-[#1a1c1c] font-bold">
                     10-Year Built-to-Last Battery
@@ -845,73 +846,71 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
             </p>
           </div>
 
-          <div className="space-y-3.5">
+          {/* Plain Stacked List: Checklist with strong left border / rules, full width, no card boundaries */}
+          <div className="divide-y divide-[#dedfe5] border-t border-b border-[#dedfe5]">
             {/* 01 */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-[#dedfe5] shadow-xs scroll-reveal-init delay-100">
-              <div className="flex items-start gap-4">
-                <span className="font-headline-sm text-2xl text-primary font-bold">01</span>
+            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-start gap-5">
+                <span className="font-headline-sm text-xl text-primary font-bold tabular-nums">01</span>
                 <div>
                   <h3 className="font-headline-sm text-lg text-[#1a1c1c] font-bold">
-                    Brand-New Premium Batteries Only
+                    New Grade-A Lithium Cells Only
                   </h3>
-                  <p className="font-body-sm text-[13px] text-[#5c4037] max-w-2xl mt-0.5 leading-relaxed font-medium">
-                    100% factory-sealed Grade-A lithium cells engineered to last 10+ years without rapid degradation.
-                    Zero recycled lead-acid packs disguised as lithium storage.
+                  <p className="font-body-sm text-[13px] text-[#5c4037] max-w-3xl mt-0.5 leading-relaxed font-medium">
+                    Every battery pack arrives factory-sealed with fresh Grade-A lithium iron phosphate cells rated for 6,000 cycles (over 10 years of daily use). We never install refurbished cells or repurposed vehicle packs.
                   </p>
                 </div>
               </div>
-              <ShieldCheck className="w-7 h-7 text-primary shrink-0 self-end md:self-center" />
+              <ShieldCheck className="w-6 h-6 text-primary shrink-0 hidden md:block" />
             </div>
 
             {/* 02 */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-[#dedfe5] shadow-xs scroll-reveal-init delay-200">
-              <div className="flex items-start gap-4">
-                <span className="font-headline-sm text-2xl text-primary font-bold">02</span>
+            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-start gap-5">
+                <span className="font-headline-sm text-xl text-primary font-bold tabular-nums">02</span>
                 <div>
                   <h3 className="font-headline-sm text-lg text-[#1a1c1c] font-bold">
-                    Proper House Wiring & Surge Safety
+                    Dedicated Earthing & Surge Protection
                   </h3>
-                  <p className="font-body-sm text-[13px] text-[#5c4037] max-w-2xl mt-0.5 leading-relaxed font-medium">
-                    Neat trunking and certified DC/AC surge arrestors safeguard expensive air conditioners,
-                    Apple studio displays, and compressor coils from grid voltage spikes.
+                  <p className="font-body-sm text-[13px] text-[#5c4037] max-w-3xl mt-0.5 leading-relaxed font-medium">
+                    We install dedicated copper earthing rods and separate DC/AC surge suppressors on your distribution board. When the grid surges or lightning strikes nearby, that excess current discharges safely into the ground instead of damaging your appliances.
                   </p>
                 </div>
               </div>
-              <ShieldCheck className="w-7 h-7 text-primary shrink-0 self-end md:self-center" />
+              <ShieldCheck className="w-6 h-6 text-primary shrink-0 hidden md:block" />
             </div>
 
             {/* 03 */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-[#dedfe5] shadow-xs scroll-reveal-init delay-300">
-              <div className="flex items-start gap-4">
-                <span className="font-headline-sm text-2xl text-primary font-bold">03</span>
+            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-start gap-5">
+                <span className="font-headline-sm text-xl text-primary font-bold tabular-nums">03</span>
                 <div>
                   <h3 className="font-headline-sm text-lg text-[#1a1c1c] font-bold">
-                    Certified In-House Technicians
+                    Permanent In-House Electrical Crews
                   </h3>
-                  <p className="font-body-sm text-[13px] text-[#5c4037] max-w-2xl mt-0.5 leading-relaxed font-medium">
-                    Respectful, licensed electrical engineers handle your home and roofing. Zero hanging roadside
-                    wires, zero messy roof punctures, and zero unauthorized sub-contractors.
+                  <p className="font-body-sm text-[13px] text-[#5c4037] max-w-3xl mt-0.5 leading-relaxed font-medium">
+                    Your installation is handled by SunGrid’s full-time electrical team, not casual day-laborers. Cabling is routed through neat surface conduits, roof penetrations are sealed with waterproof flashing, and our crew signs off on earthing resistance before leaving.
                   </p>
                 </div>
               </div>
-              <Award className="w-7 h-7 text-primary shrink-0 self-end md:self-center" />
+              <Award className="w-6 h-6 text-primary shrink-0 hidden md:block" />
             </div>
 
             {/* 04 */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-[#dedfe5] shadow-xs scroll-reveal-init delay-400">
-              <div className="flex items-start gap-4">
-                <span className="font-headline-sm text-2xl text-primary font-bold">04</span>
+            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-start gap-5">
+                <span className="font-headline-sm text-xl text-primary font-bold tabular-nums">04</span>
                 <div>
                   <h3 className="font-headline-sm text-lg text-[#1a1c1c] font-bold">
                     24-Hour Gate Swap Warranty
                   </h3>
-                  <p className="font-body-sm text-[13px] text-[#5c4037] max-w-2xl mt-0.5 leading-relaxed font-medium">
+                  <p className="font-body-sm text-[13px] text-[#5c4037] max-w-3xl mt-0.5 leading-relaxed font-medium">
                     If an inverter or lithium module flags an internal hardware fault, our regional depot van brings
                     a fully operational replacement straight to your gate within 24 hours.
                   </p>
                 </div>
               </div>
-              <Zap className="w-7 h-7 text-primary shrink-0 self-end md:self-center" />
+              <Zap className="w-6 h-6 text-primary shrink-0 hidden md:block" />
             </div>
           </div>
         </div>
@@ -951,7 +950,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   transitionTimingFunction: 'var(--ease-settle)'
                 }}
               />
-              <div className="absolute top-4 left-4 bg-neutral-950/80 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full font-label-caps text-[10px] uppercase tracking-wider z-10">
+              <div className="absolute top-4 left-4 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1.5 rounded-md font-label-caps text-[10px] uppercase tracking-wider z-10">
                 Lekki Phase 1, Lagos • Flagship Residential
               </div>
             </div>
@@ -991,7 +990,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   alt="Maitama Abuja solar townhouse"
                   className="w-full h-full"
                 />
-                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1 rounded-full font-label-caps text-[10px] uppercase z-10">
+                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-2.5 py-1 rounded-md font-label-caps text-[10px] uppercase z-10">
                   Maitama, Abuja
                 </div>
               </div>
@@ -1007,8 +1006,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                     <span className="text-xs font-bold text-primary">10.0 kVA Dual</span>
                   </div>
                   <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed mb-4">
-                    “Zero generator noise. Home workstations, Starlink, and high-definition video conferencing
-                    remain completely uninterrupted through national grid collapse.”
+                    “I host international video calls from home throughout the week. When the Abuja grid collapsed
+                    twice last month, our Starlink connection and air conditioners didn't stutter once. We haven't
+                    had to run our diesel generator in two years.”
                   </p>
                 </div>
                 <div className="pt-3 border-t border-[#dedfe5] flex items-center justify-between">
@@ -1027,7 +1027,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   alt="Victoria Island medical diagnostic center"
                   className="w-full h-full"
                 />
-                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1 rounded-full font-label-caps text-[10px] uppercase z-10">
+                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-2.5 py-1 rounded-md font-label-caps text-[10px] uppercase z-10">
                   Victoria Island, Lagos
                 </div>
               </div>
@@ -1043,48 +1043,47 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                     <span className="text-xs font-bold text-primary">20.0 kVA 3-Phase</span>
                   </div>
                   <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed mb-4">
-                    Critical blood pathology analyzers, cold-chain vaccines, and diagnostics machines secured around
-                    the clock with 0ms uninterrupted switchover.
+                    “Blood centrifuges and refrigerated reagents spoil quickly if temperatures drift or power
+                    drops mid-test. SunGrid balanced all three phases across the building so our analyzers run
+                    uninterrupted around the clock.”
                   </p>
                 </div>
                 <div className="pt-3 border-t border-[#dedfe5] flex items-center justify-between">
                   <span className="text-[11px] text-[#5c5e63] font-medium uppercase font-label-caps">
                     Lab Equipment Uptime
                   </span>
-                  <span className="text-xs text-[#1a1c1c] font-bold">100% Zero Downtime</span>
+                  <span className="text-xs text-[#1a1c1c] font-bold">Zero Downtime Record</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* SECTION 8: FINAL BOTTOM BANNER */}
-      <section className="w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 pb-16">
-        <div className="relative rounded-3xl overflow-hidden bg-[#12161a] text-white p-8 sm:p-12 lg:p-16 shadow-2xl">
-          <div className="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-primary/25 blur-3xl pointer-events-none" />
-          <div className="relative z-10 max-w-2xl">
-            <span className="font-label-caps text-[11px] text-[#ff8e4d] uppercase tracking-wider font-bold block mb-2">
-              End The Generator Headache
-            </span>
-            <h2 className="font-headline-xl text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4 font-bold">
-              A quieter, cooler home begins with one honest audit.
-            </h2>
-            <p className="font-body-lg text-sm sm:text-base text-neutral-300 mb-8 leading-relaxed">
-              Invite SunGrid engineers to measure your load this week. We inspect your breaker distribution board,
-              roof azimuth, and surge demands across Lagos, Abuja, Port Harcourt, and Ibadan.
-            </p>
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          {/* Expanded Closing Moment anchored directly to the verified installation photography */}
+          <div className="pt-10 border-t border-[#dedfe5] flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <span className="font-label-caps text-[11px] text-primary uppercase tracking-wider font-bold block mb-1">
+                End The Generator Headache
+              </span>
+              <h3 className="font-headline-xl text-2xl sm:text-3xl text-[#1a1c1c] tracking-tight font-bold mb-2">
+                A quieter, cooler home begins with one honest audit.
+              </h3>
+              <p className="font-body-md text-sm text-[#5c4037] leading-relaxed">
+                Invite SunGrid engineers to measure your load this week. We inspect your breaker distribution board,
+                roof azimuth, and surge demands across Lagos, Abuja, Port Harcourt, and Ibadan.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
               <button
                 onClick={() => onOpenQuote()}
-                className="inline-flex items-center justify-center rounded-full bg-primary hover:bg-primary-container px-8 py-3.5 font-label-ui text-sm text-white font-semibold shadow-xl transition-all group cursor-pointer"
+                className="inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-container px-7 py-3.5 font-label-ui text-sm text-white font-semibold shadow-md transition-all group cursor-pointer"
               >
                 <span>Book Your Free Site Audit</span>
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <a
                 href="tel:08007864743"
-                className="inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-3.5 font-label-ui text-sm text-white transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center rounded-xl bg-[#eeeeed] hover:bg-[#e2e2e2] px-6 py-3.5 font-label-ui text-sm text-[#1a1c1c] font-semibold transition-colors cursor-pointer"
               >
                 <span>Call 0800-SUNGRID</span>
               </a>

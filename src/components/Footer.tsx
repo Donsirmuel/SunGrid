@@ -20,8 +20,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
             </div>
 
             <p className="font-body-md text-[14px] text-[#5c4037]/90 max-w-sm mb-6 leading-relaxed">
-              Next-generation residential and commercial solar infrastructure, tier-one lithium
-              storage, and resilient zero-downtime engineering for homes across Nigeria.
+              Turnkey residential and commercial solar installations, Grade-A lithium storage,
+              and dedicated depot warranty support across Nigeria.
             </p>
 
             <div className="flex flex-col gap-1 p-3 rounded-xl bg-white/70 border border-neutral-300/60 w-full sm:w-auto">
@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
               }}
               className="text-left text-xs font-semibold text-primary hover:underline mt-2 cursor-pointer"
             >
-              View Hub Dispatch Telemetry →
+              View Regional Hubs & Depots →
             </button>
           </div>
 
@@ -137,7 +137,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
             </div>
             <div className="flex items-center gap-1.5 text-[13px] text-[#5c4037]">
               <Award className="w-4 h-4 text-primary shrink-0" />
-              <span>Zero-Flicker &lt;4ms Switch</span>
+              <span>Fast &lt;4ms Transfer Switch</span>
             </div>
             <div className="flex items-center gap-1.5 text-[13px] text-[#5c4037]">
               <ShieldCheck className="w-4 h-4 text-primary shrink-0" />

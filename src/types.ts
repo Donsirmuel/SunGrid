@@ -61,3 +61,21 @@ export interface RegionalHub {
   };
   coordinates: { x: number; y: number };
 }
+
+export interface CustomerTestimonial {
+  id: string;
+  name: string;
+  roleOrTitle?: string;
+  location: string;
+  propertyType: string;
+  systemSize: string;
+  installedYear: string;
+  avatarText?: string;
+  avatarUrl?: string;
+  rating: number;
+  highlightMetric: string;
+  metricLabel: string;
+  quote: string;
+  verifiedCustomer: boolean;
+  packageUsed: string;
+}

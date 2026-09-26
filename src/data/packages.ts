@@ -25,7 +25,7 @@ export const SOLAR_PACKAGES: SolarPackage[] = [
       inverter: '3.5kVA Pure Sine Wave Hybrid',
       battery: '5.12kWh Grade-A LiFePO4 (6,000 cycles)',
       solarArray: '6x 550W Monocrystalline Panels',
-      transferSpeed: '< 4ms (Instant switch — laptops & TV stay on)',
+      transferSpeed: '< 4ms (Instant switch: laptops & TV stay on)',
       surgeTolerance: '7.5kVA Inrush Surge Absorption',
       protection: 'Type-2 Surge Protector & Dual DC Safety Switches',
       plainMeaning: {
@@ -60,14 +60,14 @@ export const SOLAR_PACKAGES: SolarPackage[] = [
       inverter: '8kVA–10kVA Low-Frequency Hybrid',
       battery: '10.24kWh Blade LiFePO4 (6,000 cycles)',
       solarArray: '12x 580W Bifacial Glass PVs',
-      transferSpeed: '< 4ms (Zero flicker — seamless power changeover)',
+      transferSpeed: '< 4ms (Instant transfer: continuous power changeover)',
       surgeTolerance: '18.5kVA Inductive Surge Absorption (Handles motor kicks)',
       protection: '4-Point Chemical Copper Earthing Array & Surge Arrestors',
       plainMeaning: {
         inverterExplanation: 'Heavy-duty inverter built to absorb heavy motor kicks when water pumps or large AC compressors kick on.',
-        batteryExplanation: 'Premium blade lithium pack providing 14–18 hours of robust overnight backup with zero fumes.',
+        batteryExplanation: 'Blade lithium pack providing 14–18 hours of overnight backup without exhaust or fumes.',
         solarExplanation: '12 bifacial glass panels that produce electricity from direct sunlight and reflected light from your roof tiles.',
-        switchExplanation: 'Instantaneous handover: zero beep, zero restart, zero interrupted sleep.',
+        switchExplanation: 'Instant handover under 4ms: your AC, television, and WiFi continue without restarting.',
         protectionExplanation: 'Dedicated deep copper chemical grounding rod absorbing lightning and grid voltage spikes.'
       }
     }
@@ -117,7 +117,7 @@ export const SOLAR_PACKAGES: SolarPackage[] = [
     priceNgn: 1850000,
     image: IMAGES.nomadStation,
     description: 'Plug & play portable generator replacement. Move house whenever you want without landlord approval or roof drilling.',
-    simpleSummary: 'Plug and play desktop power station: zero roof mounting, zero landlord permission needed. Just plug in and enjoy clean power.',
+    simpleSummary: 'Plug-and-play desktop power station: no roof mounting or landlord permission required. Just plug in for quiet backup power.',
     highlights: [
       'Compact Desktop Unit with Sturdy Chrome Handle',
       'Dual Universal AC Sockets & Clear Digital Screen',
@@ -135,7 +135,7 @@ export const SOLAR_PACKAGES: SolarPackage[] = [
         inverterExplanation: 'Silent built-in power engine delivering clean wall-socket electricity anywhere in your house or office.',
         batteryExplanation: 'Long-lasting lithium battery good for 10 years of daily recharges without losing power capacity.',
         solarExplanation: 'Lightweight foldable panels you can hang on your apartment balcony or lay in the compound sun.',
-        switchExplanation: 'Acts as an automatic backup box (UPS)—your computer or television stays on when grid power cuts out.',
+        switchExplanation: 'Acts as an automatic backup box (UPS) so your computer or television stays on when grid power cuts out.',
         protectionExplanation: 'Internal computer sensor that automatically shuts off safely if you plug in too heavy an appliance.'
       }
     }
@@ -169,7 +169,7 @@ export const SOLAR_PACKAGES: SolarPackage[] = [
         inverterExplanation: 'Twin industrial inverters sharing heavy workplace loads so your production line never stops.',
         batteryExplanation: 'Modular server-rack batteries storing enough energy to run critical business machinery through the night.',
         solarExplanation: 'Commercial rooftop array slashing your business electricity costs by over 85% every month.',
-        switchExplanation: 'Zero downtime changeover preventing computer reboots, lost work, or damaged machinery.',
+        switchExplanation: 'Uninterrupted changeover under 4ms that keeps computers running, machinery protected, and production active.',
         protectionExplanation: 'Industrial circuit breakers and physical fuses certified on-site by registered electrical engineers.'
       }
     }

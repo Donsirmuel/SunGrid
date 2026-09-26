@@ -134,7 +134,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   if (layout === 'wordmark-only') {
     return (
       <div
-        className={`font-['Space_Grotesk'] font-bold tracking-tight ${wordmarkSizes[size]} ${
+        className={`font-['Outfit'] font-bold tracking-tight ${wordmarkSizes[size]} ${
           isOnDark ? 'text-[#fbfbfa]' : 'text-[#111418]'
         } ${className}`}
       >
@@ -149,7 +149,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         <SunGridMark variant={resolvedVariant} size={markPixelSizes[size]} />
         <div className="flex flex-col items-center leading-none">
           <span
-            className={`font-['Space_Grotesk'] font-bold tracking-tight ${wordmarkSizes[size]} ${
+            className={`font-['Outfit'] font-bold tracking-tight ${wordmarkSizes[size]} ${
               isOnDark ? 'text-[#fbfbfa]' : 'text-[#111418]'
             }`}
           >
@@ -175,7 +175,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
       <SunGridMark variant={resolvedVariant} size={markPixelSizes[size]} />
       <div className="flex flex-col justify-center leading-none">
         <span
-          className={`font-['Space_Grotesk'] font-bold tracking-[-0.025em] ${wordmarkSizes[size]} ${
+          className={`font-['Outfit'] font-bold tracking-[-0.025em] ${wordmarkSizes[size]} ${
             isOnDark ? 'text-[#fbfbfa]' : 'text-[#111418]'
           }`}
         >

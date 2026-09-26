@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavTab, RegionalHub } from '../types';
 import { REGIONAL_HUBS } from '../data/depots';
 import { IMAGES } from '../data/assets';
+import { SHARED_METRICS } from '../config/metrics';
 import { LazyImage } from './LazyImage';
 import { 
   MapPin, 
@@ -34,24 +35,27 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
       {/* SECTION: HERO HEADER */}
       <section className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 pt-12 sm:pt-16 pb-12 w-full">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#ffdbcf] text-primary font-label-caps text-xs uppercase tracking-wider mb-4 font-bold">
+          <div className="font-label-caps text-xs text-primary font-bold uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
             <Building2 className="w-3.5 h-3.5" />
-            Field Infrastructure Across Nigeria
-          </span>
+            <span>Field Infrastructure Across Nigeria</span>
+          </div>
 
           <h1 className="font-display-hero text-3xl sm:text-5xl lg:text-6xl text-[#1a1c1c] tracking-tight font-bold mb-4">
-            Regional Engineering Depots & Rapid Response.
+            Four physical depots across Nigeria with spare parts on the shelf.
           </h1>
 
           <p className="font-body-lg text-base sm:text-lg text-[#5c4037] max-w-2xl leading-relaxed">
-            Unlike virtual distributors with no local inventory, SunGrid operates fully staffed engineering
-            hubs with pre-tested replacement inverters, genuine lithium batteries, and certified field teams ready to deploy.
+            Instead of ordering parts from abroad when a system faults, we keep replacement inverters
+            and battery packs stocked in Lagos, Abuja, Port Harcourt, and Ibadan. If an issue occurs,
+            our in-house technicians arrive with hardware ready to swap.
           </p>
 
           {/* 4 Stats Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full mt-10">
             <div className="bg-white p-5 rounded-2xl border border-[#dedfe5] shadow-xs text-center">
-              <span className="font-metric-counter text-3xl font-bold text-primary block">4</span>
+              <span className="font-metric-counter text-3xl font-bold text-primary block">
+                {SHARED_METRICS.geographicReach.formattedDepots}
+              </span>
               <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
                 Regional Hubs
               </span>
@@ -59,27 +63,33 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-[#dedfe5] shadow-xs text-center">
-              <span className="font-metric-counter text-3xl font-bold text-primary block">24h</span>
-              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
-                Gate Swap SLA
+              <span className="font-metric-counter text-3xl font-bold text-primary block">
+                {SHARED_METRICS.gateSwapSla.formatted}
               </span>
-              <span className="text-[11px] text-[#5c4037]">Pre-tested units on standby</span>
+              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
+                {SHARED_METRICS.gateSwapSla.label}
+              </span>
+              <span className="text-[11px] text-[#5c4037]">{SHARED_METRICS.gateSwapSla.subtext}</span>
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-[#dedfe5] shadow-xs text-center">
-              <span className="font-metric-counter text-3xl font-bold text-primary block">100%</span>
-              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
-                NERC Certified
+              <span className="font-metric-counter text-3xl font-bold text-primary block">
+                {SHARED_METRICS.nercEngineers.formatted}
               </span>
-              <span className="text-[11px] text-[#5c4037]">Full-time internal engineers</span>
+              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
+                {SHARED_METRICS.nercEngineers.label}
+              </span>
+              <span className="text-[11px] text-[#5c4037]">{SHARED_METRICS.nercEngineers.subtext}</span>
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-[#dedfe5] shadow-xs text-center">
-              <span className="font-metric-counter text-3xl font-bold text-primary block">4,200+</span>
-              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
-                Homes Powered
+              <span className="font-metric-counter text-3xl font-bold text-primary block">
+                {SHARED_METRICS.homesAndIndustries.formatted}
               </span>
-              <span className="text-[11px] text-[#5c4037]">Across 14 Nigerian states</span>
+              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
+                {SHARED_METRICS.homesAndIndustries.shortLabel}
+              </span>
+              <span className="text-[11px] text-[#5c4037]">{SHARED_METRICS.homesAndIndustries.subtext}</span>
             </div>
           </div>
         </div>
@@ -95,9 +105,9 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
               <button
                 key={hub.id}
                 onClick={() => setSelectedHubId(hub.id)}
-                className={`px-6 py-3 rounded-full font-label-ui text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                className={`px-5 py-2.5 rounded-xl font-label-ui text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                   isSelected
-                    ? 'bg-primary text-white shadow-md'
+                    ? 'bg-primary text-white shadow-xs'
                     : 'bg-white text-[#5c5e63] hover:text-[#1a1c1c] border border-[#dedfe5]'
                 }`}
               >
@@ -124,8 +134,8 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                   <span className="font-label-caps text-xs text-primary font-bold uppercase tracking-wider">
                     {activeHub.state} State Regional Operations
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     Operational • Telemetry Live
                   </span>
                 </div>
@@ -147,7 +157,7 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                   {activeHub.coverage.map((area, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 rounded-full bg-white text-[#1a1c1c] text-xs font-medium border border-[#dedfe5] shadow-2xs hover:border-primary/40 transition-colors"
+                      className="px-2.5 py-1 rounded-md bg-white text-[#1a1c1c] text-xs font-medium border border-[#dedfe5] shadow-2xs hover:border-primary/40 transition-colors"
                     >
                       {area}
                     </span>
@@ -191,7 +201,7 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
               <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                 <a
                   href={`tel:${activeHub.phone.replace(/\s+/g, '')}`}
-                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-xs"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-xs"
                 >
                   <Phone className="w-4 h-4" />
                   <span>Call {activeHub.phone}</span>
@@ -200,7 +210,7 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                   href={`https://wa.me/${activeHub.whatsapp}?text=${encodeURIComponent(`Hello SunGrid ${activeHub.city} Hub, I would like to inquire about inventory and site audit availability.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-xs sm:text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-xs sm:text-sm font-semibold transition-colors flex items-center justify-center gap-2"
                 >
                   <MessageSquare className="w-4 h-4 text-primary" />
                   <span>WhatsApp Hub Dispatch</span>
@@ -244,145 +254,160 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                   <Truck className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-bold text-[#1a1c1c]">Direct Delivery</p>
-                    <p className="text-[11px] text-[#5c4037]">Zero client logistics fees</p>
+                    <p className="text-[11px] text-[#5c4037]">Delivery included in your quote</p>
                   </div>
                 </div>
               </div>
 
-              {/* Live Field Telemetry Stream */}
-              <div className="p-3 bg-[#12161a] rounded-xl text-neutral-300 text-xs border border-neutral-800 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span className="font-mono text-[11px] text-white">HUB DISPATCH:</span>
-                  <span className="text-[11px] text-neutral-300 truncate max-w-[210px] sm:max-w-[280px]">
-                    Van 03 completed zero-tripping audit in {activeHub.coverage[0]}
-                  </span>
-                </div>
-                <span className="font-mono text-[10px] text-neutral-500 shrink-0">4m ago</span>
+              {/* Static Fleet & Dispatch Line */}
+              <div className="p-3 bg-[#f9f9f8] rounded-xl text-xs border border-[#dedfe5] flex items-center justify-between">
+                <span className="text-[11px] text-[#5c4037]">
+                  {activeHub.activeCrews} fully equipped mobile response vans dedicated to {activeHub.city} and surrounding corridors.
+                </span>
+                <span className="font-mono text-[10px] text-[#5c5e63] shrink-0 font-medium">On Standby</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION: 24-HOUR GATE SWAP PROTOCOL */}
+      {/* SECTION: 24-HOUR GATE SWAP PROTOCOL - CONNECTED TIMELINE */}
       <section className="w-full bg-[#f3f4f3] py-16 lg:py-20 border-t border-[#dedfe5]">
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
-              Unrivaled Uptime Guarantee
+              Warranty Response
             </span>
             <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
-              The 24-Hour Gate Swap Protocol
+              How the 24-Hour Gate Swap Works
             </h2>
             <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2">
-              Why our customers never sleep in darkness when equipment needs warranty attention.
+              If a core component develops an internal fault, we replace it at your gate instead of keeping you waiting on workshop repairs.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Step 1 */}
-            <div className="bg-white p-6 rounded-2xl border border-[#dedfe5] shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-[#ffdbcf] text-primary flex items-center justify-center font-bold text-sm mb-4">
+          {/* Connected Timeline: Continuous line through all four step markers */}
+          <div className="relative">
+            {/* Horizontal line for desktop (runs through centers of the step marker nodes at top-6) */}
+            <div className="hidden lg:block absolute top-6 left-[12%] right-[12%] h-0.5 bg-[#dedfe5] z-0" />
+            {/* Vertical line for mobile/tablet (runs down through left marker column) */}
+            <div className="lg:hidden absolute top-6 bottom-6 left-6 w-0.5 bg-[#dedfe5] z-0" />
+
+            <div className="flex flex-col lg:grid lg:grid-cols-4 gap-10 lg:gap-8 relative z-10">
+              {/* Step 1 */}
+              <div className="flex lg:flex-col items-start gap-5 lg:gap-5 relative pl-16 lg:pl-0">
+                <div className="absolute left-0 lg:relative lg:left-auto w-12 h-12 rounded-xl bg-white border-2 border-primary text-primary flex items-center justify-center font-bold text-sm shrink-0 shadow-xs z-10">
                   01
                 </div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-2">
-                  Cloud Telemetry Alert
-                </h3>
-                <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
-                  Our remote monitoring system detects abnormal voltage or temperature spikes, or you notify our 24/7 priority line.
-                </p>
+                <div className="flex-1">
+                  <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                    Fault Diagnostic
+                  </h3>
+                  <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed mb-3">
+                    Remote monitoring flags abnormal voltage or cell imbalance, or you call our support line to log an issue.
+                  </p>
+                  <span className="inline-block text-[11px] text-[#5c5e63] font-medium font-mono bg-white px-2.5 py-1 rounded-md border border-[#dedfe5]">
+                    Confirmed within minutes
+                  </span>
+                </div>
               </div>
-              <div className="pt-4 mt-4 border-t border-[#dedfe5] text-[11px] text-[#5c5e63] font-medium">
-                Average diagnosis: 8 mins
-              </div>
-            </div>
 
-            {/* Step 2 */}
-            <div className="bg-white p-6 rounded-2xl border border-[#dedfe5] shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-[#ffdbcf] text-primary flex items-center justify-center font-bold text-sm mb-4">
+              {/* Step 2 */}
+              <div className="flex lg:flex-col items-start gap-5 lg:gap-5 relative pl-16 lg:pl-0">
+                <div className="absolute left-0 lg:relative lg:left-auto w-12 h-12 rounded-xl bg-white border-2 border-primary text-primary flex items-center justify-center font-bold text-sm shrink-0 shadow-xs z-10">
                   02
                 </div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-2">
-                  Warehouse Unit Pull
-                </h3>
-                <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
-                  Rather than dispatching a repair technician to solder chips in your living room, we pull a certified new unit directly from the regional hub buffer.
-                </p>
+                <div className="flex-1">
+                  <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                    Depot Inventory Pull
+                  </h3>
+                  <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed mb-3">
+                    Rather than sending a technician to solder components in your house, we pull a fresh unit directly from our local depot inventory.
+                  </p>
+                  <span className="inline-block text-[11px] text-[#5c5e63] font-medium font-mono bg-white px-2.5 py-1 rounded-md border border-[#dedfe5]">
+                    Tested prior to dispatch
+                  </span>
+                </div>
               </div>
-              <div className="pt-4 mt-4 border-t border-[#dedfe5] text-[11px] text-[#5c5e63] font-medium">
-                Tested to 100% capacity
-              </div>
-            </div>
 
-            {/* Step 3 */}
-            <div className="bg-white p-6 rounded-2xl border-2 border-primary shadow-md flex flex-col justify-between relative">
-              <div className="absolute -top-3 left-4 px-3 py-0.5 rounded-full bg-primary text-white text-[9px] font-bold uppercase tracking-wider">
-                NO REPAIR WAITING
-              </div>
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-sm mb-4">
+              {/* Step 3 */}
+              <div className="flex lg:flex-col items-start gap-5 lg:gap-5 relative pl-16 lg:pl-0">
+                <div className="absolute left-0 lg:relative lg:left-auto w-12 h-12 rounded-xl bg-primary text-white border-2 border-primary flex items-center justify-center font-bold text-sm shrink-0 shadow-sm z-10">
                   03
                 </div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-2">
-                  24-Hour Gate Swap
-                </h3>
-                <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
-                  Our mobile engineer arrives at your residence, safely replaces the hardware, verifies inverter synchronization, and restores full solar autonomy.
-                </p>
+                <div className="flex-1">
+                  <div className="inline-block px-2 py-0.5 rounded-md bg-[#ffdbcf] text-primary text-[9px] font-bold uppercase tracking-wider mb-1">
+                    NO REPAIR WAITING
+                  </div>
+                  <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                    24-Hour Gate Swap
+                  </h3>
+                  <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed mb-3">
+                    Our field crew arrives at your gate, unmounts the faulty hardware, installs the replacement unit, and tests that power is restored.
+                  </p>
+                  <span className="inline-block text-[11px] text-primary font-bold font-mono bg-[#ffdbcf]/50 px-2.5 py-1 rounded-md border border-primary/30">
+                    Within 24 hours
+                  </span>
+                </div>
               </div>
-              <div className="pt-4 mt-4 border-t border-primary/20 text-[11px] text-primary font-bold">
-                Maximum 24 hours
-              </div>
-            </div>
 
-            {/* Step 4 */}
-            <div className="bg-white p-6 rounded-2xl border border-[#dedfe5] shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-[#ffdbcf] text-primary flex items-center justify-center font-bold text-sm mb-4">
+              {/* Step 4 */}
+              <div className="flex lg:flex-col items-start gap-5 lg:gap-5 relative pl-16 lg:pl-0">
+                <div className="absolute left-0 lg:relative lg:left-auto w-12 h-12 rounded-xl bg-white border-2 border-primary text-primary flex items-center justify-center font-bold text-sm shrink-0 shadow-xs z-10">
                   04
                 </div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-2">
-                  Manufacturer Lab Audit
-                </h3>
-                <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
-                  The original unit is returned to our Tier-1 manufacturer diagnostic lab. You never bear the risk or downtime of repair cycles.
-                </p>
-              </div>
-              <div className="pt-4 mt-4 border-t border-[#dedfe5] text-[11px] text-[#5c5e63] font-medium">
-                Full 10-year warranty intact
+                <div className="flex-1">
+                  <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                    Depot Lab Analysis
+                  </h3>
+                  <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed mb-3">
+                    The faulty unit goes back to our diagnostic facility. You keep the working unit in place with your original warranty intact.
+                  </p>
+                  <span className="inline-block text-[11px] text-[#5c5e63] font-medium font-mono bg-white px-2.5 py-1 rounded-md border border-[#dedfe5]">
+                    Full warranty remains active
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION: BOOK A VISIT / SCHEDULE CONSULTATION */}
+      {/* SECTION: CLOSING DEPOT PHOTOGRAPHY SHOWCASE (NOT A DARK CTA BAND) */}
       <section className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 py-16 w-full">
-        <div className="rounded-3xl bg-[#12161a] text-white p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-          <div className="max-w-xl">
-            <span className="font-label-caps text-[11px] text-[#ff8e4d] uppercase tracking-wider font-bold mb-1 block">
-              Visit Our Regional Engineering Centers
-            </span>
-            <h3 className="font-headline-xl text-2xl sm:text-3xl font-bold mb-2 text-white">
-              Inspect Our Hardware In Person.
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-300">
-              Walk into any of our depots in Lagos (Lekki), Abuja (Idu), Port Harcourt (Trans-Amadi),
-              or Ibadan (Ring Road) to test running inverters, inspect cell architecture, and meet our team.
-            </p>
-          </div>
+        <div className="relative rounded-3xl overflow-hidden border border-[#dedfe5] shadow-sm bg-neutral-900">
+          <div className="relative h-80 sm:h-96 w-full">
+            <LazyImage
+              src={IMAGES.commercialFacility}
+              alt="SunGrid Regional Engineering Depot & Hardware Staging Facility"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
-            <button
-              onClick={() => onOpenQuote()}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span>Schedule Depot Consultation</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-10 right-6 sm:right-10 flex flex-col md:flex-row md:items-end justify-between gap-6 text-white z-10">
+              <div className="max-w-xl">
+                <span className="font-label-caps text-[11px] text-[#ff8e4d] uppercase tracking-wider font-bold mb-1.5 block">
+                  Visit Our Regional Engineering Centers
+                </span>
+                <h3 className="font-headline-xl text-2xl sm:text-3xl font-bold mb-2 text-white">
+                  Inspect Our Hardware In Person.
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed">
+                  Walk into any of our depots in Lagos (Lekki), Abuja (Idu), Port Harcourt (Trans-Amadi),
+                  or Ibadan (Ring Road) to test running inverters, inspect cell architecture, and meet our team.
+                </p>
+              </div>
+
+              <div className="shrink-0">
+                <button
+                  onClick={() => onOpenQuote()}
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Schedule Depot Consultation</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavTab } from '../types';
 import { APPLIANCE_CATALOG } from '../data/appliances';
-import { OscilloscopeWaveform } from './OscilloscopeWaveform';
 import { 
   Zap, 
   RotateCcw, 
@@ -129,7 +128,7 @@ export const CalculatorView: React.FC<CalculatorViewProps> = ({
   } else if (continuousKw <= 7.5 && surgeKva <= 14.0) {
     tierName = 'Executive Duplex Package (10kVA)';
     tierSpecs = '10kVA Pure Sine Inverter • 15.36kWh Lithium Bank • 12x 580W Tier-1 Panels';
-    runtimeText = `Runs ${activeACs > 0 ? activeACs + ' ACs' : 'multiple ACs'} with deep freezer, borehole pump, and Starlink. Zero flicker on water pumping cycles.`;
+    runtimeText = `Runs ${activeACs > 0 ? activeACs + ' ACs' : 'multiple ACs'} with deep freezer, borehole pump, and Starlink. Starts water pumps without lights dimming or electronics tripping.`;
     fuelSaved = '₦260,000 – ₦340,000';
     priceRange = '₦6.8M – ₦8.85M';
   } else {
@@ -164,15 +163,15 @@ Please send formal quote & schedule a site inspection.`;
           <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold block mb-1">
-                Engineering Telemetry 2.4
+                Load Sizing Engine
               </span>
               <h1 className="font-headline-xl text-3xl sm:text-4xl lg:text-5xl text-[#1a1c1c] font-bold tracking-tight">
-                Calculated Precision. Zero Guesswork.
+                How much solar power does your home actually need?
               </h1>
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold text-[#5c4037]">
               <ShieldCheck className="w-4 h-4 text-primary" />
-              <span>Calibrated for Nigerian Grid Deficits & Inverter Surge Demands</span>
+              <span>Calibrated for Nigerian home appliances and motor startup surges</span>
             </div>
           </div>
 
@@ -185,12 +184,12 @@ Please send formal quote & schedule a site inspection.`;
                   <h2 className="font-headline-lg text-xl sm:text-2xl font-bold text-[#1a1c1c]">
                     SunGrid Smart Appliance Sizer
                   </h2>
-                  <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-caps text-[10px] font-bold uppercase tracking-wider">
+                  <span className="px-2 py-0.5 rounded-md bg-white border border-primary/30 text-primary font-label-caps text-[10px] font-bold uppercase tracking-wider">
                     INTERACTIVE
                   </span>
                 </div>
                 <p className="text-xs sm:text-sm text-[#5c4037] max-w-2xl">
-                  No technical jargon. Simply select what you run daily and we calculate the exact solar & lithium capacity so your power never trips.
+                  Select what you run daily and we calculate the exact solar and lithium capacity so your power never trips.
                 </p>
               </div>
 
@@ -198,7 +197,7 @@ Please send formal quote & schedule a site inspection.`;
                 <button
                   type="button"
                   onClick={resetAll}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-[#dedfe5] text-xs font-semibold text-[#1a1c1c] hover:bg-neutral-50 transition-colors cursor-pointer shadow-xs"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-[#dedfe5] text-xs font-semibold text-[#1a1c1c] hover:bg-neutral-50 transition-colors cursor-pointer shadow-xs"
                 >
                   <RotateCcw className="w-3.5 h-3.5 text-primary" />
                   <span>Reset Sizer</span>
@@ -213,7 +212,7 @@ Please send formal quote & schedule a site inspection.`;
                 {/* CATEGORY 1: Cooling & Fans */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#ffdbcf] flex items-center justify-center text-primary">
+                    <div className="w-8 h-8 rounded-lg bg-[#ffdbcf] flex items-center justify-center text-primary">
                       <Wind className="w-4 h-4" />
                     </div>
                     <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
@@ -257,7 +256,7 @@ Please send formal quote & schedule a site inspection.`;
                               type="button"
                               disabled={!st.enabled || st.qty <= 1}
                               onClick={() => updateQty(item.id, -1)}
-                              className="w-7 h-7 rounded-full bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white disabled:opacity-40 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+                              className="w-7 h-7 rounded-lg bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white disabled:opacity-40 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
                             >
                               -
                             </button>
@@ -267,7 +266,7 @@ Please send formal quote & schedule a site inspection.`;
                             <button
                               type="button"
                               onClick={() => updateQty(item.id, 1)}
-                              className="w-7 h-7 rounded-full bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+                              className="w-7 h-7 rounded-lg bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
                             >
                               +
                             </button>
@@ -281,7 +280,7 @@ Please send formal quote & schedule a site inspection.`;
                 {/* CATEGORY 2: Kitchen & Refrigeration */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#ffdbcf] flex items-center justify-center text-primary">
+                    <div className="w-8 h-8 rounded-lg bg-[#ffdbcf] flex items-center justify-center text-primary">
                       <Refrigerator className="w-4 h-4" />
                     </div>
                     <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
@@ -325,7 +324,7 @@ Please send formal quote & schedule a site inspection.`;
                               type="button"
                               disabled={!st.enabled || st.qty <= 1}
                               onClick={() => updateQty(item.id, -1)}
-                              className="w-7 h-7 rounded-full bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white disabled:opacity-40 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+                              className="w-7 h-7 rounded-lg bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white disabled:opacity-40 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
                             >
                               -
                             </button>
@@ -335,7 +334,7 @@ Please send formal quote & schedule a site inspection.`;
                             <button
                               type="button"
                               onClick={() => updateQty(item.id, 1)}
-                              className="w-7 h-7 rounded-full bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+                              className="w-7 h-7 rounded-lg bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
                             >
                               +
                             </button>
@@ -349,7 +348,7 @@ Please send formal quote & schedule a site inspection.`;
                 {/* CATEGORY 3: Water Pumping & Heating */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#ffdbcf] flex items-center justify-center text-primary">
+                    <div className="w-8 h-8 rounded-lg bg-[#ffdbcf] flex items-center justify-center text-primary">
                       <Droplet className="w-4 h-4" />
                     </div>
                     <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
@@ -393,7 +392,7 @@ Please send formal quote & schedule a site inspection.`;
                               type="button"
                               disabled={!st.enabled || st.qty <= 1}
                               onClick={() => updateQty(item.id, -1)}
-                              className="w-7 h-7 rounded-full bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white disabled:opacity-40 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+                              className="w-7 h-7 rounded-lg bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white disabled:opacity-40 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
                             >
                               -
                             </button>
@@ -403,7 +402,7 @@ Please send formal quote & schedule a site inspection.`;
                             <button
                               type="button"
                               onClick={() => updateQty(item.id, 1)}
-                              className="w-7 h-7 rounded-full bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+                              className="w-7 h-7 rounded-lg bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
                             >
                               +
                             </button>
@@ -417,7 +416,7 @@ Please send formal quote & schedule a site inspection.`;
                 {/* CATEGORY 4: Work, Connectivity & Security */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#ffdbcf] flex items-center justify-center text-primary">
+                    <div className="w-8 h-8 rounded-lg bg-[#ffdbcf] flex items-center justify-center text-primary">
                       <Wifi className="w-4 h-4" />
                     </div>
                     <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
@@ -461,7 +460,7 @@ Please send formal quote & schedule a site inspection.`;
                               type="button"
                               disabled={!st.enabled || st.qty <= 1}
                               onClick={() => updateQty(item.id, -1)}
-                              className="w-7 h-7 rounded-full bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white disabled:opacity-40 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+                              className="w-7 h-7 rounded-lg bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white disabled:opacity-40 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
                             >
                               -
                             </button>
@@ -471,7 +470,7 @@ Please send formal quote & schedule a site inspection.`;
                             <button
                               type="button"
                               onClick={() => updateQty(item.id, 1)}
-                              className="w-7 h-7 rounded-full bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+                              className="w-7 h-7 rounded-lg bg-[#f3f4f3] text-[#1a1c1c] hover:bg-primary hover:text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
                             >
                               +
                             </button>
@@ -491,18 +490,42 @@ Please send formal quote & schedule a site inspection.`;
                     <span className="font-label-caps text-xs text-[#5c5e63] uppercase tracking-wider font-bold">
                       Live System Sizing
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-primary text-xs font-semibold shadow-xs border border-[#dedfe5]">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white text-primary text-xs font-semibold shadow-xs border border-[#dedfe5]">
                       <span className="w-2 h-2 rounded-full bg-primary animate-ping"></span>
                       Dynamic Sizing Engine
                     </span>
                   </div>
 
-                  {/* Oscilloscope Pure Sine Wave AC Simulation */}
-                  <OscilloscopeWaveform 
-                    loadKw={continuousKw} 
-                    surgeKva={surgeKva} 
-                    activeCount={pulseCount} 
-                  />
+                  {/* Plain Labeled Stats: Switchover Time & THD (No moving oscilloscope panel) */}
+                  <div className="grid grid-cols-2 gap-3 p-4 rounded-2xl bg-white border border-[#dedfe5] shadow-xs">
+                    <div>
+                      <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider block">
+                        Switchover Time
+                      </span>
+                      <div className="flex items-baseline gap-1 mt-0.5">
+                        <span className="font-metric-counter text-2xl font-bold text-[#1a1c1c] tabular-nums">
+                          3.8ms
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-[#5c4037] block mt-0.5">
+                        No flicker • Laptops stay on
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider block">
+                        THD (Waveform Purity)
+                      </span>
+                      <div className="flex items-baseline gap-1 mt-0.5">
+                        <span className="font-metric-counter text-2xl font-bold text-[#1a1c1c] tabular-nums">
+                          &lt;1.6%
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-[#5c4037] block mt-0.5">
+                        Pure sine wave
+                      </span>
+                    </div>
+                  </div>
 
                   {/* Continuous Load & Surge Physical Ammeter Meters */}
                   <div className="grid grid-cols-2 gap-4">
@@ -522,9 +545,9 @@ Please send formal quote & schedule a site inspection.`;
                         <span className="text-sm font-bold text-[#5c5e63]">kW</span>
                       </div>
                       {/* Calibrated Ammeter Needle Bar */}
-                      <div className="w-full bg-neutral-100 rounded-full h-2 overflow-hidden p-0.5 border border-[#dedfe5]">
+                      <div className="w-full bg-neutral-100 rounded-sm h-2 overflow-hidden p-0.5 border border-[#dedfe5]">
                         <div
-                          className="bg-gradient-to-r from-emerald-500 via-amber-500 to-primary h-full rounded-full transition-all duration-500"
+                          className="bg-gradient-to-r from-emerald-500 via-amber-500 to-primary h-full rounded-xs transition-all duration-500"
                           style={{ 
                             width: `${Math.min(100, Math.max(10, loadPercentage))}%`,
                             transitionTimingFunction: 'var(--ease-meter)'
@@ -552,9 +575,9 @@ Please send formal quote & schedule a site inspection.`;
                         <span className="text-sm font-bold text-primary">kVA</span>
                       </div>
                       {/* Surge Buffer Bar */}
-                      <div className="w-full bg-neutral-100 rounded-full h-2 overflow-hidden p-0.5 border border-[#dedfe5]">
+                      <div className="w-full bg-neutral-100 rounded-sm h-2 overflow-hidden p-0.5 border border-[#dedfe5]">
                         <div
-                          className="bg-primary h-full rounded-full transition-all duration-500"
+                          className="bg-primary h-full rounded-xs transition-all duration-500"
                           style={{ 
                             width: `${Math.min(100, Math.max(15, (surgeKva / 25) * 100))}%`,
                             transitionTimingFunction: 'var(--ease-meter)'
@@ -573,7 +596,7 @@ Please send formal quote & schedule a site inspection.`;
                     className="bg-[#12161a] text-white p-6 rounded-3xl space-y-4 relative overflow-hidden shadow-xl border border-neutral-800 telemetry-pulse-active transition-all"
                   >
                     <div className="flex items-center justify-between relative z-10">
-                      <span className="px-3 py-0.5 rounded-full bg-primary text-white font-label-caps text-[10px] uppercase font-bold tracking-wider">
+                      <span className="px-2.5 py-1 rounded-md bg-primary text-white font-label-caps text-[10px] uppercase font-bold tracking-wider">
                         System Recommended
                       </span>
                       <span className="text-xs text-neutral-300 flex items-center gap-1">
@@ -615,7 +638,7 @@ Please send formal quote & schedule a site inspection.`;
                     {/* Guarantee Seal Inside Card */}
                     <div className="relative z-10 pt-2 flex items-center gap-2 text-[11px] text-neutral-400">
                       <ShieldCheck className="w-3.5 h-3.5 text-primary" />
-                      <span>Backed by SunGrid 10-Year Hardware & Zero-Tripping SLA</span>
+                      <span>Backed by SunGrid 10-Year Warranty & Local Depot Support</span>
                     </div>
                   </div>
 
@@ -626,7 +649,7 @@ Please send formal quote & schedule a site inspection.`;
                         Switchover
                       </span>
                       <span className="font-headline-sm text-sm font-bold text-[#1a1c1c]">&lt;4ms</span>
-                      <span className="block text-[10px] text-[#5c4037]">Zero flicker</span>
+                      <span className="block text-[10px] text-[#5c4037]">Instant transfer</span>
                     </div>
 
                     <div className="p-2.5 rounded-xl bg-white border border-[#dedfe5] shadow-xs">
@@ -653,7 +676,7 @@ Please send formal quote & schedule a site inspection.`;
                     href={getWhatsAppLink()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold transition-all shadow-md cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold transition-all shadow-md cursor-pointer"
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>Send Sizing to Solar Engineer on WhatsApp</span>
@@ -692,7 +715,7 @@ Please send formal quote & schedule a site inspection.`;
             </div>
             <button
               onClick={() => onOpenQuote()}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-neutral-50 text-[#1a1c1c] border border-[#dedfe5] text-xs sm:text-sm font-semibold transition-colors shrink-0 shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-neutral-50 text-[#1a1c1c] border border-[#dedfe5] text-xs sm:text-sm font-semibold transition-colors shrink-0 shadow-xs cursor-pointer"
             >
               <span>Book an On-Site Audit</span>
               <Calendar className="w-4 h-4 text-primary" />
@@ -713,49 +736,35 @@ Please send formal quote & schedule a site inspection.`;
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Simple Stacked List: Checklist styling matching point 2, dropping card shells and icons */}
+            <div className="divide-y divide-[#dedfe5] border-t border-b border-[#dedfe5]">
               {/* FAQ 1 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#dedfe5] shadow-xs space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-[#ffdbcf] flex items-center justify-center text-primary">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
-                  Why do Borehole Pumps trip regular inverters?
+              <div className="py-6 pl-6 pr-4 border-l-4 border-primary">
+                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                  Why do borehole pumps trip regular inverters?
                 </h3>
-                <p className="text-xs text-[#5c4037] leading-relaxed">
-                  Standard borehole motors consume 300% to 500% of their rated wattage in the first 80 milliseconds of startup.
-                  SunGrid dual-inverter setups incorporate heavy toroidal transformers and dedicated high-pulse MOSFET stages
-                  engineered explicitly to absorb this instantaneous pump surge without dropping delicate electronics.
+                <p className="text-xs sm:text-sm text-[#5c4037] leading-relaxed max-w-3xl">
+                  Pumps draw three to five times their normal running power for a fraction of a second when the motor starts up. Undersized inverters mistake that quick surge for a short circuit and trip offline. We select our inverters with high surge tolerance so your water pump kicks on without resetting your TV, computers, or air conditioners.
                 </p>
               </div>
 
               {/* FAQ 2 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#dedfe5] shadow-xs space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-[#ffdbcf] flex items-center justify-center text-primary">
-                  <Sun className="w-5 h-5" />
-                </div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
-                  What happens during July/August heavy rainfall?
+              <div className="py-6 pl-6 pr-4 border-l-4 border-primary">
+                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                  What happens during heavy rainfall in July and August?
                 </h3>
-                <p className="text-xs text-[#5c4037] leading-relaxed">
-                  Our calculations factor in 3.8 peak sun hours instead of theoretical maximums. Even on torrential overcast days
-                  in coastal Nigeria, Tier-1 Bifacial N-Type panels capture ambient diffuse UV irradiance to deliver 25–40% generation.
-                  Paired with high-density LiFePO4 reserves, your core cooling and preservation remain 100% uninterrupted.
+                <p className="text-xs sm:text-sm text-[#5c4037] leading-relaxed max-w-3xl">
+                  Panels still generate power under overcast skies, typically about 30% of their bright-sun output. We size our arrays around realistic rainy-season averages (under 4 peak sun hours a day) rather than dry-season peaks. Combined with overnight battery storage, your essential appliances keep running through multi-day rain.
                 </p>
               </div>
 
               {/* FAQ 3 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#dedfe5] shadow-xs space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-[#ffdbcf] flex items-center justify-center text-primary">
-                  <Layers className="w-5 h-5" />
-                </div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
-                  Can I expand my capacity later as my home grows?
+              <div className="py-6 pl-6 pr-4 border-l-4 border-primary">
+                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                  Can I add more battery storage or panels later?
                 </h3>
-                <p className="text-xs text-[#5c4037] leading-relaxed">
-                  Yes. All SunGrid systems feature modular busbar architecture. You can begin with a 10kVA system paired with
-                  15kWh of lithium today, and seamlessly daisy-chain an additional 15kWh storage rack or extra rooftop strings
-                  in the dry season without dismantling or replacing your primary control cabinet.
+                <p className="text-xs sm:text-sm text-[#5c4037] leading-relaxed max-w-3xl">
+                  Yes. You can start with a 10kVA setup and one battery pack today, then connect extra battery units or more rooftop panels down the road as your family grows. You don't have to replace your main inverter or rewire your home to expand.
                 </p>
               </div>
             </div>

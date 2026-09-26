@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center gap-3">
         <button
           onClick={onOpenQuote}
-          className="inline-flex items-center gap-2 rounded-full bg-[#ff5400] hover:bg-[#e04a00] px-5 py-2 text-[13px] text-white font-medium transition-all active:scale-95 cursor-pointer shadow-[0_2px_12px_rgba(255,84,0,0.35)]"
+          className="inline-flex items-center gap-2 rounded-xl bg-[#ff5400] hover:bg-[#e04a00] px-5 py-2 text-[13px] text-white font-medium transition-all active:scale-95 cursor-pointer shadow-[0_2px_12px_rgba(255,84,0,0.35)]"
         >
           <span>Get a Free Quote</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -76,7 +76,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="w-8 h-8 rounded-full bg-neutral-900/80 border border-white/10 flex items-center justify-center text-white md:hidden"
+          className="w-8 h-8 rounded-lg bg-neutral-900/80 border border-white/10 flex items-center justify-center text-white md:hidden"
           aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -111,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="pt-3 border-t border-neutral-800 flex flex-col gap-3">
             <a
               href="tel:08007864743"
-              className="flex items-center justify-center gap-2 py-2.5 rounded-full bg-neutral-900 text-xs text-white"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-neutral-900 text-xs text-white"
             >
               <Phone className="w-4 h-4 text-[#ff8e4d]" />
               <span>Call Priority Line: 0800-SUNGRID</span>
@@ -121,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 onOpenQuote();
               }}
-              className="w-full py-3 rounded-full bg-primary text-white font-label-ui text-sm font-semibold flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-primary text-white font-label-ui text-sm font-semibold flex items-center justify-center gap-2"
             >
               <span>Dispatch Sizing Audit</span>
               <ArrowRight className="w-4 h-4" />

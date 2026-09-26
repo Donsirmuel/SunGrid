@@ -5,7 +5,6 @@ import {
   ArrowRight, 
   CheckCircle2, 
   TrendingUp, 
-  Coins, 
   Clock, 
   ShieldCheck,
   Sparkles
@@ -56,10 +55,9 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-[#dedfe5]">
         <div className="max-w-xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffdbcf] text-primary text-xs font-bold uppercase tracking-wider mb-2 font-label-caps">
-            <Coins className="w-3.5 h-3.5" />
-            Simple Financial Clarity
-          </div>
+          <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold block mb-2">
+            Financial Return Analysis
+          </span>
           <h3 className="font-headline-xl text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1a1c1c] tracking-tight">
             Solar ROI & Lifetime Savings Calculator
           </h3>
@@ -182,8 +180,8 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
                 <Sparkles className="w-4 h-4 text-primary" />
                 2. Your Guaranteed Solar Payback
               </h4>
-              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">
-                Zero Generator Noise
+              <span className="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 text-[11px] font-bold">
+                Silent Operation
               </span>
             </div>
 
@@ -246,7 +244,7 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
           <div className="pt-4 border-t border-[#dedfe5]">
             <button
               onClick={() => onSelectPackage ? onSelectPackage(selectedPkg.name) : null}
-              className="w-full py-3.5 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Lock In This Turnkey System ({selectedPkg.name})</span>
               <ArrowRight className="w-4 h-4" />

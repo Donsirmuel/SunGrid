@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Space Grotesk", sans-serif;
-  --font-grotesk: "Space Grotesk", sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-headline: "Outfit", sans-serif;
   --font-body: "Plus Jakarta Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
@@ -40,7 +40,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Headings with Outfit & optimized letter-spacing (-0.03em) */
+/* Primary Headlines exclusively with Outfit & optimized letter-spacing (-0.03em) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .font-display-hero,
 .font-headline-xl,
 .font-headline-lg,
@@ -56,7 +62,14 @@ body {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Supporting text with Plus Jakarta Sans at 500 weight */
+/* Supporting body text and labels restricted to Plus Jakarta Sans */
+p,
+span:not(.font-metric-counter):not(.font-mono):not(.font-telemetry),
+label,
+input,
+button,
+textarea,
+select,
 .font-body-lg,
 .font-body-md,
 .font-body-sm,
@@ -64,7 +77,6 @@ body {
 .font-label-ui,
 .font-support-500 {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 500;
 }
 
 /* Custom scrollbars */

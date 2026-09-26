@@ -97,7 +97,7 @@ export default function App() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp with SunGrid Solar Engineer"
-          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.35)] hover:bg-[#20ba59] transition-all hover:scale-105 active:scale-95"
+          className="group flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.35)] hover:bg-[#20ba59] transition-all hover:scale-105 active:scale-95"
         >
           <MessageSquare className="w-5 h-5 fill-current" />
           <span className="font-label-ui text-xs font-bold tracking-tight hidden sm:inline">

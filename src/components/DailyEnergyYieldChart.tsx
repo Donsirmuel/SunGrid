@@ -1,6 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import { Sun, Battery, Moon, Zap, Info, ChevronRight } from 'lucide-react';
+import { 
+  Sun, 
+  Battery, 
+  Moon, 
+  Zap, 
+  Info, 
+  ChevronRight,
+  Wind,
+  CloudRain,
+  CheckCircle2,
+  BatteryCharging
+} from 'lucide-react';
 
 interface HourlyDataPoint {
   hour: number;
@@ -14,9 +25,9 @@ interface HourlyDataPoint {
 
 // 24-hour typical Nigerian household curve (Duplex with 10kVA Hybrid + 12x 580W panels)
 const HOURLY_ENERGY_DATA: HourlyDataPoint[] = [
-  { hour: 0, label: '12 AM', solarYieldKw: 0, homeConsumptionKw: 1.8, batteryStatus: 'discharging', batterySoCPercent: 68, description: 'ACs running quietly on clean battery power. Zero generator noise.' },
+  { hour: 0, label: '12 AM', solarYieldKw: 0, homeConsumptionKw: 1.8, batteryStatus: 'discharging', batterySoCPercent: 68, description: 'ACs running quietly on battery power without generator exhaust or sound.' },
   { hour: 1, label: '1 AM', solarYieldKw: 0, homeConsumptionKw: 1.7, batteryStatus: 'discharging', batterySoCPercent: 64, description: 'Stable bedroom temperature maintained.' },
-  { hour: 2, label: '2 AM', solarYieldKw: 0, homeConsumptionKw: 1.6, batteryStatus: 'discharging', batterySoCPercent: 60, description: 'Zero inverter hum, deep undisturbed sleep.' },
+  { hour: 2, label: '2 AM', solarYieldKw: 0, homeConsumptionKw: 1.6, batteryStatus: 'discharging', batterySoCPercent: 60, description: 'Silent inverter operation throughout the night.' },
   { hour: 3, label: '3 AM', solarYieldKw: 0, homeConsumptionKw: 1.6, batteryStatus: 'discharging', batterySoCPercent: 56, description: 'Refrigerator & freezer on eco-cycles.' },
   { hour: 4, label: '4 AM', solarYieldKw: 0, homeConsumptionKw: 1.5, batteryStatus: 'discharging', batterySoCPercent: 52, description: 'Autonomous security lighting active.' },
   { hour: 5, label: '5 AM', solarYieldKw: 0.1, homeConsumptionKw: 1.9, batteryStatus: 'discharging', batterySoCPercent: 48, description: 'Morning prep, bathroom water heater cycle starts.' },
@@ -31,7 +42,7 @@ const HOURLY_ENERGY_DATA: HourlyDataPoint[] = [
   { hour: 14, label: '2 PM', solarYieldKw: 7.0, homeConsumptionKw: 3.0, batteryStatus: 'full', batterySoCPercent: 100, description: 'Living room ACs running 100% on free solar power.' },
   { hour: 15, label: '3 PM', solarYieldKw: 5.8, homeConsumptionKw: 2.8, batteryStatus: 'full', batterySoCPercent: 100, description: 'High efficiency sustained during afternoon heat.' },
   { hour: 16, label: '4 PM', solarYieldKw: 4.2, homeConsumptionKw: 2.6, batteryStatus: 'full', batterySoCPercent: 100, description: 'Sun angles lower; solar still covers all daytime household appliances.' },
-  { hour: 17, label: '5 PM', solarYieldKw: 2.3, homeConsumptionKw: 2.7, batteryStatus: 'idle', batterySoCPercent: 99, description: 'Household arrival time. Zero changeover shock as dusk nears.' },
+  { hour: 17, label: '5 PM', solarYieldKw: 2.3, homeConsumptionKw: 2.7, batteryStatus: 'idle', batterySoCPercent: 99, description: 'Household arrival time. Smooth transition to battery reserve as the sun sets.' },
   { hour: 18, label: '6 PM', solarYieldKw: 0.8, homeConsumptionKw: 3.2, batteryStatus: 'discharging', batterySoCPercent: 97, description: 'Sunset. Automatic sub-4ms handoff to fully charged battery reserve.' },
   { hour: 19, label: '7 PM', solarYieldKw: 0, homeConsumptionKw: 3.8, batteryStatus: 'discharging', batterySoCPercent: 92, description: 'Family dinner, multiple TVs, lighting & home office in full swing.' },
   { hour: 20, label: '8 PM', solarYieldKw: 0, homeConsumptionKw: 3.6, batteryStatus: 'discharging', batterySoCPercent: 86, description: 'Neighborhood generators start roaring; your home remains dead silent.' },
@@ -317,30 +328,33 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
         </div>
 
         {/* Weather Season Selector */}
-        <div className="flex items-center gap-1.5 p-1 bg-[#eeeeed] rounded-full shrink-0">
+        <div className="flex items-center gap-1 p-1 bg-[#eeeeed] rounded-xl border border-[#dedfe5] shrink-0">
           <button
             onClick={() => setActiveWeather('sunny')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               activeWeather === 'sunny' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#5c5e63] hover:text-[#1a1c1c]'
             }`}
           >
-            ☀️ Bright Dry Season
+            <Sun className="w-3.5 h-3.5" />
+            <span>Bright Dry Season</span>
           </button>
           <button
             onClick={() => setActiveWeather('harmattan')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               activeWeather === 'harmattan' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#5c5e63] hover:text-[#1a1c1c]'
             }`}
           >
-            🌫️ Harmattan Haze
+            <Wind className="w-3.5 h-3.5" />
+            <span>Harmattan Haze</span>
           </button>
           <button
             onClick={() => setActiveWeather('rainy')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               activeWeather === 'rainy' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#5c5e63] hover:text-[#1a1c1c]'
             }`}
           >
-            🌧️ Overcast / Wet Season
+            <CloudRain className="w-3.5 h-3.5" />
+            <span>Overcast / Wet Season</span>
           </button>
         </div>
       </div>
@@ -380,8 +394,18 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 Selected Timeline: <strong>{currentPoint.label}</strong>
               </span>
-              <span className="text-[11px] text-[#5c5e63]">
-                {currentPoint.hour >= 6 && currentPoint.hour <= 18 ? '☀️ Daylight Hours' : '🌙 Night Battery Mode'}
+              <span className="inline-flex items-center gap-1 text-[11px] text-[#5c5e63]">
+                {currentPoint.hour >= 6 && currentPoint.hour <= 18 ? (
+                  <>
+                    <Sun className="w-3.5 h-3.5 text-amber-600" />
+                    <span>Daylight Hours</span>
+                  </>
+                ) : (
+                  <>
+                    <Moon className="w-3.5 h-3.5 text-indigo-500" />
+                    <span>Night Battery Mode</span>
+                  </>
+                )}
               </span>
             </div>
 
@@ -412,8 +436,23 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold">
                 Hour {selectedHour}:00 Telemetry
               </span>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#ffdbcf] text-primary">
-                {currentPoint.batteryStatus === 'charging' ? '⚡ Battery Fast Charging' : currentPoint.batteryStatus === 'full' ? '🟢 Bank 100% Saturated' : '🔋 Lithium Discharge'}
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#ffdbcf] text-primary">
+                {currentPoint.batteryStatus === 'charging' ? (
+                  <>
+                    <Zap className="w-3 h-3 text-primary" />
+                    <span>Battery Fast Charging</span>
+                  </>
+                ) : currentPoint.batteryStatus === 'full' ? (
+                  <>
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                    <span>Bank 100% Saturated</span>
+                  </>
+                ) : (
+                  <>
+                    <BatteryCharging className="w-3 h-3 text-primary" />
+                    <span>Lithium Discharge</span>
+                  </>
+                )}
               </span>
             </div>
 
@@ -449,9 +488,9 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               </div>
               
               {/* Battery Meter */}
-              <div className="w-full h-2.5 bg-[#dedfe5] rounded-full overflow-hidden p-0.5">
+              <div className="w-full h-2.5 bg-[#dedfe5] rounded-sm overflow-hidden p-0.5">
                 <div
-                  className="h-full bg-emerald-500 rounded-full transition-all duration-300"
+                  className="h-full bg-emerald-500 rounded-xs transition-all duration-300"
                   style={{ width: `${currentPoint.batterySoCPercent}%` }}
                 />
               </div>
@@ -466,7 +505,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
           <div className="pt-4 border-t border-[#dedfe5]">
             <button
               onClick={() => onSelectPackage ? onSelectPackage('Duplex Family Comfort (10kVA)') : null}
-              className="w-full py-3 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Explore 10kVA Turnkey Package</span>
               <ChevronRight className="w-4 h-4" />

@@ -54,19 +54,19 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
   const faqs = [
     {
       q: 'Are there any hidden costs after the site inspection?',
-      a: 'None whatsoever. Our initial quotation includes our written 30-Day Price Lock Guarantee. After the physical engineer audit, your formal quote lists every breaker, cable length, mounting rail, earthing array, and logistics cost. If unexpected structural fittings are required, SunGrid absorbs the difference.'
+      a: 'No. Your final quote lists every physical item: breakers, cable lengths, trunking, mounting rails, and delivery. That price is locked for 30 days. If our engineers discover during installation that your distribution board needs extra work or your roof requires custom brackets, we cover it ourselves rather than billing you extra.'
     },
     {
       q: "How does the 'Pay Small-Small' financing approval work?",
-      a: 'Through our accredited banking partners (Carbon Zero, Sterling Bank, FirstBank CleanTech), applications are completed online in under 15 minutes using your BVN and proof of income or business statements. Once approved, you provide an initial 20% commitment, and SunGrid commissions your full solar hardware within 5 business days while you pay off the remainder across 12 to 36 months.'
+      a: 'You apply online through our partner banks (Sterling Bank Alternative Energy, FirstBank CleanTech, or Carbon) using your BVN and 6 months of bank statements. Most reviews conclude in 24 to 48 hours. Once approved, you pay a 20% commitment to schedule installation, and the bank finances the balance over 12, 24, or 36 months.'
     },
     {
       q: 'What does the 24-Hour Gate Swap cover?',
-      a: 'Unlike roadside vendors who ship malfunctioning inverters overseas or to Alaba market for repairs leaving you in darkness for weeks, SunGrid maintains local regional hubs in Lagos, Abuja, Port Harcourt, and Ibadan with pre-commissioned reserve inventory. If our telemetry confirms an internal hardware fault, we swap it at your gate in 24 hours.'
+      a: 'If your inverter or battery develops an internal fault during the warranty period, we don’t take it away to a workshop for weeks while you sit in darkness. We send a service van with a matching replacement unit directly to your gate within 24 hours, swap it out on the spot, and take the faulty unit back to our depot.'
     },
     {
       q: 'Can these packages power my water pump and air conditioners?',
-      a: 'Yes! All packages from 3.5kVA upward are engineered specifically for high inductive startup loads. Our 5kVA/10kVA Executive package comfortably runs 3 modern inverter ACs simultaneously and handles a 1HP borehole pump without flickering your home lights or dropping delicate electronics.'
+      a: 'Yes. The 3.5kVA package easily handles a 0.5HP pumping machine and one bedroom inverter AC. For a standard duplex with a 1HP or 1.5HP borehole pump plus two to three inverter ACs, choose the 10kVA system. The inverters are selected specifically to absorb motor startup surges without tripping or resetting your other appliances.'
     }
   ];
 
@@ -75,31 +75,30 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
       {/* SECTION: HERO TITLE & METRICS */}
       <section className="w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 pt-12 sm:pt-16 pb-12">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#ffdbcf] text-primary mb-4 font-bold text-xs uppercase tracking-wider">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Transparent Nigerian Solar Engineering</span>
-          </div>
+          <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold block mb-3">
+            Turnkey Solar Pricing
+          </span>
 
           <h1 className="font-display-hero text-3xl sm:text-5xl lg:text-6xl text-[#1a1c1c] tracking-tight font-bold mb-4">
-            One Fixed Price.<br className="hidden sm:inline" /> Zero Roadside Surprises.
+            Fixed-price solar installations with no surprise costs on site.
           </h1>
 
           <p className="font-body-lg text-base sm:text-lg text-[#5c4037] max-w-2xl leading-relaxed">
-            Unlike makeshift installers with hidden fees for trunking and earthing, our turnkey quote covers
-            every nut, breaker, and cable with written price protection.
+            We inspect your home, calculate your electrical loads, and issue a written quote covering
+            every cable, breaker, and mounting rail before work starts.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#packages-grid"
-              className="px-7 py-3 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold shadow-[0_4px_16px_rgba(167,52,0,0.3)] transition-all flex items-center gap-2"
+              className="px-7 py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold shadow-[0_4px_16px_rgba(167,52,0,0.3)] transition-all flex items-center gap-2"
             >
               <span>Explore Tier-1 Packages</span>
               <ArrowRight className="w-4 h-4" />
             </a>
             <a
               href="#financing-calculator"
-              className="px-7 py-3 rounded-full bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-sm font-semibold transition-colors flex items-center gap-2"
+              className="px-7 py-3 rounded-xl bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-sm font-semibold transition-colors flex items-center gap-2"
             >
               <span>Pay 'Small-Small' Financing</span>
             </a>
@@ -158,7 +157,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-0.5 rounded-full bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
+                  <span className="px-2.5 py-0.5 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
                     3.5kVA Urban
                   </span>
                   <span className="text-xs text-[#5c5e63]">1-2 Bed</span>
@@ -207,7 +206,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 </button>
                 {openSpecs['urban'] && (
                   <div className="text-xs text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3 rounded-xl mb-3">
-                    <p><strong className="text-[#1a1c1c]">Pure Sine Inverter:</strong> Clean current with zero flickering or hum.</p>
+                    <p><strong className="text-[#1a1c1c]">Pure Sine Wave:</strong> Clean current without humming or light flicker.</p>
                     <p><strong className="text-[#1a1c1c]">100% Copper Cables:</strong> Heavy 16mm wiring prevents dangerous overheating.</p>
                     <p><strong className="text-[#1a1c1c]">Surge Protector (SPD):</strong> Absorbs sudden NEPA high-voltage spikes safely.</p>
                     <p><strong className="text-[#1a1c1c]">1-Day Setup:</strong> Fully installed and tested within 24 hours.</p>
@@ -215,7 +214,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 )}
                 <button
                   onClick={() => onOpenQuote('3.5kVA Urban Package (₦4.25M)')}
-                  className="w-full py-2.5 rounded-full bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-xs font-semibold transition-colors cursor-pointer"
+                  className="w-full py-2.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-xs font-semibold transition-colors cursor-pointer"
                 >
                   Select Package
                 </button>
@@ -224,12 +223,12 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
 
             {/* Card 2: 5kVA Executive (Most Popular) */}
             <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border-2 border-primary shadow-lg relative scale-[1.02] z-10">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-0.5 rounded-full bg-primary text-white font-label-caps text-[10px] uppercase tracking-wider font-bold shadow-sm">
+              <div className="absolute -top-3 left-6 px-3 py-1 rounded-md bg-primary text-white font-label-caps text-[10px] uppercase tracking-wider font-bold shadow-xs">
                 MOST POPULAR
               </div>
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-0.5 rounded-full bg-[#ffdbcf] text-primary font-label-caps text-[10px] uppercase font-bold">
+                  <span className="px-2.5 py-0.5 rounded-md bg-[#ffdbcf] text-primary font-label-caps text-[10px] uppercase font-bold">
                     5kVA Executive
                   </span>
                   <span className="text-xs text-[#5c5e63]">3-4 Bed</span>
@@ -278,7 +277,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 </button>
                 {openSpecs['duplex'] && (
                   <div className="text-xs text-[#5c4037] pb-3 space-y-2 bg-[#fdf2ec] p-3 rounded-xl mb-3">
-                    <p><strong className="text-[#1a1c1c]">Instant Handover (&lt;4ms):</strong> Zero flicker when grid cuts off; TV and computers won't restart.</p>
+                    <p><strong className="text-[#1a1c1c]">Instant Handover (&lt;4ms):</strong> Switches fast enough that televisions and computers run without rebooting.</p>
                     <p><strong className="text-[#1a1c1c]">Dual MPPT Solar Brain:</strong> Produces high electricity even if part of your roof has shade.</p>
                     <p><strong className="text-[#1a1c1c]">Chemical Earthing:</strong> Real copper ground rod protecting from thunder and grid surges.</p>
                     <p><strong className="text-[#1a1c1c]">Smartphone App:</strong> See live solar generation and battery percent on your phone.</p>
@@ -286,7 +285,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 )}
                 <button
                   onClick={() => onOpenQuote('5kVA Executive Duplex (₦8.85M)')}
-                  className="w-full py-2.5 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-xs font-semibold shadow-md transition-colors cursor-pointer"
+                  className="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-xs font-semibold shadow-md transition-colors cursor-pointer"
                 >
                   Select Package
                 </button>
@@ -297,7 +296,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-0.5 rounded-full bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
+                  <span className="px-2.5 py-0.5 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
                     10kVA Estate
                   </span>
                   <span className="text-xs text-[#5c5e63]">5+ Bed</span>
@@ -354,7 +353,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 )}
                 <button
                   onClick={() => onOpenQuote('10kVA Estate Package (₦14.9M)')}
-                  className="w-full py-2.5 rounded-full bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-xs font-semibold transition-colors cursor-pointer"
+                  className="w-full py-2.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-xs font-semibold transition-colors cursor-pointer"
                 >
                   Select Package
                 </button>
@@ -365,7 +364,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-0.5 rounded-full bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
+                  <span className="px-2.5 py-0.5 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-[10px] uppercase font-bold">
                     25kVA Commercial
                   </span>
                   <span className="text-xs text-[#5c5e63]">Offices / Clinics</span>
@@ -422,7 +421,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 )}
                 <button
                   onClick={() => onOpenQuote('20kVA Industrial (₦24.5M)')}
-                  className="w-full py-2.5 rounded-full bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-xs font-semibold transition-colors cursor-pointer"
+                  className="w-full py-2.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-xs font-semibold transition-colors cursor-pointer"
                 >
                   Select Package
                 </button>
@@ -441,18 +440,18 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-5">
               <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
-                Zero Upfront Barrier
+                Financing Options
               </span>
               <h3 className="font-headline-md text-xl sm:text-2xl font-bold text-[#1a1c1c] tracking-tight mt-1">
-                Spread Across 12, 24, or 36 Months
+                Spread Payments Over 12, 24, or 36 Months
               </h3>
               <p className="font-body-sm text-xs sm:text-sm text-[#5c4037] mt-1.5 leading-relaxed">
-                Backed by Nigeria’s leading clean energy bank desks. Hardware activated immediately upon standard 20% down payment with zero penalty for early liquidation.
+                Available through clean energy desks at major commercial banks. Installation begins upon a 20% deposit, with no fees or penalties if you pay off the balance early.
               </p>
             </div>
             <div className="md:col-span-7 flex flex-wrap items-center gap-3">
               <div className="px-5 py-3 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] text-xs font-bold text-[#1a1c1c] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" /> Carbon Zero Finance
+                <CheckCircle2 className="w-4 h-4 text-primary" /> Carbon Energy Desk
               </div>
               <div className="px-5 py-3 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] text-xs font-bold text-[#1a1c1c] flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-primary" /> Sterling Bank Alternative Energy
@@ -470,75 +469,68 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
-              Contractual Integrity
+              Installation Standards
             </span>
             <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
-              The 4 Honest SunGrid Promises
+              Our Four Installation Commitments
             </h2>
             <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2">
-              Never let a cheap initial quotation trap you in thousands of unforeseen site costs.
+              Every detail is specified up front so you are never hit with unforeseen site fees.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {/* Plain Stacked List: Checklist with strong left border / rules, full width, no card boundaries */}
+          <div className="max-w-4xl mx-auto divide-y divide-[#dedfe5] border-t border-b border-[#dedfe5]">
             {/* Promise 1 */}
-            <div className="bg-[#f9f9f8] rounded-2xl p-6 sm:p-8 border border-[#dedfe5] shadow-xs flex gap-5 items-start">
-              <div className="w-12 h-12 rounded-2xl bg-[#ffdbcf] flex items-center justify-center text-primary shrink-0">
-                <Zap className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1">
+            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-6">
+              <div className="flex-1">
+                <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c] mb-1">
                   Pure Copper Trunking & Conduits
                 </h3>
                 <p className="font-body-md text-xs sm:text-sm text-[#5c4037] leading-relaxed">
-                  Every millimeter of cable is 100% heavy electrolytic copper sheathed inside UV-proof metal-clad and rigid PVC trunking. No dangling roadside wires or flammable aluminum cords.
+                  Every millimeter of cable is heavy electrolytic copper sheathed inside UV-resistant conduit and rigid trunking. We never use aluminum cords or leave loose wires exposed.
                 </p>
               </div>
+              <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
             </div>
 
             {/* Promise 2 */}
-            <div className="bg-[#f9f9f8] rounded-2xl p-6 sm:p-8 border border-[#dedfe5] shadow-xs flex gap-5 items-start">
-              <div className="w-12 h-12 rounded-2xl bg-[#ffdbcf] flex items-center justify-center text-primary shrink-0">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1">
+            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-6">
+              <div className="flex-1">
+                <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c] mb-1">
                   Deep Chemical Grounding Array
                 </h3>
                 <p className="font-body-md text-xs sm:text-sm text-[#5c4037] leading-relaxed">
-                  We drill genuine 3-meter copper-bonded grounding rods with bentonite chemical enhancement to achieve &lt;5 Ohms resistance, guarding against Nigerian lightning strikes.
+                  We install 3-meter copper-bonded grounding rods with bentonite earth enhancement to achieve &lt;5 Ohms resistance, protecting against lightning and grid surges.
                 </p>
               </div>
+              <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-1" />
             </div>
 
             {/* Promise 3 */}
-            <div className="bg-[#f9f9f8] rounded-2xl p-6 sm:p-8 border border-[#dedfe5] shadow-xs flex gap-5 items-start">
-              <div className="w-12 h-12 rounded-2xl bg-[#ffdbcf] flex items-center justify-center text-primary shrink-0">
-                <Award className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1">
-                  Zero 'Boy-Boy' or Logistics Surcharges
+            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-6">
+              <div className="flex-1">
+                <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c] mb-1">
+                  We don't add last-minute site charges
                 </h3>
                 <p className="font-body-md text-xs sm:text-sm text-[#5c4037] leading-relaxed">
-                  Our quote includes direct haulage to your doorstep, full rigging, labor, community interface, and crane lifts where needed. You will never be asked to 'settle boys' on site.
+                  Our quote covers delivery to your door, installation labor, community interface, and crane lifts where needed. You will never be asked for additional cash on site.
                 </p>
               </div>
+              <Award className="w-5 h-5 text-primary shrink-0 mt-1" />
             </div>
 
             {/* Promise 4 */}
-            <div className="bg-[#f9f9f8] rounded-2xl p-6 sm:p-8 border border-[#dedfe5] shadow-xs flex gap-5 items-start">
-              <div className="w-12 h-12 rounded-2xl bg-[#ffdbcf] flex items-center justify-center text-primary shrink-0">
-                <Clock className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1">
+            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-6">
+              <div className="flex-1">
+                <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c] mb-1">
                   Rapid 24-Hour Gate Swap
                 </h3>
                 <p className="font-body-md text-xs sm:text-sm text-[#5c4037] leading-relaxed">
                   If an inverter or lithium module flags an internal hardware fault, our engineering team brings a fully operational replacement to your gate within 24 hours. No weeks of lab waiting.
                 </p>
               </div>
+              <Clock className="w-5 h-5 text-primary shrink-0 mt-1" />
             </div>
           </div>
         </div>
@@ -580,7 +572,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                   alt="Precision Surge Telemetry Inspection"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[#1a1c1c] font-label-caps text-[10px] font-bold z-10">
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md text-[#1a1c1c] font-label-caps text-[10px] font-bold z-10">
                   Precision Surge Telemetry
                 </div>
               </div>
@@ -590,7 +582,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                   alt="Tier-1 Bifacial Solar Mounts"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[#1a1c1c] font-label-caps text-[10px] font-bold z-10">
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md text-[#1a1c1c] font-label-caps text-[10px] font-bold z-10">
                   Tier-1 Bifacial Solar Mounts
                 </div>
               </div>
@@ -626,7 +618,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                   <span className="font-headline-sm text-sm sm:text-base font-bold text-[#1a1c1c] pr-4">
                     {f.q}
                   </span>
-                  <span className="w-7 h-7 rounded-full bg-[#f3f4f3] flex items-center justify-center text-primary shrink-0">
+                  <span className="w-7 h-7 rounded-lg bg-[#f3f4f3] flex items-center justify-center text-primary shrink-0">
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </span>
                 </button>
@@ -659,14 +651,14 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
             <a
               href="tel:08007864743"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white text-[#1a1c1c] font-label-ui text-xs sm:text-sm font-semibold hover:bg-neutral-100 transition-colors flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-[#1a1c1c] font-label-ui text-xs sm:text-sm font-semibold hover:bg-neutral-100 transition-colors flex items-center justify-center gap-2"
             >
               <Phone className="w-4 h-4 text-primary" />
               <span>0800-SUNGRID</span>
             </a>
             <button
               onClick={() => onOpenQuote()}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Schedule Site Audit</span>
               <ArrowRight className="w-4 h-4" />
