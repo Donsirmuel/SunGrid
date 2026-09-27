@@ -79,6 +79,32 @@ select,
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+.font-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-body-md {
+  font-size: 1rem;
+  line-height: 1.625rem;
+}
+
+.font-body-sm {
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+}
+
+.font-label-caps {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.font-label-ui {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
 /* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 6px;

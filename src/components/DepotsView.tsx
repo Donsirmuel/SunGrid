@@ -56,40 +56,40 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
               <span className="font-metric-counter text-3xl font-bold text-primary block">
                 {SHARED_METRICS.geographicReach.formattedDepots}
               </span>
-              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
+              <span className="font-label-caps text-xs sm:text-sm text-[#1a1c1c] font-bold mt-1 block">
                 Regional Hubs
               </span>
-              <span className="text-[11px] text-[#5c4037]">Lagos, Abuja, PH & Ibadan</span>
+              <span className="text-xs sm:text-sm text-[#5c4037] font-medium">Lagos, Abuja, PH & Ibadan</span>
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-[#dedfe5] shadow-xs text-center">
               <span className="font-metric-counter text-3xl font-bold text-primary block">
                 {SHARED_METRICS.gateSwapSla.formatted}
               </span>
-              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
+              <span className="font-label-caps text-xs sm:text-sm text-[#1a1c1c] font-bold mt-1 block">
                 {SHARED_METRICS.gateSwapSla.label}
               </span>
-              <span className="text-[11px] text-[#5c4037]">{SHARED_METRICS.gateSwapSla.subtext}</span>
+              <span className="text-xs sm:text-sm text-[#5c4037] font-medium">{SHARED_METRICS.gateSwapSla.subtext}</span>
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-[#dedfe5] shadow-xs text-center">
               <span className="font-metric-counter text-3xl font-bold text-primary block">
                 {SHARED_METRICS.nercEngineers.formatted}
               </span>
-              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
+              <span className="font-label-caps text-xs sm:text-sm text-[#1a1c1c] font-bold mt-1 block">
                 {SHARED_METRICS.nercEngineers.label}
               </span>
-              <span className="text-[11px] text-[#5c4037]">{SHARED_METRICS.nercEngineers.subtext}</span>
+              <span className="text-xs sm:text-sm text-[#5c4037] font-medium">{SHARED_METRICS.nercEngineers.subtext}</span>
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-[#dedfe5] shadow-xs text-center">
               <span className="font-metric-counter text-3xl font-bold text-primary block">
                 {SHARED_METRICS.homesAndIndustries.formatted}
               </span>
-              <span className="font-label-caps text-xs text-[#1a1c1c] font-bold mt-1 block">
+              <span className="font-label-caps text-xs sm:text-sm text-[#1a1c1c] font-bold mt-1 block">
                 {SHARED_METRICS.homesAndIndustries.shortLabel}
               </span>
-              <span className="text-[11px] text-[#5c4037]">{SHARED_METRICS.homesAndIndustries.subtext}</span>
+              <span className="text-xs sm:text-sm text-[#5c4037] font-medium">{SHARED_METRICS.homesAndIndustries.subtext}</span>
             </div>
           </div>
         </div>
@@ -134,10 +134,6 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                   <span className="font-label-caps text-xs text-primary font-bold uppercase tracking-wider">
                     {activeHub.state} State Regional Operations
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Operational • Telemetry Live
-                  </span>
                 </div>
                 <h2 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c]">
                   {activeHub.name}
@@ -151,7 +147,7 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
               {/* Coverage Areas */}
               <div className="p-4 rounded-2xl bg-[#f9f9f8] border border-[#dedfe5]">
                 <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider block mb-2">
-                  Immediate 2-Hour Dispatch Coverage
+                  Regional Installation & Service Coverage
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {activeHub.coverage.map((area, idx) => (
@@ -213,12 +209,12 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                   className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-xs sm:text-sm font-semibold transition-colors flex items-center justify-center gap-2"
                 >
                   <MessageSquare className="w-4 h-4 text-primary" />
-                  <span>WhatsApp Hub Dispatch</span>
+                  <span>WhatsApp Regional Hub</span>
                 </a>
               </div>
             </div>
 
-            {/* Right: Hub Facility Visual & Live Dispatch Feed */}
+            {/* Right: Hub Facility Visual & Fleet Info */}
             <div className="lg:col-span-6 space-y-4">
               <div className="w-full h-64 sm:h-72 rounded-2xl overflow-hidden relative shadow-sm border border-[#dedfe5] group">
                 <LazyImage
@@ -229,7 +225,7 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 text-white z-10 pointer-events-none">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
                     <p className="font-headline-sm text-sm font-bold">
                       {activeHub.activeCrews} Field Engineering Crews Active
                     </p>
@@ -259,7 +255,7 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                 </div>
               </div>
 
-              {/* Static Fleet & Dispatch Line */}
+              {/* Static Fleet & Service Line */}
               <div className="p-3 bg-[#f9f9f8] rounded-xl text-xs border border-[#dedfe5] flex items-center justify-between">
                 <span className="text-[11px] text-[#5c4037]">
                   {activeHub.activeCrews} fully equipped mobile response vans dedicated to {activeHub.city} and surrounding corridors.
@@ -271,7 +267,7 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
         </div>
       </section>
 
-      {/* SECTION: 24-HOUR GATE SWAP PROTOCOL - CONNECTED TIMELINE */}
+      {/* SECTION: 24-HOUR EQUIPMENT REPLACEMENT PROTOCOL - CONNECTED TIMELINE */}
       <section className="w-full bg-[#f3f4f3] py-16 lg:py-20 border-t border-[#dedfe5]">
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -279,10 +275,10 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
               Warranty Response
             </span>
             <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
-              How the 24-Hour Gate Swap Works
+              How Our 24-Hour Equipment Replacement Works
             </h2>
             <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2">
-              If a core component develops an internal fault, we replace it at your gate instead of keeping you waiting on workshop repairs.
+              If a core component develops an internal fault, we replace it at your premises instead of keeping you waiting on workshop repairs.
             </p>
           </div>
 
@@ -325,7 +321,7 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                     Rather than sending a technician to solder components in your house, we pull a fresh unit directly from our local depot inventory.
                   </p>
                   <span className="inline-block text-[11px] text-[#5c5e63] font-medium font-mono bg-white px-2.5 py-1 rounded-md border border-[#dedfe5]">
-                    Tested prior to dispatch
+                    Tested prior to delivery
                   </span>
                 </div>
               </div>
@@ -340,10 +336,10 @@ export const DepotsView: React.FC<DepotsViewProps> = ({ onSelectTab, onOpenQuote
                     NO REPAIR WAITING
                   </div>
                   <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
-                    24-Hour Gate Swap
+                    24-Hour Unit Replacement
                   </h3>
                   <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed mb-3">
-                    Our field crew arrives at your gate, unmounts the faulty hardware, installs the replacement unit, and tests that power is restored.
+                    Our field crew arrives at your premises, unmounts the faulty hardware, installs the replacement unit, and tests that power is restored.
                   </p>
                   <span className="inline-block text-[11px] text-primary font-bold font-mono bg-[#ffdbcf]/50 px-2.5 py-1 rounded-md border border-primary/30">
                     Within 24 hours

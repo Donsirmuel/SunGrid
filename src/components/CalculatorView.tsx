@@ -162,15 +162,15 @@ Please send formal quote & schedule a site inspection.`;
           {/* Top Context Banner */}
           <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold block mb-1">
+              <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold block mb-1">
                 Load Sizing Engine
               </span>
               <h1 className="font-headline-xl text-3xl sm:text-4xl lg:text-5xl text-[#1a1c1c] font-bold tracking-tight">
                 How much solar power does your home actually need?
               </h1>
             </div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#5c4037]">
-              <ShieldCheck className="w-4 h-4 text-primary" />
+            <div className="flex items-center gap-2 text-sm font-semibold text-[#5c4037]">
+              <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
               <span>Calibrated for Nigerian home appliances and motor startup surges</span>
             </div>
           </div>
@@ -184,11 +184,11 @@ Please send formal quote & schedule a site inspection.`;
                   <h2 className="font-headline-lg text-xl sm:text-2xl font-bold text-[#1a1c1c]">
                     SunGrid Smart Appliance Sizer
                   </h2>
-                  <span className="px-2 py-0.5 rounded-md bg-white border border-primary/30 text-primary font-label-caps text-[10px] font-bold uppercase tracking-wider">
+                  <span className="px-2.5 py-0.5 rounded-md bg-white border border-primary/30 text-primary font-label-caps text-xs font-bold uppercase tracking-wider">
                     INTERACTIVE
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-[#5c4037] max-w-2xl">
+                <p className="text-sm sm:text-base text-[#5c4037] max-w-2xl">
                   Select what you run daily and we calculate the exact solar and lithium capacity so your power never trips.
                 </p>
               </div>
@@ -197,9 +197,9 @@ Please send formal quote & schedule a site inspection.`;
                 <button
                   type="button"
                   onClick={resetAll}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-[#dedfe5] text-xs font-semibold text-[#1a1c1c] hover:bg-neutral-50 transition-colors cursor-pointer shadow-xs"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-white border border-[#dedfe5] text-sm font-semibold text-[#1a1c1c] hover:bg-neutral-50 transition-colors cursor-pointer shadow-xs"
                 >
-                  <RotateCcw className="w-3.5 h-3.5 text-primary" />
+                  <RotateCcw className="w-4 h-4 text-primary" />
                   <span>Reset Sizer</span>
                 </button>
               </div>
@@ -243,11 +243,11 @@ Please send formal quote & schedule a site inspection.`;
                             <div>
                               <label
                                 htmlFor={`chk-${item.id}`}
-                                className="font-label-ui text-sm font-semibold text-[#1a1c1c] cursor-pointer block truncate"
+                                className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c] cursor-pointer block truncate"
                               >
                                 {item.name}
                               </label>
-                              <p className="text-xs text-[#5c4037]">{item.description}</p>
+                              <p className="text-sm text-[#5c4037]">{item.description}</p>
                             </div>
                           </div>
 
@@ -311,11 +311,11 @@ Please send formal quote & schedule a site inspection.`;
                             <div>
                               <label
                                 htmlFor={`chk-${item.id}`}
-                                className="font-label-ui text-sm font-semibold text-[#1a1c1c] cursor-pointer block truncate"
+                                className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c] cursor-pointer block truncate"
                               >
                                 {item.name}
                               </label>
-                              <p className="text-xs text-[#5c4037]">{item.description}</p>
+                              <p className="text-sm text-[#5c4037]">{item.description}</p>
                             </div>
                           </div>
 
@@ -379,11 +379,11 @@ Please send formal quote & schedule a site inspection.`;
                             <div>
                               <label
                                 htmlFor={`chk-${item.id}`}
-                                className="font-label-ui text-sm font-semibold text-[#1a1c1c] cursor-pointer block truncate"
+                                className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c] cursor-pointer block truncate"
                               >
                                 {item.name}
                               </label>
-                              <p className="text-xs text-[#5c4037]">{item.description}</p>
+                              <p className="text-sm text-[#5c4037]">{item.description}</p>
                             </div>
                           </div>
 
@@ -447,11 +447,11 @@ Please send formal quote & schedule a site inspection.`;
                             <div>
                               <label
                                 htmlFor={`chk-${item.id}`}
-                                className="font-label-ui text-sm font-semibold text-[#1a1c1c] cursor-pointer block truncate"
+                                className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c] cursor-pointer block truncate"
                               >
                                 {item.name}
                               </label>
-                              <p className="text-xs text-[#5c4037]">{item.description}</p>
+                              <p className="text-sm text-[#5c4037]">{item.description}</p>
                             </div>
                           </div>
 
@@ -491,15 +491,15 @@ Please send formal quote & schedule a site inspection.`;
                       Live System Sizing
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white text-primary text-xs font-semibold shadow-xs border border-[#dedfe5]">
-                      <span className="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                      <span className="w-2 h-2 rounded-full bg-primary"></span>
                       Dynamic Sizing Engine
                     </span>
                   </div>
 
-                  {/* Plain Labeled Stats: Switchover Time & THD (No moving oscilloscope panel) */}
+                  {/* Plain Labeled Stats: Switchover Time & THD */}
                   <div className="grid grid-cols-2 gap-3 p-4 rounded-2xl bg-white border border-[#dedfe5] shadow-xs">
                     <div>
-                      <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider block">
+                      <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider block">
                         Switchover Time
                       </span>
                       <div className="flex items-baseline gap-1 mt-0.5">
@@ -507,13 +507,13 @@ Please send formal quote & schedule a site inspection.`;
                           3.8ms
                         </span>
                       </div>
-                      <span className="text-[11px] text-[#5c4037] block mt-0.5">
+                      <span className="text-xs sm:text-sm text-[#5c4037] block mt-0.5 font-medium">
                         No flicker • Laptops stay on
                       </span>
                     </div>
 
                     <div>
-                      <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider block">
+                      <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider block">
                         THD (Waveform Purity)
                       </span>
                       <div className="flex items-baseline gap-1 mt-0.5">
@@ -521,7 +521,7 @@ Please send formal quote & schedule a site inspection.`;
                           &lt;1.6%
                         </span>
                       </div>
-                      <span className="text-[11px] text-[#5c4037] block mt-0.5">
+                      <span className="text-xs sm:text-sm text-[#5c4037] block mt-0.5 font-medium">
                         Pure sine wave
                       </span>
                     </div>
@@ -531,10 +531,10 @@ Please send formal quote & schedule a site inspection.`;
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white p-4 rounded-2xl shadow-xs border border-[#dedfe5] space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider">
+                        <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider">
                           Normal Running Load
                         </span>
-                        <span className="text-[10px] font-mono text-neutral-400">
+                        <span className="text-xs font-mono text-neutral-500 font-semibold">
                           {loadPercentage}%
                         </span>
                       </div>
@@ -554,17 +554,17 @@ Please send formal quote & schedule a site inspection.`;
                           }}
                         />
                       </div>
-                      <p className="text-[10px] text-[#5c4037] leading-tight font-medium">
+                      <p className="text-xs sm:text-sm text-[#5c4037] leading-snug font-medium">
                         Total power needed while appliances are active
                       </p>
                     </div>
 
                     <div className="bg-white p-4 rounded-2xl shadow-xs border border-[#dedfe5] space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider">
+                        <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider">
                           Starting Surge (kVA)
                         </span>
-                        <span className="text-[10px] font-mono text-primary font-semibold">
+                        <span className="text-xs font-mono text-primary font-bold">
                           Trip Protection
                         </span>
                       </div>
@@ -584,7 +584,7 @@ Please send formal quote & schedule a site inspection.`;
                           }}
                         />
                       </div>
-                      <p className="text-[10px] text-[#5c4037] leading-tight font-medium">
+                      <p className="text-xs sm:text-sm text-[#5c4037] leading-snug font-medium">
                         Extra kick required when AC or water pumps kick on
                       </p>
                     </div>
@@ -596,10 +596,10 @@ Please send formal quote & schedule a site inspection.`;
                     className="bg-[#12161a] text-white p-6 rounded-3xl space-y-4 relative overflow-hidden shadow-xl border border-neutral-800 telemetry-pulse-active transition-all"
                   >
                     <div className="flex items-center justify-between relative z-10">
-                      <span className="px-2.5 py-1 rounded-md bg-primary text-white font-label-caps text-[10px] uppercase font-bold tracking-wider">
+                      <span className="px-2.5 py-1 rounded-md bg-primary text-white font-label-caps text-xs uppercase font-bold tracking-wider">
                         System Recommended
                       </span>
-                      <span className="text-xs text-neutral-300 flex items-center gap-1">
+                      <span className="text-xs sm:text-sm text-neutral-300 flex items-center gap-1">
                         <Zap className="w-3.5 h-3.5 text-primary" />
                         <span>Grade-A LiFePO4</span>
                       </span>
@@ -609,35 +609,35 @@ Please send formal quote & schedule a site inspection.`;
                       <h4 className="font-headline-lg text-xl sm:text-2xl font-bold tracking-tight text-white">
                         {tierName}
                       </h4>
-                      <p className="text-xs text-neutral-300 mt-1">{tierSpecs}</p>
+                      <p className="text-sm text-neutral-300 mt-1">{tierSpecs}</p>
                     </div>
 
                     {/* Runtime Capability Box */}
                     <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 relative z-10 space-y-1">
-                      <div className="flex items-center gap-1.5 text-[#ff8e4d] text-xs font-semibold">
+                      <div className="flex items-center gap-1.5 text-[#ff8e4d] text-xs sm:text-sm font-semibold">
                         <ShieldCheck className="w-4 h-4" />
                         <span>Calculated Performance Profile</span>
                       </div>
-                      <p className="text-xs text-neutral-200 leading-relaxed font-normal">
+                      <p className="text-sm text-neutral-200 leading-relaxed font-normal">
                         {runtimeText}
                       </p>
                     </div>
 
                     {/* Savings & Cost */}
-                    <div className="relative z-10 pt-1 space-y-2 border-t border-neutral-800 text-xs">
+                    <div className="relative z-10 pt-1 space-y-2 border-t border-neutral-800 text-sm">
                       <div className="flex items-center justify-between">
                         <span className="text-neutral-400">Estimated Monthly Generator Fuel Saved:</span>
                         <span className="font-semibold text-white">{fuelSaved}</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-neutral-400">Estimated Turnkey Package Price:</span>
-                        <span className="font-bold text-sm text-[#ff8e4d]">{priceRange}</span>
+                        <span className="font-bold text-base text-[#ff8e4d]">{priceRange}</span>
                       </div>
                     </div>
 
                     {/* Guarantee Seal Inside Card */}
-                    <div className="relative z-10 pt-2 flex items-center gap-2 text-[11px] text-neutral-400">
-                      <ShieldCheck className="w-3.5 h-3.5 text-primary" />
+                    <div className="relative z-10 pt-2 flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                      <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
                       <span>Backed by SunGrid 10-Year Warranty & Local Depot Support</span>
                     </div>
                   </div>
@@ -645,27 +645,27 @@ Please send formal quote & schedule a site inspection.`;
                   {/* Quick System Performance Telemetry Mini-Pills */}
                   <div className="grid grid-cols-3 gap-2 text-center">
                     <div className="p-2.5 rounded-xl bg-white border border-[#dedfe5] shadow-xs">
-                      <span className="font-label-caps text-[9px] text-[#5c5e63] block uppercase">
+                      <span className="font-label-caps text-[11px] text-[#5c5e63] block uppercase font-bold">
                         Switchover
                       </span>
-                      <span className="font-headline-sm text-sm font-bold text-[#1a1c1c]">&lt;4ms</span>
-                      <span className="block text-[10px] text-[#5c4037]">Instant transfer</span>
+                      <span className="font-headline-sm text-base font-bold text-[#1a1c1c]">&lt;4ms</span>
+                      <span className="block text-xs text-[#5c4037] font-medium">Instant transfer</span>
                     </div>
 
                     <div className="p-2.5 rounded-xl bg-white border border-[#dedfe5] shadow-xs">
-                      <span className="font-label-caps text-[9px] text-[#5c5e63] block uppercase">
+                      <span className="font-label-caps text-[11px] text-[#5c5e63] block uppercase font-bold">
                         Daily Yield
                       </span>
-                      <span className="font-headline-sm text-sm font-bold text-primary">28–35</span>
-                      <span className="block text-[10px] text-[#5c4037]">kWh / Day</span>
+                      <span className="font-headline-sm text-base font-bold text-primary">28–35</span>
+                      <span className="block text-xs text-[#5c4037] font-medium">kWh / Day</span>
                     </div>
 
                     <div className="p-2.5 rounded-xl bg-white border border-[#dedfe5] shadow-xs">
-                      <span className="font-label-caps text-[9px] text-[#5c5e63] block uppercase">
+                      <span className="font-label-caps text-[11px] text-[#5c5e63] block uppercase font-bold">
                         Warranty
                       </span>
-                      <span className="font-headline-sm text-sm font-bold text-[#1a1c1c]">10 Yrs</span>
-                      <span className="block text-[10px] text-[#5c4037]">6,000 cycles</span>
+                      <span className="font-headline-sm text-base font-bold text-[#1a1c1c]">10 Yrs</span>
+                      <span className="block text-xs text-[#5c4037] font-medium">6,000 cycles</span>
                     </div>
                   </div>
                 </div>
@@ -686,12 +686,12 @@ Please send formal quote & schedule a site inspection.`;
                     <button
                       type="button"
                       onClick={() => onOpenQuote(tierName)}
-                      className="font-label-ui text-xs font-semibold text-[#5c4037] hover:text-primary transition-colors flex items-center gap-1 cursor-pointer"
+                      className="font-label-ui text-sm font-semibold text-[#5c4037] hover:text-primary transition-colors flex items-center gap-1.5 cursor-pointer"
                     >
                       <span>Get Formal Line-Item PDF Quote</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-4 h-4" />
                     </button>
-                    <span className="text-[11px] text-[#5c5e63]">Takes ~45 seconds</span>
+                    <span className="text-xs text-[#5c5e63] font-medium">Takes ~45 seconds</span>
                   </div>
                 </div>
               </div>
@@ -725,45 +725,45 @@ Please send formal quote & schedule a site inspection.`;
           {/* Sizing Technical FAQ Section */}
           <div className="mt-16 space-y-8">
             <div className="max-w-2xl">
-              <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
+              <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
                 Engineering Clarity
               </span>
               <h2 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] mt-1">
                 Frequently Addressed Sizing Questions
               </h2>
-              <p className="text-xs sm:text-sm text-[#5c4037] mt-1">
+              <p className="text-sm sm:text-base text-[#5c4037] mt-1.5 leading-relaxed">
                 How SunGrid handles Nigeria's unique residential spikes, pump inductive loads, and overcast wet-season months.
               </p>
             </div>
 
-            {/* Simple Stacked List: Checklist styling matching point 2, dropping card shells and icons */}
+            {/* Simple Stacked List */}
             <div className="divide-y divide-[#dedfe5] border-t border-b border-[#dedfe5]">
               {/* FAQ 1 */}
               <div className="py-6 pl-6 pr-4 border-l-4 border-primary">
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c] mb-2">
                   Why do borehole pumps trip regular inverters?
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5c4037] leading-relaxed max-w-3xl">
+                <p className="text-sm sm:text-base text-[#5c4037] leading-relaxed max-w-3xl">
                   Pumps draw three to five times their normal running power for a fraction of a second when the motor starts up. Undersized inverters mistake that quick surge for a short circuit and trip offline. We select our inverters with high surge tolerance so your water pump kicks on without resetting your TV, computers, or air conditioners.
                 </p>
               </div>
 
               {/* FAQ 2 */}
               <div className="py-6 pl-6 pr-4 border-l-4 border-primary">
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c] mb-2">
                   What happens during heavy rainfall in July and August?
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5c4037] leading-relaxed max-w-3xl">
+                <p className="text-sm sm:text-base text-[#5c4037] leading-relaxed max-w-3xl">
                   Panels still generate power under overcast skies, typically about 30% of their bright-sun output. We size our arrays around realistic rainy-season averages (under 4 peak sun hours a day) rather than dry-season peaks. Combined with overnight battery storage, your essential appliances keep running through multi-day rain.
                 </p>
               </div>
 
               {/* FAQ 3 */}
               <div className="py-6 pl-6 pr-4 border-l-4 border-primary">
-                <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1.5">
+                <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c] mb-2">
                   Can I add more battery storage or panels later?
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5c4037] leading-relaxed max-w-3xl">
+                <p className="text-sm sm:text-base text-[#5c4037] leading-relaxed max-w-3xl">
                   Yes. You can start with a 10kVA setup and one battery pack today, then connect extra battery units or more rooftop panels down the road as your family grows. You don't have to replace your main inverter or rewire your home to expand.
                 </p>
               </div>

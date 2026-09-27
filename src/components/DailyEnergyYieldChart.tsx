@@ -391,7 +391,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
           <div className="mt-4 pt-4 border-t border-[#dedfe5]">
             <div className="flex items-center justify-between text-xs font-semibold text-[#1a1c1c] mb-2">
               <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-primary" />
                 Selected Timeline: <strong>{currentPoint.label}</strong>
               </span>
               <span className="inline-flex items-center gap-1 text-[11px] text-[#5c5e63]">
@@ -419,7 +419,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               className="w-full h-2 bg-[#dedfe5] rounded-lg appearance-none cursor-pointer accent-primary"
             />
 
-            <div className="flex justify-between text-[10px] text-[#5c5e63] font-mono mt-1 font-semibold">
+            <div className="flex justify-between text-xs text-[#5c5e63] font-mono mt-1.5 font-semibold">
               <span>12 AM</span>
               <span>6 AM (Dawn)</span>
               <span>12 PM (Peak Solar)</span>
@@ -433,23 +433,23 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
         <div className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-7 border border-[#dedfe5] shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-[#dedfe5] mb-4">
-              <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold">
+              <span className="font-label-caps text-xs sm:text-sm text-[#5c5e63] uppercase font-bold">
                 Hour {selectedHour}:00 Telemetry
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#ffdbcf] text-primary">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#ffdbcf] text-primary">
                 {currentPoint.batteryStatus === 'charging' ? (
                   <>
-                    <Zap className="w-3 h-3 text-primary" />
+                    <Zap className="w-3.5 h-3.5 text-primary" />
                     <span>Battery Fast Charging</span>
                   </>
                 ) : currentPoint.batteryStatus === 'full' ? (
                   <>
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Bank 100% Saturated</span>
                   </>
                 ) : (
                   <>
-                    <BatteryCharging className="w-3 h-3 text-primary" />
+                    <BatteryCharging className="w-3.5 h-3.5 text-primary" />
                     <span>Lithium Discharge</span>
                   </>
                 )}
@@ -459,26 +459,26 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
             {/* Instant Metrics */}
             <div className="grid grid-cols-2 gap-3 mb-5">
               <div className="p-3.5 rounded-2xl bg-[#ffdbcf]/30 border border-primary/20">
-                <span className="text-[10px] uppercase font-bold text-primary font-label-caps">Solar Harvest</span>
+                <span className="text-xs uppercase font-bold text-primary font-label-caps">Solar Harvest</span>
                 <p className="font-metric-counter text-2xl font-bold text-primary mt-0.5">
                   {adjustedSolarKw} <span className="text-xs font-normal">kW</span>
                 </p>
-                <span className="text-[10px] text-[#5c4037]">Pure sunshine from roof</span>
+                <span className="text-xs text-[#5c4037] font-medium">Pure sunshine from roof</span>
               </div>
 
               <div className="p-3.5 rounded-2xl bg-[#f3f4f3] border border-[#dedfe5]">
-                <span className="text-[10px] uppercase font-bold text-[#5c5e63] font-label-caps">Home Draw</span>
+                <span className="text-xs uppercase font-bold text-[#5c5e63] font-label-caps">Home Draw</span>
                 <p className="font-metric-counter text-2xl font-bold text-[#1a1c1c] mt-0.5">
                   {currentPoint.homeConsumptionKw} <span className="text-xs font-normal">kW</span>
                 </p>
-                <span className="text-[10px] text-[#5c4037]">Appliances & AC load</span>
+                <span className="text-xs text-[#5c4037] font-medium">Appliances & AC load</span>
               </div>
             </div>
 
             {/* Net Energy Status Callout */}
             <div className="p-4 rounded-2xl bg-[#f9f9f8] border border-[#dedfe5] mb-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-[#1a1c1c] flex items-center gap-1.5">
+                <span className="text-sm font-bold text-[#1a1c1c] flex items-center gap-1.5">
                   <Battery className="w-4 h-4 text-emerald-600" />
                   Blade LiFePO4 Reserve
                 </span>

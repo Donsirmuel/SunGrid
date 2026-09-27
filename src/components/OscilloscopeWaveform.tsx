@@ -105,7 +105,7 @@ export const OscilloscopeWaveform: React.FC<OscilloscopeProps> = ({
     <div className="w-full bg-[#0a0d10] rounded-2xl p-3 border border-neutral-800 shadow-inner relative overflow-hidden">
       <div className="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-1.5 px-1">
         <div className="flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="inline-block w-2 h-2 rounded-full bg-emerald-400" />
           <span className="text-white font-semibold">OSCILLOSCOPE: 50.00 Hz</span>
         </div>
         <div className="flex items-center gap-3 text-neutral-400">

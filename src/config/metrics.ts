@@ -45,12 +45,12 @@ export const SHARED_METRICS = {
     description: 'Eliminate noisy gen sets, midnight fuel hunting, and toxic fumes from your residence.'
   },
 
-  // Rapid gate swap warranty turnaround
+  // Rapid unit replacement warranty turnaround
   gateSwapSla: {
     hours: 24,
     formatted: '24h',
-    label: 'Gate Swap SLA',
-    subtext: 'Pre-tested units on standby'
+    label: 'Replacement SLA',
+    subtext: 'Direct component replacement'
   },
 
   // Engineering certification

@@ -5,8 +5,6 @@ import { LazyImage } from './LazyImage';
 import { DailyEnergyYieldChart } from './DailyEnergyYieldChart';
 import { 
   CheckCircle2, 
-  ChevronDown, 
-  ChevronUp, 
   Zap, 
   VolumeX, 
   Activity, 
@@ -15,8 +13,7 @@ import {
   Calculator, 
   Layers,
   BatteryCharging,
-  Sun,
-  Lightbulb
+  Sun
 } from 'lucide-react';
 
 interface PackagesViewProps {
@@ -26,9 +23,6 @@ interface PackagesViewProps {
 
 export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQuote }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [expandedSpecs, setExpandedSpecs] = useState<{ [key: string]: boolean }>({
-    'duplex-executive': true // Duplex open by default as in design
-  });
 
   const filterCategories = [
     { id: 'all', label: 'All Packages' },
@@ -42,13 +36,6 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
     if (selectedCategory === 'all') return true;
     return pkg.category === selectedCategory;
   });
-
-  const toggleSpecs = (id: string) => {
-    setExpandedSpecs((prev) => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
 
   return (
     <div className="w-full flex flex-col bg-[#f9f9f8] min-h-screen">
@@ -91,7 +78,6 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {filteredPackages.map((pkg) => {
             const isFeatured = pkg.id === 'duplex-executive';
-            const isOpen = !!expandedSpecs[pkg.id];
 
             return (
               <div
@@ -103,7 +89,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                 }`}
               >
                 {isFeatured && (
-                  <div className="absolute -top-3 left-6 px-3 py-1 rounded-md bg-primary text-white font-label-caps text-[10px] uppercase tracking-wider font-bold shadow-xs">
+                  <div className="absolute -top-3 left-6 px-3 py-1 rounded-md bg-primary text-white font-label-caps text-xs uppercase tracking-wider font-bold shadow-xs">
                     {pkg.badge || "Nigeria's #1 Most Selected"}
                   </div>
                 )}
@@ -117,7 +103,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
                     <span
-                      className={`absolute top-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider backdrop-blur-md z-10 ${
+                      className={`absolute top-3 left-3 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider backdrop-blur-md z-10 ${
                         isFeatured
                           ? 'bg-primary text-white'
                           : 'bg-white/95 text-[#1a1c1c] shadow-xs'
@@ -128,16 +114,16 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                   </div>
 
                   {/* Title & Tagline */}
-                  <h3 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
+                  <h3 className="font-headline-sm text-xl font-bold text-[#1a1c1c] mb-1">
                     {pkg.name}
                   </h3>
-                  <p className="font-body-sm text-xs text-[#5c4037] mb-4 line-clamp-2">
+                  <p className="font-body-sm text-sm text-[#5c4037] mb-4 line-clamp-2 leading-relaxed">
                     {pkg.description}
                   </p>
 
                   {/* Price Box */}
                   <div className="mb-5 pb-4 border-b border-[#dedfe5]">
-                    <span className="font-label-caps text-[10px] text-[#5c5e63] uppercase font-bold tracking-wider block">
+                    <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider block">
                       Turnkey Investment
                     </span>
                     <div
@@ -148,19 +134,19 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                       ₦{pkg.priceNgn.toLocaleString('en-NG')}
                     </div>
                     {pkg.monthlyInstallment && (
-                      <p className="text-xs text-primary font-semibold mt-0.5">
+                      <p className="text-sm text-primary font-bold mt-0.5">
                         Or ₦{pkg.monthlyInstallment.toLocaleString('en-NG')} / month
                       </p>
                     )}
-                    <span className="text-[11px] text-[#5c5e63] block mt-1">
+                    <span className="text-xs text-[#5c5e63] block mt-1 font-medium">
                       Includes complete installation, cables & surge gear
                     </span>
                   </div>
 
                   {/* Simple Plain-English Summary Banner */}
                   {pkg.simpleSummary && (
-                    <div className="mb-4 p-2.5 rounded-xl bg-[#fdf2ec] border border-[#ffdbcf] text-xs text-[#5c4037] leading-relaxed flex items-start gap-2">
-                      <Zap className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                    <div className="mb-4 p-3 rounded-xl bg-[#fdf2ec] border border-[#ffdbcf] text-sm text-[#5c4037] leading-relaxed flex items-start gap-2">
+                      <Zap className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                       <span>{pkg.simpleSummary}</span>
                     </div>
                   )}
@@ -172,108 +158,30 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                     }`}
                   >
                     {pkg.highlights.map((h, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-[#1a1c1c]">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                      <div key={i} className="flex items-start gap-2 text-sm text-[#1a1c1c]">
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                         <span>{h}</span>
                       </div>
                     ))}
                   </div>
 
-                  {/* Accordion Toggle */}
-                  <button
-                    onClick={() => toggleSpecs(pkg.id)}
-                    className="flex items-center justify-between w-full font-label-ui text-xs text-[#5c5e63] hover:text-primary transition-colors py-2 cursor-pointer border-t border-dashed border-[#dedfe5]"
-                  >
-                    <span className="font-semibold">Hardware Specs & What They Mean</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 text-primary' : 'text-[#5c5e63]'
-                      }`}
-                    />
-                  </button>
-
-                  {/* Specs Content with smooth collapsible layout */}
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <div className="pt-2 pb-3 space-y-2.5 text-xs text-[#5c4037] border-b border-[#dedfe5]">
-                      <div>
-                        <div className="flex justify-between items-baseline">
-                          <span className="text-neutral-500 font-medium">Inverter:</span>
-                          <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.inverter}</span>
-                        </div>
-                        {pkg.specs.plainMeaning?.inverterExplanation && (
-                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
-                            <Lightbulb className="w-3 h-3 text-amber-600 shrink-0 mt-0.5" />
-                            <span>{pkg.specs.plainMeaning.inverterExplanation}</span>
-                          </p>
-                        )}
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between items-baseline">
-                          <span className="text-neutral-500 font-medium">Battery:</span>
-                          <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.battery}</span>
-                        </div>
-                        {pkg.specs.plainMeaning?.batteryExplanation && (
-                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
-                            <BatteryCharging className="w-3 h-3 text-emerald-600 shrink-0 mt-0.5" />
-                            <span>{pkg.specs.plainMeaning.batteryExplanation}</span>
-                          </p>
-                        )}
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between items-baseline">
-                          <span className="text-neutral-500 font-medium">Solar Array:</span>
-                          <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.solarArray}</span>
-                        </div>
-                        {pkg.specs.plainMeaning?.solarExplanation && (
-                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
-                            <Sun className="w-3 h-3 text-amber-500 shrink-0 mt-0.5" />
-                            <span>{pkg.specs.plainMeaning.solarExplanation}</span>
-                          </p>
-                        )}
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between items-baseline">
-                          <span className="text-neutral-500 font-medium">Switch Speed:</span>
-                          <span className="text-primary font-semibold text-right">{pkg.specs.transferSpeed}</span>
-                        </div>
-                        {pkg.specs.plainMeaning?.switchExplanation && (
-                          <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
-                            <Zap className="w-3 h-3 text-primary shrink-0 mt-0.5" />
-                            <span>{pkg.specs.plainMeaning.switchExplanation}</span>
-                          </p>
-                        )}
-                      </div>
-
-                      {pkg.specs.protection && (
-                        <div>
-                          <div className="flex justify-between items-baseline">
-                            <span className="text-neutral-500 font-medium">Surge Protection:</span>
-                            <span className="text-[#1a1c1c] font-semibold text-right">{pkg.specs.protection}</span>
-                          </div>
-                          {pkg.specs.plainMeaning?.protectionExplanation && (
-                            <p className="text-[11px] text-[#5c4037]/80 mt-0.5 leading-snug flex items-start gap-1.5">
-                              <ShieldCheck className="w-3 h-3 text-primary shrink-0 mt-0.5" />
-                              <span>{pkg.specs.plainMeaning.protectionExplanation}</span>
-                            </p>
-                          )}
-                        </div>
-                      )}
-                    </div>
+                  {/* Link to Dedicated Hardware Specs Section */}
+                  <div className="pt-2 border-t border-dashed border-[#dedfe5]">
+                    <a
+                      href="#hardware-specs"
+                      className="flex items-center justify-between w-full font-label-ui text-sm text-[#5c5e63] hover:text-primary transition-colors py-1.5 cursor-pointer group"
+                    >
+                      <span className="font-semibold group-hover:underline">Hardware Specs &amp; What They Mean</span>
+                      <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-0.5 transition-transform" />
+                    </a>
                   </div>
                 </div>
 
                 {/* Card Action Button */}
-                <div className="pt-5">
+                <div className="pt-4">
                   <button
                     onClick={() => onOpenQuote(pkg.name)}
-                    className={`w-full py-3 rounded-xl font-label-ui text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    className={`w-full py-3.5 rounded-xl font-label-ui text-sm sm:text-base font-semibold transition-all cursor-pointer ${
                       isFeatured
                         ? 'bg-primary hover:bg-primary-container text-white shadow-md'
                         : 'bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c]'
@@ -288,6 +196,109 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
         </div>
       </section>
 
+      {/* DEDICATED SECTION: HARDWARE SPECS & WHAT THEY MEAN */}
+      <section id="hardware-specs" className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 py-16 lg:py-20 w-full scroll-mt-12">
+        <div className="max-w-3xl mb-12">
+          <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
+            Technical Transparency
+          </span>
+          <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
+            Hardware Specs &amp; What They Mean
+          </h2>
+          <p className="font-body-md text-base text-[#5c4037] mt-2 leading-relaxed">
+            Every component explained in terms of real-world home performance—not manufacturer marketing.
+          </p>
+        </div>
+
+        {/* Stacked Breakdown List with strong left border per item */}
+        <div className="divide-y divide-[#dedfe5] border-t border-b border-[#dedfe5] bg-white rounded-2xl shadow-xs border border-[#dedfe5] overflow-hidden">
+          {/* Inverter */}
+          <div className="p-6 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-4">
+            <div className="md:w-5/12">
+              <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
+                Inverter:
+              </span>
+              <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
+                8kVA–10kVA Low-Frequency Hybrid
+              </h3>
+            </div>
+            <div className="md:w-7/12">
+              <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
+                Heavy-duty inverter built to absorb heavy motor kicks when water pumps or large AC compressors kick on.
+              </p>
+            </div>
+          </div>
+
+          {/* Battery */}
+          <div className="p-6 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-4">
+            <div className="md:w-5/12">
+              <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
+                Battery:
+              </span>
+              <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
+                10.24kWh Blade LiFePO4 (6,000 cycles)
+              </h3>
+            </div>
+            <div className="md:w-7/12">
+              <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
+                Blade lithium pack providing 14–18 hours of overnight backup without exhaust or fumes.
+              </p>
+            </div>
+          </div>
+
+          {/* Solar Array */}
+          <div className="p-6 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-4">
+            <div className="md:w-5/12">
+              <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
+                Solar Array:
+              </span>
+              <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
+                12x 580W Bifacial Glass PVs
+              </h3>
+            </div>
+            <div className="md:w-7/12">
+              <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
+                12 bifacial glass panels that produce electricity from direct sunlight and reflected light from your roof tiles.
+              </p>
+            </div>
+          </div>
+
+          {/* Switch Speed */}
+          <div className="p-6 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-4">
+            <div className="md:w-5/12">
+              <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
+                Switch Speed:
+              </span>
+              <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
+                &lt; 4ms (Instant transfer: continuous power changeover)
+              </h3>
+            </div>
+            <div className="md:w-7/12">
+              <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
+                Instant handover under 4ms: your AC, television, and WiFi continue without restarting.
+              </p>
+            </div>
+          </div>
+
+          {/* Surge Protection */}
+          <div className="p-6 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-4">
+            <div className="md:w-5/12">
+              <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
+                Surge Protection:
+              </span>
+              <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
+                4-Point Chemical Copper Earthing Array &amp; Surge Arrestors
+              </h3>
+            </div>
+            <div className="md:w-7/12">
+              <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
+                Dedicated deep copper chemical grounding rod absorbing lightning and grid voltage spikes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION: D3.JS DAILY ENERGY YIELD & LOAD CURVE VISUALIZATION */}
       <section className="w-full bg-[#f3f4f3] py-16 lg:py-20 border-y border-[#dedfe5]">
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
@@ -298,13 +309,13 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
       {/* SECTION: WHAT'S INSIDE EVERY TURNKEY SUNGRID BOX */}
       <section className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 py-16 lg:py-20 w-full">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
+          <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
             Installation Standards
           </span>
           <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
             What’s Inside Every Turnkey SunGrid Box
           </h2>
-          <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2">
+          <p className="font-body-md text-base text-[#5c4037] mt-2 leading-relaxed">
             Every breaker, cable, and mounting bracket is chosen to withstand tropical humidity and prolonged peak heat.
           </p>
         </div>
@@ -315,10 +326,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
             <div className="w-12 h-12 rounded-xl bg-[#ffdbcf]/60 flex items-center justify-center text-primary mb-4">
               <Zap className="w-6 h-6" />
             </div>
-            <h4 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1">
+            <h4 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
               100% Pure Copper
             </h4>
-            <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
+            <p className="font-body-sm text-sm text-[#5c4037] leading-relaxed font-medium">
               We use thick electrolytic copper cabling (never aluminum or copper-clad wire) to prevent heat buildup and voltage drop under continuous heavy loads.
             </p>
           </div>
@@ -328,10 +339,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
             <div className="w-12 h-12 rounded-xl bg-[#ffdbcf]/60 flex items-center justify-center text-primary mb-4">
               <VolumeX className="w-6 h-6" />
             </div>
-            <h4 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1">
+            <h4 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
               Whisper Inverter
             </h4>
-            <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
+            <p className="font-body-sm text-sm text-[#5c4037] leading-relaxed font-medium">
               Smart magnetic cooling architecture keeps operating sound below 25 decibels, quieter than a light rustle of leaves in your hallway.
             </p>
           </div>
@@ -341,10 +352,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
             <div className="w-12 h-12 rounded-xl bg-[#ffdbcf]/60 flex items-center justify-center text-primary mb-4">
               <BatteryCharging className="w-6 h-6" />
             </div>
-            <h4 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1">
+            <h4 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
               10–15 Year LiFePO4
             </h4>
-            <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
+            <p className="font-body-sm text-sm text-[#5c4037] leading-relaxed font-medium">
               Automotive-grade prismatic lithium iron phosphate cells with built-in thermal run-away suppression and 6,000 deep cycle endurance.
             </p>
           </div>
@@ -354,10 +365,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
             <div className="w-12 h-12 rounded-xl bg-[#ffdbcf]/60 flex items-center justify-center text-primary mb-4">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h4 className="font-headline-sm text-base font-bold text-[#1a1c1c] mb-1">
+            <h4 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
               Leak-Proof Mounting
             </h4>
-            <p className="font-body-sm text-xs text-[#5c4037] leading-relaxed">
+            <p className="font-body-sm text-sm text-[#5c4037] leading-relaxed font-medium">
               EPDM rubber-sealed clamps and aircraft-grade anodized aluminum rails prevent roof penetration leaks during torrential tropical rainstorms.
             </p>
           </div>
@@ -368,13 +379,13 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
       <section className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 pb-16 w-full">
         <div className="rounded-3xl bg-[#eeeeed] border border-[#dedfe5] p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-xl">
-            <span className="font-label-caps text-[11px] text-primary uppercase tracking-wider font-bold mb-1 block">
+            <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-wider font-bold mb-1 block">
               Personalized Energy Audit
             </span>
             <h3 className="font-headline-lg text-2xl sm:text-3xl text-[#1a1c1c] font-bold tracking-tight mb-2">
               Not sure which package fits your appliances?
             </h3>
-            <p className="font-body-md text-sm text-[#5c4037]">
+            <p className="font-body-md text-base text-[#5c4037] leading-relaxed">
               Use our 2-minute load calculator or book an on-site audit to have an electrical engineer evaluate your distribution board and roof space in Lagos, Abuja, or Port Harcourt.
             </p>
           </div>
@@ -382,14 +393,14 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
             <button
               onClick={() => onSelectTab('calculator')}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-[#1a1c1c] font-label-ui text-xs sm:text-sm font-semibold hover:bg-neutral-50 transition-colors shadow-sm cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold hover:bg-neutral-50 transition-colors shadow-sm cursor-pointer"
             >
               <Calculator className="w-4 h-4 mr-2 text-primary" />
               <span>Use Load Calculator</span>
             </button>
             <button
               onClick={() => onOpenQuote()}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-colors shadow-sm cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-colors shadow-sm cursor-pointer"
             >
               <span>Book Free Home Visit</span>
             </button>
