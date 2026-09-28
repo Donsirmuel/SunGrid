@@ -1,17 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { 
-  Sun, 
-  Battery, 
-  Moon, 
-  Zap, 
-  Info, 
-  ChevronRight,
-  Wind,
-  CloudRain,
-  CheckCircle2,
-  BatteryCharging
-} from 'lucide-react';
+  Sun01Icon, 
+  Moon02Icon, 
+  FlashIcon, 
+  ArrowRight01Icon,
+  CheckmarkCircle02Icon
+} from 'hugeicons-react';
 
 interface HourlyDataPoint {
   hour: number;
@@ -335,7 +330,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               activeWeather === 'sunny' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#5c5e63] hover:text-[#1a1c1c]'
             }`}
           >
-            <Sun className="w-3.5 h-3.5" />
+            <Sun01Icon className="w-3.5 h-3.5" />
             <span>Bright Dry Season</span>
           </button>
           <button
@@ -344,7 +339,6 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               activeWeather === 'harmattan' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#5c5e63] hover:text-[#1a1c1c]'
             }`}
           >
-            <Wind className="w-3.5 h-3.5" />
             <span>Harmattan Haze</span>
           </button>
           <button
@@ -353,7 +347,6 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               activeWeather === 'rainy' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#5c5e63] hover:text-[#1a1c1c]'
             }`}
           >
-            <CloudRain className="w-3.5 h-3.5" />
             <span>Overcast / Wet Season</span>
           </button>
         </div>
@@ -394,15 +387,15 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
                 <span className="w-2 h-2 rounded-full bg-primary" />
                 Selected Timeline: <strong>{currentPoint.label}</strong>
               </span>
-              <span className="inline-flex items-center gap-1 text-[11px] text-[#5c5e63]">
+              <span className="inline-flex items-center gap-1 text-xs text-[#5c5e63]">
                 {currentPoint.hour >= 6 && currentPoint.hour <= 18 ? (
                   <>
-                    <Sun className="w-3.5 h-3.5 text-amber-600" />
+                    <Sun01Icon className="w-4 h-4 text-amber-600" />
                     <span>Daylight Hours</span>
                   </>
                 ) : (
                   <>
-                    <Moon className="w-3.5 h-3.5 text-indigo-500" />
+                    <Moon02Icon className="w-4 h-4 text-indigo-500" />
                     <span>Night Battery Mode</span>
                   </>
                 )}
@@ -430,7 +423,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
         </div>
 
         {/* Right: Live Telemetry State Inspector Card */}
-        <div className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-7 border border-[#dedfe5] shadow-sm flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-white rounded-3xl p-5 sm:p-7 border border-[#dedfe5] shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-[#dedfe5] mb-4">
               <span className="font-label-caps text-xs sm:text-sm text-[#5c5e63] uppercase font-bold">
@@ -439,19 +432,16 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#ffdbcf] text-primary">
                 {currentPoint.batteryStatus === 'charging' ? (
                   <>
-                    <Zap className="w-3.5 h-3.5 text-primary" />
+                    <FlashIcon className="w-3.5 h-3.5 text-primary" />
                     <span>Battery Fast Charging</span>
                   </>
                 ) : currentPoint.batteryStatus === 'full' ? (
                   <>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                    <CheckmarkCircle02Icon className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Bank 100% Saturated</span>
                   </>
                 ) : (
-                  <>
-                    <BatteryCharging className="w-3.5 h-3.5 text-primary" />
-                    <span>Lithium Discharge</span>
-                  </>
+                  <span>Lithium Discharge</span>
                 )}
               </span>
             </div>
@@ -478,8 +468,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
             {/* Net Energy Status Callout */}
             <div className="p-4 rounded-2xl bg-[#f9f9f8] border border-[#dedfe5] mb-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-bold text-[#1a1c1c] flex items-center gap-1.5">
-                  <Battery className="w-4 h-4 text-emerald-600" />
+                <span className="text-sm font-bold text-[#1a1c1c]">
                   Blade LiFePO4 Reserve
                 </span>
                 <span className="font-mono text-sm font-bold text-emerald-700">
@@ -505,10 +494,10 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
           <div className="pt-4 border-t border-[#dedfe5]">
             <button
               onClick={() => onSelectPackage ? onSelectPackage('Duplex Family Comfort (10kVA)') : null}
-              className="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-xs sm:text-sm font-semibold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer min-h-[48px] touch-manipulation"
             >
-              <span>Explore 10kVA Turnkey Package</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>Explore 10kVA Complete Package</span>
+              <ArrowRight01Icon className="w-4 h-4" />
             </button>
           </div>
         </div>

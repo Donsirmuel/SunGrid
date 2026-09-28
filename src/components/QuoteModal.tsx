@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, MessageSquare, FileText, ArrowRight, Shield } from 'lucide-react';
+import {
+  Cancel01Icon,
+  CheckmarkCircle02Icon,
+  WhatsappIcon,
+  File01Icon,
+  ArrowRight01Icon,
+  Shield01Icon
+} from 'hugeicons-react';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -75,10 +82,10 @@ Please assign a certified engineer to review our distribution board and provide 
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 relative z-10 active:scale-95"
+            className="w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 relative z-10 active:scale-95 touch-manipulation"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5" />
+            <Cancel01Icon className="w-5 h-5" />
           </button>
         </div>
 
@@ -87,7 +94,7 @@ Please assign a certified engineer to review our distribution board and provide 
           {submitted ? (
             <div className="text-center py-8 space-y-6">
               <div className="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
-                <CheckCircle2 className="w-10 h-10" />
+                <CheckmarkCircle02Icon className="w-10 h-10" />
               </div>
               <div className="space-y-2">
                 <h4 className="font-headline-md text-2xl font-bold text-neutral-900">
@@ -106,14 +113,14 @@ Please assign a certified engineer to review our distribution board and provide 
                   href={`https://wa.me/2348007864743?text=${generateWhatsAppMessage()}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#10b981] hover:bg-emerald-600 text-white font-semibold text-base transition-all shadow-md"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#10b981] hover:bg-emerald-600 text-white font-semibold text-base transition-all shadow-md min-h-[50px] touch-manipulation"
                 >
-                  <MessageSquare className="w-4 h-4" />
+                  <WhatsappIcon className="w-5 h-5" />
                   <span>Open Direct on WhatsApp Now</span>
                 </a>
                 <button
                   onClick={onClose}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-base font-semibold transition-colors"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-base font-semibold transition-colors min-h-[50px] cursor-pointer"
                 >
                   Close Window
                 </button>
@@ -249,7 +256,7 @@ Please assign a certified engineer to review our distribution board and provide 
                   </p>
                 </div>
                 <div className="text-left sm:text-right shrink-0">
-                  <span className="text-sm text-neutral-500 block">Turnkey Estimate:</span>
+                  <span className="text-sm text-neutral-500 block">Complete Setup Estimate:</span>
                   <span className="text-xl sm:text-2xl font-bold text-neutral-900 tabular-nums">{estimatedCapex}</span>
                 </div>
               </div>
@@ -259,10 +266,10 @@ Please assign a certified engineer to review our distribution board and provide 
                 <button
                   type="button"
                   onClick={() => setShowFormalLineItems(!showFormalLineItems)}
-                  className="text-sm sm:text-base font-semibold text-primary hover:underline flex items-center gap-1.5 cursor-pointer"
+                  className="text-sm sm:text-base font-semibold text-primary hover:underline flex items-center gap-1.5 cursor-pointer py-1"
                 >
-                  <FileText className="w-4 h-4" />
-                  <span>{showFormalLineItems ? 'Hide Line-Item Audit Scope' : 'Show Included Turnkey Line-Items (All-Inclusive Scope)'}</span>
+                  <File01Icon className="w-4 h-4" />
+                  <span>{showFormalLineItems ? 'Hide Line-Item Audit Scope' : 'Show Included Equipment & Full Installation Scope'}</span>
                 </button>
 
                 {showFormalLineItems && (
@@ -299,25 +306,25 @@ Please assign a certified engineer to review our distribution board and provide 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-semibold text-base transition-all shadow-[0_4px_20px_rgba(167,52,0,0.3)] flex items-center justify-center gap-2 group cursor-pointer active:scale-[0.98]"
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary hover:bg-primary-container text-white font-semibold text-base transition-all shadow-[0_4px_20px_rgba(167,52,0,0.3)] flex items-center justify-center gap-2 group cursor-pointer active:scale-[0.98] min-h-[52px] touch-manipulation"
                 >
                   <span>Request Engineering Audit</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight01Icon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 <a
                   href={`https://wa.me/2348007864743?text=${generateWhatsAppMessage()}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm sm:text-base text-neutral-700 hover:text-primary flex items-center gap-1.5 transition-colors"
+                  className="text-sm sm:text-base text-neutral-700 hover:text-primary flex items-center gap-2 transition-colors py-2 touch-manipulation"
                 >
-                  <MessageSquare className="w-4 h-4 text-emerald-600" />
-                  <span>Prefer direct WhatsApp message? Click here</span>
+                  <WhatsappIcon className="w-5 h-5 text-emerald-600" />
+                  <span>Prefer direct WhatsApp? Click here</span>
                 </a>
               </div>
 
-              <div className="flex items-center gap-2 pt-3 text-xs sm:text-sm text-neutral-600 border-t border-neutral-100">
-                <Shield className="w-4 h-4 text-primary shrink-0" />
+              <div className="flex items-center gap-2.5 pt-3 text-xs sm:text-sm text-neutral-600 border-t border-neutral-100">
+                <Shield01Icon className="w-4 h-4 text-primary shrink-0" />
                 <span>100% Confidential. Written 30-Day price protection guaranteed upon engineering visit.</span>
               </div>
             </form>

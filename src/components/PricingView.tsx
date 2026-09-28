@@ -4,22 +4,20 @@ import { IMAGES } from '../data/assets';
 import { LazyImage } from './LazyImage';
 import { SolarRoiCalculator } from './SolarRoiCalculator';
 import { 
-  ShieldCheck, 
-  BatteryCharging, 
-  Clock, 
-  Lock, 
-  ArrowRight, 
-  Calculator, 
-  CheckCircle2, 
-  ChevronDown, 
-  ChevronUp, 
-  Plus, 
-  Minus,
-  Sparkles,
-  Award,
-  Zap,
-  Phone
-} from 'lucide-react';
+  Shield01Icon, 
+  Clock01Icon, 
+  SecurityLockIcon, 
+  ArrowRight01Icon, 
+  ArrowDown01Icon, 
+  ArrowUp01Icon, 
+  Add01Icon, 
+  Remove01Icon,
+  SparklesIcon,
+  Award01Icon,
+  FlashIcon,
+  Call02Icon,
+  CheckmarkCircle02Icon
+} from 'hugeicons-react';
 
 interface PricingViewProps {
   onSelectTab: (tab: NavTab) => void;
@@ -73,10 +71,10 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
   return (
     <div className="w-full flex flex-col bg-[#f9f9f8] min-h-screen">
       {/* SECTION: HERO TITLE & METRICS */}
-      <section className="w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 pt-12 sm:pt-16 pb-12">
+      <section className="w-full max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-14 pt-8 sm:pt-16 pb-10 sm:pb-12">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold block mb-3">
-            Turnkey Solar Pricing
+          <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold block mb-2 sm:mb-3">
+            All-Inclusive Solar Pricing
           </span>
 
           <h1 className="font-display-hero text-3xl sm:text-5xl lg:text-6xl text-[#1a1c1c] tracking-tight font-bold mb-4">
@@ -88,17 +86,17 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             every cable, breaker, and mounting rail before work starts.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full sm:w-auto">
             <a
               href="#packages-grid"
-              className="px-7 py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold shadow-[0_4px_16px_rgba(167,52,0,0.3)] transition-all flex items-center gap-2"
+              className="px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-base font-semibold shadow-[0_4px_16px_rgba(167,52,0,0.3)] transition-all flex items-center justify-center gap-2 min-h-[48px] touch-manipulation"
             >
-              <span>Explore Tier-1 Packages</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Explore All-Inclusive Packages</span>
+              <ArrowRight01Icon className="w-5 h-5" />
             </a>
             <a
               href="#financing-calculator"
-              className="px-7 py-3 rounded-xl bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-sm font-semibold transition-colors flex items-center gap-2"
+              className="px-7 py-3.5 rounded-xl bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c] font-label-ui text-base font-semibold transition-colors flex items-center justify-center gap-2 min-h-[48px] touch-manipulation"
             >
               <span>Pay 'Small-Small' Financing</span>
             </a>
@@ -106,48 +104,56 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
         </div>
 
         {/* 4 Value Pillars Strip */}
-        <div className="mt-12 max-w-5xl mx-auto bg-white rounded-2xl border border-[#dedfe5] shadow-sm p-6 sm:p-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-6">
-            <div className="flex flex-col items-center text-center px-4 lg:border-r lg:border-[#dedfe5]">
-              <Sparkles className="w-7 h-7 text-primary mb-2" />
+        <div className="mt-10 sm:mt-12 max-w-5xl mx-auto bg-white rounded-2xl border border-[#dedfe5] shadow-sm p-5 sm:p-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <div className="flex flex-col items-center text-center px-2 lg:border-r lg:border-[#dedfe5]">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3 text-primary">
+                <SparklesIcon className="w-6 h-6" />
+              </div>
               <p className="font-headline-sm text-base font-bold text-[#1a1c1c]">100% Brand-New</p>
-              <p className="font-body-sm text-xs text-[#5c4037]">Grade-A Prismatic Cells</p>
+              <p className="font-body-sm text-sm text-[#5c4037] mt-0.5">Grade-A Prismatic Cells</p>
             </div>
 
-            <div className="flex flex-col items-center text-center px-4 lg:border-r lg:border-[#dedfe5]">
-              <ShieldCheck className="w-7 h-7 text-primary mb-2" />
+            <div className="flex flex-col items-center text-center px-2 lg:border-r lg:border-[#dedfe5]">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3 text-primary">
+                <Shield01Icon className="w-6 h-6" />
+              </div>
               <p className="font-headline-sm text-base font-bold text-[#1a1c1c]">10-Year Warranty</p>
-              <p className="font-body-sm text-xs text-[#5c4037]">6,000 LiFePO4 Cycles</p>
+              <p className="font-body-sm text-sm text-[#5c4037] mt-0.5">6,000 LiFePO4 Cycles</p>
             </div>
 
-            <div className="flex flex-col items-center text-center px-4 lg:border-r lg:border-[#dedfe5]">
-              <Clock className="w-7 h-7 text-primary mb-2" />
+            <div className="flex flex-col items-center text-center px-2 lg:border-r lg:border-[#dedfe5]">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3 text-primary">
+                <Clock01Icon className="w-6 h-6" />
+              </div>
               <p className="font-headline-sm text-base font-bold text-[#1a1c1c]">24-Hour Replacement</p>
-              <p className="font-body-sm text-xs text-[#5c4037]">Direct Unit Replacement</p>
+              <p className="font-body-sm text-sm text-[#5c4037] mt-0.5">Direct Unit Swap</p>
             </div>
 
-            <div className="flex flex-col items-center text-center px-4">
-              <Lock className="w-7 h-7 text-primary mb-2" />
+            <div className="flex flex-col items-center text-center px-2">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3 text-primary">
+                <SecurityLockIcon className="w-6 h-6" />
+              </div>
               <p className="font-headline-sm text-base font-bold text-[#1a1c1c]">30-Day Lock</p>
-              <p className="font-body-sm text-xs text-[#5c4037]">Written Price Protection</p>
+              <p className="font-body-sm text-sm text-[#5c4037] mt-0.5">Written Price Protection</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION: TURNKEY PACKAGES GRID */}
-      <section id="packages-grid" className="w-full bg-[#f3f4f3] py-16 lg:py-20 border-t border-[#dedfe5]">
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      {/* SECTION: ALL-INCLUSIVE PACKAGES GRID */}
+      <section id="packages-grid" className="w-full bg-[#f3f4f3] py-12 sm:py-16 lg:py-20 border-t border-[#dedfe5]">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-14">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-3">
             <div>
-              <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
-                Turnkey Installations
+              <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
+                Complete Installations
               </span>
-              <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] tracking-tight font-bold mt-1">
-                Certified Turnkey Packages
+              <h2 className="font-headline-xl text-2xl sm:text-4xl text-[#1a1c1c] tracking-tight font-bold mt-1">
+                Certified All-Inclusive Packages
               </h2>
             </div>
-            <p className="font-body-md text-sm text-[#5c4037] max-w-md">
+            <p className="font-body-md text-sm sm:text-base text-[#5c4037] max-w-md">
               Everything included: Monocrystalline panels, pure copper trunking, class-1 earthing array, and full commissioning.
             </p>
           </div>
@@ -157,14 +163,14 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-0.5 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
+                  <span className="px-2.5 py-1 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
                     3.5kVA Urban
                   </span>
                   <span className="text-sm text-[#5c5e63] font-semibold">1-2 Bed</span>
                 </div>
                 <div>
-                  <p className="text-sm text-[#5c5e63]">All-Inclusive Turnkey</p>
-                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight">
+                  <p className="text-sm text-[#5c5e63] font-medium">Complete Setup & Installation</p>
+                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
                     ₦4.25M
                   </h3>
                   <p className="text-sm text-primary font-bold mt-0.5">Or ₦145,000 / month</p>
@@ -172,25 +178,25 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
 
                 <div className="w-full h-px bg-[#dedfe5] my-4" />
 
-                <ul className="space-y-2.5 text-sm text-[#5c4037]">
-                  <li className="flex items-start gap-2 text-[#1a1c1c] font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <ul className="space-y-3 text-sm sm:text-base text-[#5c4037]">
+                  <li className="flex items-start gap-2.5 text-[#1a1c1c] font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     <span>Powers 1 bedroom Inverter AC (1.0HP) overnight</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>5.12kWh Long-Life Lithium Battery (10+ yr lifespan)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>6 Rooftop Solar Panels (550W High-Efficiency)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>Pumps water to overhead tank (0.5HP pump)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>Runs fridge, TV, Starlink Wi-Fi & LED lights 24/7</span>
                   </li>
                 </ul>
@@ -199,10 +205,10 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
               <div className="mt-6 pt-4 border-t border-[#dedfe5]">
                 <button
                   onClick={() => toggleSpec('urban')}
-                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer"
+                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer py-1"
                 >
                   <span>Specs & Plain Meaning</span>
-                  {openSpecs['urban'] ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  {openSpecs['urban'] ? <ArrowUp01Icon className="w-4 h-4" /> : <ArrowDown01Icon className="w-4 h-4" />}
                 </button>
                 {openSpecs['urban'] && (
                   <div className="text-sm text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3.5 rounded-xl mb-3 leading-relaxed">
@@ -214,7 +220,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 )}
                 <button
                   onClick={() => onOpenQuote('3.5kVA Urban Package (₦4.25M)')}
-                  className="w-full py-3 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer"
+                  className="w-full py-3.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer min-h-[48px] touch-manipulation"
                 >
                   Select Package
                 </button>
@@ -222,20 +228,20 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             </div>
 
             {/* Card 2: 5kVA Executive (Most Popular) */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border-2 border-primary shadow-lg relative scale-[1.02] z-10">
+            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border-2 border-primary shadow-lg relative md:-translate-y-1 z-10">
               <div className="absolute -top-3 left-6 px-3 py-1 rounded-md bg-primary text-white font-label-caps text-xs uppercase tracking-wider font-bold shadow-xs">
                 MOST POPULAR
               </div>
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-0.5 rounded-md bg-[#ffdbcf] text-primary font-label-caps text-xs uppercase font-bold">
+                  <span className="px-2.5 py-1 rounded-md bg-[#ffdbcf] text-primary font-label-caps text-xs uppercase font-bold">
                     5kVA Executive
                   </span>
                   <span className="text-sm text-[#5c5e63] font-semibold">3-4 Bed</span>
                 </div>
                 <div>
-                  <p className="text-sm text-[#5c5e63]">All-Inclusive Turnkey</p>
-                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight">
+                  <p className="text-sm text-[#5c5e63] font-medium">Complete Setup & Installation</p>
+                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
                     ₦8.85M
                   </h3>
                   <p className="text-sm text-primary font-bold mt-0.5">Or ₦285,000 / month</p>
@@ -243,25 +249,25 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
 
                 <div className="w-full h-px bg-[#dedfe5] my-4" />
 
-                <ul className="space-y-2.5 text-sm text-[#5c4037]">
-                  <li className="flex items-start gap-2 text-[#1a1c1c] font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <ul className="space-y-3 text-sm sm:text-base text-[#5c4037]">
+                  <li className="flex items-start gap-2.5 text-[#1a1c1c] font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     <span>Runs 3 Inverter ACs (1.5HP) overnight silently</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>10.24kWh Blade Lithium Battery (EV-grade safety cells)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>12 Bifacial Solar Panels (catches front & reflected sunlight)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>Effortless 1.0HP borehole water pumping anytime</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>Runs deep freezer, refrigerator & home cinema 24/7</span>
                   </li>
                 </ul>
@@ -270,10 +276,10 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
               <div className="mt-6 pt-4 border-t border-[#dedfe5]">
                 <button
                   onClick={() => toggleSpec('duplex')}
-                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer"
+                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer py-1"
                 >
                   <span>Specs & Plain Meaning</span>
-                  {openSpecs['duplex'] ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  {openSpecs['duplex'] ? <ArrowUp01Icon className="w-4 h-4" /> : <ArrowDown01Icon className="w-4 h-4" />}
                 </button>
                 {openSpecs['duplex'] && (
                   <div className="text-sm text-[#5c4037] pb-3 space-y-2 bg-[#fdf2ec] p-3.5 rounded-xl mb-3 leading-relaxed">
@@ -285,7 +291,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 )}
                 <button
                   onClick={() => onOpenQuote('5kVA Executive Duplex (₦8.85M)')}
-                  className="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold shadow-md transition-colors cursor-pointer"
+                  className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold shadow-md transition-colors cursor-pointer min-h-[48px] touch-manipulation"
                 >
                   Select Package
                 </button>
@@ -296,14 +302,14 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-0.5 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
+                  <span className="px-2.5 py-1 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
                     10kVA Estate
                   </span>
                   <span className="text-sm text-[#5c5e63] font-semibold">5+ Bed</span>
                 </div>
                 <div>
-                  <p className="text-sm text-[#5c5e63]">All-Inclusive Turnkey</p>
-                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight">
+                  <p className="text-sm text-[#5c5e63] font-medium">Complete Setup & Installation</p>
+                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
                     ₦14.9M
                   </h3>
                   <p className="text-sm text-primary font-bold mt-0.5">Or ₦490,000 / month</p>
@@ -311,25 +317,25 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
 
                 <div className="w-full h-px bg-[#dedfe5] my-4" />
 
-                <ul className="space-y-2.5 text-sm text-[#5c4037]">
-                  <li className="flex items-start gap-2 text-[#1a1c1c] font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <ul className="space-y-3 text-sm sm:text-base text-[#5c4037]">
+                  <li className="flex items-start gap-2.5 text-[#1a1c1c] font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     <span>Powers 5–7 ACs simultaneously across all building wings</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>20.48kWh High-Capacity Server Rack Lithium Storage</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>20 Ultra-High Efficiency Solar Panels (600W each)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>Heavy-duty borehole submersible pump (2.0HP)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>Microwave, electric cooker, elevator & motorized gate</span>
                   </li>
                 </ul>
@@ -338,10 +344,10 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
               <div className="mt-6 pt-4 border-t border-[#dedfe5]">
                 <button
                   onClick={() => toggleSpec('estate')}
-                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer"
+                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer py-1"
                 >
                   <span>Specs & Plain Meaning</span>
-                  {openSpecs['estate'] ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  {openSpecs['estate'] ? <ArrowUp01Icon className="w-4 h-4" /> : <ArrowDown01Icon className="w-4 h-4" />}
                 </button>
                 {openSpecs['estate'] && (
                   <div className="text-sm text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3.5 rounded-xl mb-3 leading-relaxed">
@@ -353,25 +359,25 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 )}
                 <button
                   onClick={() => onOpenQuote('10kVA Estate Package (₦14.9M)')}
-                  className="w-full py-3 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer"
+                  className="w-full py-3.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer min-h-[48px] touch-manipulation"
                 >
                   Select Package
                 </button>
               </div>
             </div>
 
-            {/* Card 4: 20kVA Industrial */}
+            {/* Card 4: 25kVA Commercial */}
             <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-0.5 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
+                  <span className="px-2.5 py-1 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
                     25kVA Commercial
                   </span>
                   <span className="text-sm text-[#5c5e63] font-semibold">Offices / Clinics</span>
                 </div>
                 <div>
-                  <p className="text-sm text-[#5c5e63]">All-Inclusive Turnkey</p>
-                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight">
+                  <p className="text-sm text-[#5c5e63] font-medium">Complete Setup & Installation</p>
+                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
                     ₦24.5M
                   </h3>
                   <p className="text-sm text-primary font-bold mt-0.5">Flexible corporate financing</p>
@@ -379,25 +385,25 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
 
                 <div className="w-full h-px bg-[#dedfe5] my-4" />
 
-                <ul className="space-y-2.5 text-sm text-[#5c4037]">
-                  <li className="flex items-start gap-2 text-[#1a1c1c] font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <ul className="space-y-3 text-sm sm:text-base text-[#5c4037]">
+                  <li className="flex items-start gap-2.5 text-[#1a1c1c] font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     <span>Powers whole office or clinic across all 3 phases</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>40.96kWh Rackmount Server Lithium Bank</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>36 Commercial High-Density Solar Panels (650W each)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>Runs server racks, cold rooms, HVAC & passenger lifts</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
                     <span>Generator synchronizer (cranks generator only if needed)</span>
                   </li>
                 </ul>
@@ -406,10 +412,10 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
               <div className="mt-6 pt-4 border-t border-[#dedfe5]">
                 <button
                   onClick={() => toggleSpec('industrial')}
-                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer"
+                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer py-1"
                 >
                   <span>Specs & Plain Meaning</span>
-                  {openSpecs['industrial'] ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  {openSpecs['industrial'] ? <ArrowUp01Icon className="w-4 h-4" /> : <ArrowDown01Icon className="w-4 h-4" />}
                 </button>
                 {openSpecs['industrial'] && (
                   <div className="text-sm text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3.5 rounded-xl mb-3 leading-relaxed">
@@ -421,7 +427,7 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 )}
                 <button
                   onClick={() => onOpenQuote('20kVA Industrial (₦24.5M)')}
-                  className="w-full py-3 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer"
+                  className="w-full py-3.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer min-h-[48px] touch-manipulation"
                 >
                   Select Package
                 </button>
@@ -450,14 +456,17 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
               </p>
             </div>
             <div className="md:col-span-7 flex flex-wrap items-center gap-3">
-              <div className="px-5 py-3 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] text-xs font-bold text-[#1a1c1c] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" /> Carbon Energy Desk
+              <div className="px-4 py-2.5 bg-[#f9f9f8] rounded-xl border border-[#dedfe5] text-xs sm:text-sm font-bold text-[#1a1c1c] flex items-center gap-2">
+                <CheckmarkCircle02Icon className="w-4 h-4 text-emerald-600" />
+                <span>Carbon Energy Desk</span>
               </div>
-              <div className="px-5 py-3 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] text-xs font-bold text-[#1a1c1c] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" /> Sterling Bank Alternative Energy
+              <div className="px-4 py-2.5 bg-[#f9f9f8] rounded-xl border border-[#dedfe5] text-xs sm:text-sm font-bold text-[#1a1c1c] flex items-center gap-2">
+                <CheckmarkCircle02Icon className="w-4 h-4 text-emerald-600" />
+                <span>Sterling Bank Alternative Energy</span>
               </div>
-              <div className="px-5 py-3 bg-[#f9f9f8] rounded-2xl border border-[#dedfe5] text-xs font-bold text-[#1a1c1c] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" /> FirstBank CleanTech Desk
+              <div className="px-4 py-2.5 bg-[#f9f9f8] rounded-xl border border-[#dedfe5] text-xs sm:text-sm font-bold text-[#1a1c1c] flex items-center gap-2">
+                <CheckmarkCircle02Icon className="w-4 h-4 text-emerald-600" />
+                <span>FirstBank CleanTech Desk</span>
               </div>
             </div>
           </div>
@@ -465,13 +474,13 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
       </section>
 
       {/* SECTION: THE 4 HONEST PROMISES */}
-      <section className="w-full bg-white py-16 lg:py-20 border-t border-[#dedfe5]">
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20 border-t border-[#dedfe5]">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-14">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+            <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
               Installation Standards
             </span>
-            <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
+            <h2 className="font-headline-xl text-2xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
               Our Four Installation Commitments
             </h2>
             <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2">
@@ -482,55 +491,63 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
           {/* Plain Stacked List */}
           <div className="max-w-4xl mx-auto divide-y divide-[#dedfe5] border-t border-b border-[#dedfe5]">
             {/* Promise 1 */}
-            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-6">
+            <div className="py-6 sm:py-7 pl-4 sm:pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-4 sm:gap-6">
               <div className="flex-1">
-                <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c] mb-1.5">
+                <h3 className="font-headline-sm text-base sm:text-xl font-bold text-[#1a1c1c] mb-1.5">
                   Pure Copper Trunking & Conduits
                 </h3>
                 <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed">
                   Every millimeter of cable is heavy electrolytic copper sheathed inside UV-resistant conduit and rigid trunking. We never use aluminum cords or leave loose wires exposed.
                 </p>
               </div>
-              <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-primary shrink-0">
+                <FlashIcon className="w-5 h-5" />
+              </div>
             </div>
 
             {/* Promise 2 */}
-            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-6">
+            <div className="py-6 sm:py-7 pl-4 sm:pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-4 sm:gap-6">
               <div className="flex-1">
-                <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c] mb-1.5">
+                <h3 className="font-headline-sm text-base sm:text-xl font-bold text-[#1a1c1c] mb-1.5">
                   Deep Chemical Grounding Array
                 </h3>
                 <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed">
                   We install 3-meter copper-bonded grounding rods with bentonite earth enhancement to achieve &lt;5 Ohms resistance, protecting against lightning and grid surges.
                 </p>
               </div>
-              <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-primary shrink-0">
+                <Shield01Icon className="w-5 h-5" />
+              </div>
             </div>
 
             {/* Promise 3 */}
-            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-6">
+            <div className="py-6 sm:py-7 pl-4 sm:pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-4 sm:gap-6">
               <div className="flex-1">
-                <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c] mb-1.5">
+                <h3 className="font-headline-sm text-base sm:text-xl font-bold text-[#1a1c1c] mb-1.5">
                   We don't add last-minute site charges
                 </h3>
                 <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed">
                   Our quote covers delivery to your door, installation labor, community interface, and crane lifts where needed. You will never be asked for additional cash on site.
                 </p>
               </div>
-              <Award className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-primary shrink-0">
+                <Award01Icon className="w-5 h-5" />
+              </div>
             </div>
 
             {/* Promise 4 */}
-            <div className="py-7 pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-6">
+            <div className="py-6 sm:py-7 pl-4 sm:pl-6 pr-4 border-l-4 border-primary flex items-start justify-between gap-4 sm:gap-6">
               <div className="flex-1">
-                <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c] mb-1.5">
+                <h3 className="font-headline-sm text-base sm:text-xl font-bold text-[#1a1c1c] mb-1.5">
                   Rapid 24-Hour Equipment Replacement
                 </h3>
                 <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed">
                   If an inverter or lithium module flags an internal hardware fault, our engineering team brings a fully operational replacement straight to your premises within 24 hours. No weeks of lab waiting.
                 </p>
               </div>
-              <Clock className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-primary shrink-0">
+                <Clock01Icon className="w-5 h-5" />
+              </div>
             </div>
           </div>
         </div>
@@ -592,12 +609,12 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
       </section>
 
       {/* SECTION: FAQ ACCORDION */}
-      <section className="w-full max-w-4xl mx-auto px-6 sm:px-10 py-12">
-        <div className="text-center mb-10">
-          <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold">
+      <section className="w-full max-w-4xl mx-auto px-5 sm:px-10 py-10 sm:py-12">
+        <div className="text-center mb-8 sm:mb-10">
+          <span className="font-label-caps text-xs text-primary uppercase tracking-widest font-bold">
             Got Questions?
           </span>
-          <h2 className="font-headline-xl text-3xl font-bold text-[#1a1c1c] mt-1">
+          <h2 className="font-headline-xl text-2xl sm:text-3xl font-bold text-[#1a1c1c] mt-1">
             Frequently Asked Questions
           </h2>
         </div>
@@ -613,13 +630,13 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
                 <button
                   type="button"
                   onClick={() => toggleFaq(i)}
-                  className="w-full flex items-center justify-between text-left cursor-pointer focus:outline-none"
+                  className="w-full flex items-center justify-between text-left cursor-pointer focus:outline-none min-h-[44px]"
                 >
                   <span className="font-headline-sm text-sm sm:text-base font-bold text-[#1a1c1c] pr-4">
                     {f.q}
                   </span>
-                  <span className="w-7 h-7 rounded-lg bg-[#f3f4f3] flex items-center justify-center text-primary shrink-0">
-                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  <span className="w-8 h-8 rounded-lg bg-[#f3f4f3] flex items-center justify-center text-primary shrink-0">
+                    {isOpen ? <Remove01Icon className="w-4 h-4" /> : <Add01Icon className="w-4 h-4" />}
                   </span>
                 </button>
                 {isOpen && (
@@ -634,10 +651,10 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
       </section>
 
       {/* SECTION: MINIMAL CTA BOX */}
-      <section className="w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 pb-16">
-        <div className="bg-[#12161a] text-white rounded-3xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-          <div className="max-w-xl">
-            <span className="font-label-caps text-[11px] text-[#ff8e4d] uppercase tracking-wider font-bold mb-1 block">
+      <section className="w-full max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-14 pb-12 sm:pb-16">
+        <div className="bg-[#12161a] text-white rounded-3xl p-6 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-xl">
+          <div className="max-w-xl text-center sm:text-left">
+            <span className="font-label-caps text-xs text-[#ff8e4d] uppercase tracking-wider font-bold mb-1 block">
               Ready for True Energy Freedom?
             </span>
             <h3 className="font-headline-xl text-2xl sm:text-3xl text-white font-bold mb-2">
@@ -648,20 +665,20 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
               and load surge profiles across Lagos, Abuja, Ibadan, or Port Harcourt.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0 w-full sm:w-auto">
             <a
               href="tel:08007864743"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold hover:bg-neutral-100 transition-colors flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold hover:bg-neutral-100 transition-colors flex items-center justify-center gap-2 min-h-[48px] touch-manipulation"
             >
-              <Phone className="w-4 h-4 text-primary" />
+              <Call02Icon className="w-5 h-5 text-primary" />
               <span>0800-SUNGRID</span>
             </a>
             <button
               onClick={() => onOpenQuote()}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer min-h-[48px] touch-manipulation"
             >
               <span>Schedule Site Audit</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight01Icon className="w-5 h-5" />
             </button>
           </div>
         </div>

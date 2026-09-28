@@ -2,25 +2,13 @@ import React, { useState } from 'react';
 import { NavTab } from '../types';
 import { APPLIANCE_CATALOG } from '../data/appliances';
 import { 
-  Zap, 
-  RotateCcw, 
-  MessageSquare, 
-  ArrowRight, 
-  ShieldCheck, 
-  Droplet, 
-  Wind, 
-  Refrigerator, 
-  Tv, 
-  Wifi, 
-  Laptop, 
-  Sun, 
-  HelpCircle,
-  Calendar,
-  Layers,
-  Sparkles,
-  Check,
-  Gauge
-} from 'lucide-react';
+  FlashIcon, 
+  Refresh01Icon, 
+  ArrowRight01Icon, 
+  WhatsappIcon,
+  Shield01Icon,
+  Calendar01Icon
+} from 'hugeicons-react';
 
 interface CalculatorViewProps {
   onSelectTab: (tab: NavTab) => void;
@@ -170,7 +158,6 @@ Please send formal quote & schedule a site inspection.`;
               </h1>
             </div>
             <div className="flex items-center gap-2 text-sm font-semibold text-[#5c4037]">
-              <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
               <span>Calibrated for Nigerian home appliances and motor startup surges</span>
             </div>
           </div>
@@ -178,7 +165,7 @@ Please send formal quote & schedule a site inspection.`;
           {/* Main Sizer Card Container */}
           <div className="w-full bg-white rounded-3xl shadow-[0_20px_50px_rgba(26,28,28,0.06)] border border-[#dedfe5] overflow-hidden">
             {/* Modal Top Bar */}
-            <div className="p-6 sm:p-8 bg-[#f3f4f3] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-[#dedfe5]">
+            <div className="p-5 sm:p-8 bg-[#f3f4f3] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-[#dedfe5]">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <h2 className="font-headline-lg text-xl sm:text-2xl font-bold text-[#1a1c1c]">
@@ -197,9 +184,9 @@ Please send formal quote & schedule a site inspection.`;
                 <button
                   type="button"
                   onClick={resetAll}
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-white border border-[#dedfe5] text-sm font-semibold text-[#1a1c1c] hover:bg-neutral-50 transition-colors cursor-pointer shadow-xs"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#dedfe5] text-sm font-semibold text-[#1a1c1c] hover:bg-neutral-50 transition-colors cursor-pointer shadow-xs min-h-[44px] touch-manipulation"
                 >
-                  <RotateCcw className="w-4 h-4 text-primary" />
+                  <Refresh01Icon className="w-4 h-4 text-primary" />
                   <span>Reset Sizer</span>
                 </button>
               </div>
@@ -208,14 +195,11 @@ Please send formal quote & schedule a site inspection.`;
             {/* 2-Column Split: Selectors Left, Live Telemetry Right */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* LEFT COLUMN: Appliance Selectors */}
-              <div className="lg:col-span-7 p-6 sm:p-8 space-y-8 overflow-y-auto max-h-[900px] border-b lg:border-b-0 lg:border-r border-[#dedfe5]">
+              <div className="lg:col-span-7 p-5 sm:p-8 space-y-8 overflow-y-auto max-h-[900px] border-b lg:border-b-0 lg:border-r border-[#dedfe5]">
                 {/* CATEGORY 1: Cooling & Fans */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-[#ffdbcf] flex items-center justify-center text-primary">
-                      <Wind className="w-4 h-4" />
-                    </div>
-                    <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
+                    <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
                       Air Conditioners & Fans
                     </h3>
                   </div>
@@ -280,10 +264,7 @@ Please send formal quote & schedule a site inspection.`;
                 {/* CATEGORY 2: Kitchen & Refrigeration */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-[#ffdbcf] flex items-center justify-center text-primary">
-                      <Refrigerator className="w-4 h-4" />
-                    </div>
-                    <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
+                    <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
                       Kitchen & Refrigeration
                     </h3>
                   </div>
@@ -348,10 +329,7 @@ Please send formal quote & schedule a site inspection.`;
                 {/* CATEGORY 3: Water Pumping & Heating */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-[#ffdbcf] flex items-center justify-center text-primary">
-                      <Droplet className="w-4 h-4" />
-                    </div>
-                    <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
+                    <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
                       Water Pumping & Heating
                     </h3>
                   </div>
@@ -416,10 +394,7 @@ Please send formal quote & schedule a site inspection.`;
                 {/* CATEGORY 4: Work, Connectivity & Security */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-[#ffdbcf] flex items-center justify-center text-primary">
-                      <Wifi className="w-4 h-4" />
-                    </div>
-                    <h3 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
+                    <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
                       Work, Connectivity & Security
                     </h3>
                   </div>
@@ -599,8 +574,8 @@ Please send formal quote & schedule a site inspection.`;
                       <span className="px-2.5 py-1 rounded-md bg-primary text-white font-label-caps text-xs uppercase font-bold tracking-wider">
                         System Recommended
                       </span>
-                      <span className="text-xs sm:text-sm text-neutral-300 flex items-center gap-1">
-                        <Zap className="w-3.5 h-3.5 text-primary" />
+                      <span className="text-xs sm:text-sm text-neutral-300 flex items-center gap-1.5">
+                        <FlashIcon className="w-3.5 h-3.5 text-primary" />
                         <span>Grade-A LiFePO4</span>
                       </span>
                     </div>
@@ -615,7 +590,7 @@ Please send formal quote & schedule a site inspection.`;
                     {/* Runtime Capability Box */}
                     <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 relative z-10 space-y-1">
                       <div className="flex items-center gap-1.5 text-[#ff8e4d] text-xs sm:text-sm font-semibold">
-                        <ShieldCheck className="w-4 h-4" />
+                        <Shield01Icon className="w-4 h-4" />
                         <span>Calculated Performance Profile</span>
                       </div>
                       <p className="text-sm text-neutral-200 leading-relaxed font-normal">
@@ -630,14 +605,14 @@ Please send formal quote & schedule a site inspection.`;
                         <span className="font-semibold text-white">{fuelSaved}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-neutral-400">Estimated Turnkey Package Price:</span>
+                        <span className="text-neutral-400">Estimated Complete Package Price:</span>
                         <span className="font-bold text-base text-[#ff8e4d]">{priceRange}</span>
                       </div>
                     </div>
 
                     {/* Guarantee Seal Inside Card */}
                     <div className="relative z-10 pt-2 flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
-                      <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
+                      <Shield01Icon className="w-4 h-4 text-primary shrink-0" />
                       <span>Backed by SunGrid 10-Year Warranty & Local Depot Support</span>
                     </div>
                   </div>
@@ -676,9 +651,9 @@ Please send formal quote & schedule a site inspection.`;
                     href={getWhatsAppLink()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm font-semibold transition-all shadow-md cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-all shadow-md cursor-pointer active:scale-[0.98]"
                   >
-                    <MessageSquare className="w-4 h-4" />
+                    <WhatsappIcon className="w-5 h-5" />
                     <span>Send Sizing to Solar Engineer on WhatsApp</span>
                   </a>
 
@@ -686,10 +661,10 @@ Please send formal quote & schedule a site inspection.`;
                     <button
                       type="button"
                       onClick={() => onOpenQuote(tierName)}
-                      className="font-label-ui text-sm font-semibold text-[#5c4037] hover:text-primary transition-colors flex items-center gap-1.5 cursor-pointer"
+                      className="font-label-ui text-sm sm:text-base font-semibold text-[#5c4037] hover:text-primary transition-colors flex items-center gap-1.5 cursor-pointer py-2"
                     >
                       <span>Get Formal Line-Item PDF Quote</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight01Icon className="w-4 h-4" />
                     </button>
                     <span className="text-xs text-[#5c5e63] font-medium">Takes ~45 seconds</span>
                   </div>
@@ -702,7 +677,7 @@ Please send formal quote & schedule a site inspection.`;
           <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-[#f3f4f3] border border-[#dedfe5] flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-white shadow-xs flex items-center justify-center text-primary shrink-0 border border-[#dedfe5]">
-                <Calendar className="w-6 h-6" />
+                <Calendar01Icon className="w-6 h-6" />
               </div>
               <div>
                 <h4 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
@@ -718,7 +693,7 @@ Please send formal quote & schedule a site inspection.`;
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-neutral-50 text-[#1a1c1c] border border-[#dedfe5] text-xs sm:text-sm font-semibold transition-colors shrink-0 shadow-xs cursor-pointer"
             >
               <span>Book an On-Site Audit</span>
-              <Calendar className="w-4 h-4 text-primary" />
+              <Calendar01Icon className="w-4 h-4 text-primary" />
             </button>
           </div>
 

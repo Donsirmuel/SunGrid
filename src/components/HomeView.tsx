@@ -7,21 +7,14 @@ import { SOLAR_PACKAGES } from '../data/packages';
 import { SHARED_METRICS } from '../config/metrics';
 import { useScrollTelemetry } from '../hooks/useScrollTelemetry';
 import { 
-  Sun, 
-  ArrowRight, 
-  ShieldCheck, 
-  BatteryCharging, 
-  Zap, 
-  VolumeX, 
-  Activity, 
-  Calendar, 
-  Check, 
-  ChevronRight,
-  TrendingDown,
-  Sparkles,
-  Award,
-  Gauge
-} from 'lucide-react';
+  Sun01Icon, 
+  ArrowRight01Icon, 
+  Shield01Icon, 
+  FlashIcon, 
+  CheckmarkCircle02Icon,
+  Award01Icon,
+  DashboardSpeed01Icon
+} from 'hugeicons-react';
 
 interface HomeViewProps {
   onSelectTab: (tab: NavTab) => void;
@@ -326,13 +319,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         selectedHomeAppliances.ac ? 'bg-white text-primary' : 'bg-[#e2e2e2] text-[#1a1c1c]'
                       }`}
                     >
-                      <Zap className="w-5 h-5" />
+                      <FlashIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="font-label-ui text-sm font-semibold text-[#1a1c1c]">
+                      <div className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c]">
                         1.5HP Inverter AC
                       </div>
-                      <div className="text-xs text-[#5c4037]">Cool bedroom through the night</div>
+                      <div className="text-xs sm:text-sm text-[#5c4037]">Cool bedroom through the night</div>
                     </div>
                   </div>
                   <div
@@ -342,7 +335,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         : 'bg-[#dadad9] text-transparent'
                     }`}
                   >
-                    <Check className="w-3.5 h-3.5" />
+                    <CheckmarkCircle02Icon className="w-4 h-4" />
                   </div>
                 </button>
 
@@ -362,13 +355,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         selectedHomeAppliances.freezer ? 'bg-white text-primary' : 'bg-[#e2e2e2] text-[#1a1c1c]'
                       }`}
                     >
-                      <ShieldCheck className="w-5 h-5" />
+                      <Shield01Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="font-label-ui text-sm font-semibold text-[#1a1c1c]">
+                      <div className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c]">
                         Chest Deep Freezer
                       </div>
-                      <div className="text-xs text-[#5c4037]">Keeps food frozen 24/7</div>
+                      <div className="text-xs sm:text-sm text-[#5c4037]">Keeps food frozen 24/7</div>
                     </div>
                   </div>
                   <div
@@ -378,7 +371,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         : 'bg-[#dadad9] text-transparent'
                     }`}
                   >
-                    <Check className="w-3.5 h-3.5" />
+                    <CheckmarkCircle02Icon className="w-4 h-4" />
                   </div>
                 </button>
 
@@ -398,13 +391,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         selectedHomeAppliances.pump ? 'bg-white text-primary' : 'bg-[#e2e2e2] text-[#1a1c1c]'
                       }`}
                     >
-                      <Activity className="w-5 h-5" />
+                      <FlashIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="font-label-ui text-sm font-semibold text-[#1a1c1c]">
+                      <div className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c]">
                         Borehole Water Pump
                       </div>
-                      <div className="text-xs text-[#5c4037]">1.0HP overhead tank pump</div>
+                      <div className="text-xs sm:text-sm text-[#5c4037]">1.0HP overhead tank pump</div>
                     </div>
                   </div>
                   <div
@@ -414,7 +407,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         : 'bg-[#dadad9] text-transparent'
                     }`}
                   >
-                    <Check className="w-3.5 h-3.5" />
+                    <CheckmarkCircle02Icon className="w-4 h-4" />
                   </div>
                 </button>
 
@@ -434,13 +427,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         selectedHomeAppliances.starlink ? 'bg-white text-primary' : 'bg-[#e2e2e2] text-[#1a1c1c]'
                       }`}
                     >
-                      <Zap className="w-5 h-5" />
+                      <FlashIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="font-label-ui text-sm font-semibold text-[#1a1c1c]">
+                      <div className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c]">
                         Starlink & Home WiFi
                       </div>
-                      <div className="text-xs text-[#5c4037]">Stays connected when grid cuts</div>
+                      <div className="text-xs sm:text-sm text-[#5c4037]">Stays connected when grid cuts</div>
                     </div>
                   </div>
                   <div
@@ -450,7 +443,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         : 'bg-[#dadad9] text-transparent'
                     }`}
                   >
-                    <Check className="w-3.5 h-3.5" />
+                    <CheckmarkCircle02Icon className="w-4 h-4" />
                   </div>
                 </button>
 
@@ -470,13 +463,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         selectedHomeAppliances.tv ? 'bg-white text-primary' : 'bg-[#e2e2e2] text-[#1a1c1c]'
                       }`}
                     >
-                      <Sun className="w-5 h-5" />
+                      <Sun01Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="font-label-ui text-sm font-semibold text-[#1a1c1c]">
+                      <div className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c]">
                         Smart OLED/QLED TV
                       </div>
-                      <div className="text-xs text-[#5c4037]">Soundbar & entertainment</div>
+                      <div className="text-xs sm:text-sm text-[#5c4037]">Soundbar & entertainment</div>
                     </div>
                   </div>
                   <div
@@ -486,7 +479,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         : 'bg-[#dadad9] text-transparent'
                     }`}
                   >
-                    <Check className="w-3.5 h-3.5" />
+                    <CheckmarkCircle02Icon className="w-4 h-4" />
                   </div>
                 </button>
 
@@ -506,13 +499,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         selectedHomeAppliances.lights ? 'bg-white text-primary' : 'bg-[#e2e2e2] text-[#1a1c1c]'
                       }`}
                     >
-                      <ShieldCheck className="w-5 h-5" />
+                      <Shield01Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="font-label-ui text-sm font-semibold text-[#1a1c1c]">
+                      <div className="font-label-ui text-sm sm:text-base font-semibold text-[#1a1c1c]">
                         CCTV & Floodlights
                       </div>
-                      <div className="text-xs text-[#5c4037]">Dusk to dawn perimeter</div>
+                      <div className="text-xs sm:text-sm text-[#5c4037]">Dusk to dawn perimeter</div>
                     </div>
                   </div>
                   <div
@@ -522,7 +515,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                         : 'bg-[#dadad9] text-transparent'
                     }`}
                   >
-                    <Check className="w-3.5 h-3.5" />
+                    <CheckmarkCircle02Icon className="w-4 h-4" />
                   </div>
                 </button>
               </div>
@@ -585,7 +578,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
               <div className="bg-white/5 p-3.5 rounded-2xl border border-white/10 space-y-2">
                 <div className="flex items-center justify-between text-xs sm:text-sm font-label-caps text-neutral-300">
                   <span className="flex items-center gap-1.5 text-[#ff8e4d] font-semibold">
-                    <Gauge className="w-4 h-4" />
+                    <DashboardSpeed01Icon className="w-4 h-4" />
                     Ammeter Inrush Meter
                   </span>
                   <span className="font-mono text-white font-bold">
@@ -619,10 +612,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
             <div className="pt-6 space-y-3">
               <button
                 onClick={() => onSelectTab('pricing')}
-                className="w-full inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-container px-6 py-3.5 font-label-ui text-sm sm:text-base text-white font-semibold shadow-lg transition-all cursor-pointer"
+                className="w-full inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-container px-6 py-3.5 font-label-ui text-sm sm:text-base text-white font-semibold shadow-lg transition-all cursor-pointer active:scale-[0.98]"
               >
                 <span>View Transparent Pricing for This Setup</span>
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <ArrowRight01Icon className="ml-2 w-4 h-4" />
               </button>
               <div className="flex items-center justify-between text-xs text-neutral-400 px-1">
                 <span>Backed by 10-Yr Hardware Warranty</span>
@@ -644,7 +637,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
               Simple Solar Packages for Every Home.
             </h2>
             <p className="font-body-md text-base text-[#5c4037] mt-2 leading-relaxed">
-              Complete turnkey packages with Tier-1 monocrystalline panels, safe lithium batteries,
+              Complete all-inclusive packages with Tier-1 monocrystalline panels, safe lithium batteries,
               certified cabling, and guaranteed installation.
             </p>
           </div>
@@ -759,9 +752,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
           <div className="mt-10 text-center">
             <button
               onClick={() => onSelectTab('packages')}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline cursor-pointer"
+              className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-primary hover:underline cursor-pointer py-2"
             >
-              <span>View Full Turnkey Hardware Specs & Portable Nomad Kit →</span>
+              <span>View Full Hardware Specs & Portable Nomad Kit →</span>
             </button>
           </div>
         </div>
@@ -772,41 +765,41 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
         <div className="bg-white rounded-3xl overflow-hidden shadow-sm p-6 sm:p-10 lg:p-12 border border-[#dedfe5] scroll-reveal-init">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-6 flex flex-col justify-center">
-              <span className="font-label-caps text-[11px] text-primary uppercase tracking-widest font-bold mb-2">
+              <span className="font-label-caps text-[11px] sm:text-xs text-primary uppercase tracking-widest font-bold mb-2">
                 Renter Friendly • No Roof Installation Needed
               </span>
               <h2 className="font-headline-xl text-3xl sm:text-4xl text-[#1a1c1c] tracking-tight mb-4 font-bold">
                 SunGrid Nomad: <br />
                 Plug & Play Power Anywhere.
               </h2>
-              <p className="font-body-md text-[#5c4037] mb-6 leading-relaxed font-medium">
+              <p className="font-body-md text-sm sm:text-base text-[#5c4037] mb-6 leading-relaxed font-medium">
                 Living in a rented apartment or moving often? No drilling or roof mounting needed. The compact desktop unit includes dual universal AC outlets, a clear digital battery readout, and a built-in carry handle. It powers refrigerators, workstations, and televisions straight out of the box. Recharges from any standard wall socket in 84 minutes, or plugs directly into portable balcony solar panels.
               </p>
 
               <div className="grid grid-cols-3 gap-4 py-4 border-y border-[#dedfe5] mb-6">
                 <div>
-                  <div className="font-headline-sm text-xl text-primary font-bold">2,400W</div>
-                  <span className="text-xs text-[#5c5e63]">Output Power</span>
+                  <div className="font-headline-sm text-xl sm:text-2xl text-primary font-bold">2,400W</div>
+                  <span className="text-xs sm:text-sm text-[#5c5e63]">Output Power</span>
                 </div>
                 <div>
-                  <div className="font-headline-sm text-xl text-[#1a1c1c] font-bold">2,048Wh</div>
-                  <span className="text-xs text-[#5c5e63]">Lithium Capacity</span>
+                  <div className="font-headline-sm text-xl sm:text-2xl text-[#1a1c1c] font-bold">2,048Wh</div>
+                  <span className="text-xs sm:text-sm text-[#5c5e63]">Lithium Capacity</span>
                 </div>
                 <div>
-                  <div className="font-headline-sm text-xl text-[#1a1c1c] font-bold">84 Mins</div>
-                  <span className="text-xs text-[#5c5e63]">Fast Wall Recharge</span>
+                  <div className="font-headline-sm text-xl sm:text-2xl text-[#1a1c1c] font-bold">84 Mins</div>
+                  <span className="text-xs sm:text-sm text-[#5c5e63]">Fast Wall Recharge</span>
                 </div>
               </div>
 
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onOpenQuote('SunGrid Nomad Station (2.4kW)')}
-                  className="inline-flex items-center justify-center rounded-xl bg-[#12161a] hover:bg-black px-7 py-3 font-label-ui text-sm text-white font-semibold transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center rounded-xl bg-[#12161a] hover:bg-black px-7 py-3 font-label-ui text-sm sm:text-base text-white font-semibold transition-all cursor-pointer active:scale-[0.98]"
                 >
                   <span>Order Nomad 2400</span>
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  <ArrowRight01Icon className="ml-2 w-4 h-4" />
                 </button>
-                <span className="font-body-sm text-sm text-[#1a1c1c] font-semibold">
+                <span className="font-body-sm text-sm sm:text-base text-[#1a1c1c] font-semibold">
                   ₦1,850,000 • In Stock (Delivered Next-Day in Lagos & Abuja)
                 </span>
               </div>
@@ -861,7 +854,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   </p>
                 </div>
               </div>
-              <ShieldCheck className="w-6 h-6 text-primary shrink-0 hidden md:block" />
+              <Shield01Icon className="w-6 h-6 text-primary shrink-0 hidden md:block" />
             </div>
 
             {/* 02 */}
@@ -877,7 +870,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   </p>
                 </div>
               </div>
-              <ShieldCheck className="w-6 h-6 text-primary shrink-0 hidden md:block" />
+              <Shield01Icon className="w-6 h-6 text-primary shrink-0 hidden md:block" />
             </div>
 
             {/* 03 */}
@@ -893,7 +886,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   </p>
                 </div>
               </div>
-              <Award className="w-6 h-6 text-primary shrink-0 hidden md:block" />
+              <Award01Icon className="w-6 h-6 text-primary shrink-0 hidden md:block" />
             </div>
 
             {/* 04 */}
@@ -910,7 +903,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   </p>
                 </div>
               </div>
-              <Zap className="w-6 h-6 text-primary shrink-0 hidden md:block" />
+              <FlashIcon className="w-6 h-6 text-primary shrink-0 hidden md:block" />
             </div>
           </div>
         </div>
@@ -950,31 +943,31 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   transitionTimingFunction: 'var(--ease-settle)'
                 }}
               />
-              <div className="absolute top-4 left-4 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1.5 rounded-md font-label-caps text-[10px] uppercase tracking-wider z-10">
+              <div className="absolute top-4 left-4 bg-neutral-950/80 text-white backdrop-blur-md px-3 py-1.5 rounded-md font-label-caps text-xs uppercase tracking-wider z-10 font-bold">
                 Lekki Phase 1, Lagos • Flagship Residential
               </div>
             </div>
             <div className="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between">
               <div>
-                <span className="font-label-caps text-[#5c5e63] text-xs uppercase tracking-wider font-bold">
+                <span className="font-label-caps text-[#5c5e63] text-xs sm:text-sm uppercase tracking-wider font-bold">
                   Lekki Phase 1, Lagos
                 </span>
                 <div className="flex items-baseline justify-between mt-1 mb-3">
-                  <h3 className="font-headline-md text-xl font-bold text-[#1a1c1c]">
+                  <h3 className="font-headline-md text-xl sm:text-2xl font-bold text-[#1a1c1c]">
                     5-Bedroom Duplex
                   </h3>
-                  <span className="text-xs font-bold text-primary">10.0 kVA</span>
+                  <span className="text-xs sm:text-sm font-bold text-primary">10.0 kVA</span>
                 </div>
-                <p className="font-body-md text-sm text-[#5c4037] leading-relaxed mb-6">
+                <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed mb-6">
                   Runs 3 inverter ACs overnight, deep freezer, and overhead water pump. The family stopped
                   operating their diesel generator completely, eliminating noise and weekly fuel refueling runs.
                 </p>
               </div>
               <div className="pt-4 border-t border-[#dedfe5] flex items-center justify-between">
-                <span className="text-xs text-[#5c5e63] font-medium uppercase tracking-wider font-label-caps">
+                <span className="text-xs sm:text-sm text-[#5c5e63] font-semibold uppercase tracking-wider font-label-caps">
                   Verified Diesel Savings
                 </span>
-                <span className="font-headline-sm text-lg text-primary font-bold">
+                <span className="font-headline-sm text-lg sm:text-xl text-primary font-bold">
                   ₦180,000+ / mo
                 </span>
               </div>
@@ -990,20 +983,20 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   alt="Maitama Abuja solar townhouse"
                   className="w-full h-full"
                 />
-                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-2.5 py-1 rounded-md font-label-caps text-[10px] uppercase z-10">
+                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-2.5 py-1 rounded-md font-label-caps text-xs uppercase z-10 font-bold">
                   Maitama, Abuja
                 </div>
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <span className="font-label-caps text-[#5c5e63] text-xs uppercase tracking-wider font-bold">
+                  <span className="font-label-caps text-[#5c5e63] text-xs sm:text-sm uppercase tracking-wider font-bold">
                     Executive Family Townhouse
                   </span>
                   <div className="flex items-baseline justify-between mt-1 mb-2">
-                    <h3 className="font-headline-sm text-lg font-bold text-[#1a1c1c]">
+                    <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
                       Amina Bello, MNI
                     </h3>
-                    <span className="text-xs font-bold text-primary">10.0 kVA Dual</span>
+                    <span className="text-xs sm:text-sm font-bold text-primary">10.0 kVA Dual</span>
                   </div>
                   <p className="font-body-sm text-sm sm:text-base text-[#5c4037] leading-relaxed mb-4">
                     “I host international video calls from home throughout the week. When the Abuja grid collapsed
@@ -1012,10 +1005,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   </p>
                 </div>
                 <div className="pt-3 border-t border-[#dedfe5] flex items-center justify-between">
-                  <span className="text-[11px] text-[#5c5e63] font-medium uppercase font-label-caps">
+                  <span className="text-xs sm:text-sm text-[#5c5e63] font-semibold uppercase font-label-caps">
                     System Reliability
                   </span>
-                  <span className="text-xs text-[#1a1c1c] font-bold">2 Years Blackout-Free</span>
+                  <span className="text-xs sm:text-sm text-[#1a1c1c] font-bold">2 Years Blackout-Free</span>
                 </div>
               </div>
             </div>
@@ -1027,20 +1020,20 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   alt="Victoria Island medical diagnostic center"
                   className="w-full h-full"
                 />
-                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-2.5 py-1 rounded-md font-label-caps text-[10px] uppercase z-10">
+                <div className="absolute top-3 left-3 bg-neutral-950/80 text-white backdrop-blur-md px-2.5 py-1 rounded-md font-label-caps text-xs uppercase z-10 font-bold">
                   Victoria Island, Lagos
                 </div>
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <span className="font-label-caps text-[#5c5e63] text-xs uppercase tracking-wider font-bold">
+                  <span className="font-label-caps text-[#5c5e63] text-xs sm:text-sm uppercase tracking-wider font-bold">
                     Medical Diagnostics Center
                   </span>
                   <div className="flex items-baseline justify-between mt-1 mb-2">
-                    <h3 className="font-headline-sm text-lg font-bold text-[#1a1c1c]">
+                    <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
                       Apex Diagnostics Lab
                     </h3>
-                    <span className="text-xs font-bold text-primary">20.0 kVA 3-Phase</span>
+                    <span className="text-xs sm:text-sm font-bold text-primary">20.0 kVA 3-Phase</span>
                   </div>
                   <p className="font-body-sm text-sm sm:text-base text-[#5c4037] leading-relaxed mb-4">
                     “Blood centrifuges and refrigerated reagents spoil quickly if temperatures drift or power
@@ -1049,10 +1042,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
                   </p>
                 </div>
                 <div className="pt-3 border-t border-[#dedfe5] flex items-center justify-between">
-                  <span className="text-[11px] text-[#5c5e63] font-medium uppercase font-label-caps">
+                  <span className="text-xs sm:text-sm text-[#5c5e63] font-semibold uppercase font-label-caps">
                     Lab Equipment Uptime
                   </span>
-                  <span className="text-xs text-[#1a1c1c] font-bold">Zero Downtime Record</span>
+                  <span className="text-xs sm:text-sm text-[#1a1c1c] font-bold">Zero Downtime Record</span>
                 </div>
               </div>
             </div>
@@ -1076,10 +1069,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
               <button
                 onClick={() => onOpenQuote()}
-                className="inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-container px-7 py-3.5 font-label-ui text-sm text-white font-semibold shadow-md transition-all group cursor-pointer"
+                className="inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-container px-7 py-3.5 font-label-ui text-sm sm:text-base text-white font-semibold shadow-md transition-all group cursor-pointer active:scale-[0.98]"
               >
                 <span>Book Your Free Site Audit</span>
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight01Icon className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <a
                 href="tel:08007864743"
