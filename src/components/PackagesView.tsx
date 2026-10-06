@@ -39,12 +39,12 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
       <section className="max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-14 pt-8 sm:pt-16 pb-8 sm:pb-12 w-full">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <h1 className="font-display-hero text-3xl sm:text-4xl lg:text-5xl text-[#1a1c1c] tracking-tight mb-4 font-bold">
-            Reliable Solar Packages for Every Nigerian Home.
+            Solar packages for Nigerian homes and offices.
           </h1>
 
           <p className="font-body-lg text-base sm:text-lg text-[#5c4037] max-w-2xl font-normal leading-relaxed">
-            Complete solar installations with high-efficiency bifacial panels, Grade-A lithium batteries,
-            and surface-trunked wiring designed for Nigerian grid conditions.
+            Complete solar installations with high-efficiency solar panels, long-life lithium batteries,
+            and surface-trunked copper wiring designed for Nigerian grid conditions.
           </p>
 
           {/* Category Filter Tabs - Mobile Scrollable */}
@@ -122,7 +122,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                   {/* Price Box */}
                   <div className="mb-5 pb-4 border-b border-[#dedfe5]">
                     <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider block">
-                      Complete Setup Investment
+                      Complete setup investment
                     </span>
                     <div
                       className={`font-metric-counter text-2xl sm:text-3xl font-bold tracking-tight mt-0.5 ${
@@ -137,7 +137,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                       </p>
                     )}
                     <span className="text-xs sm:text-sm text-[#5c5e63] block mt-1 font-medium">
-                      Includes complete installation, cables & surge gear
+                      Includes panels, battery, copper cabling & installation
                     </span>
                   </div>
 
@@ -168,7 +168,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                       href="#hardware-specs"
                       className="flex items-center justify-between w-full font-label-ui text-sm sm:text-base text-[#5c5e63] hover:text-primary transition-colors py-2 cursor-pointer group"
                     >
-                      <span className="font-semibold group-hover:underline">Hardware Specs &amp; Plain Meaning</span>
+                      <span className="font-semibold group-hover:underline">Hardware specs &amp; plain meaning</span>
                       <ArrowRight01Icon className="w-4 h-4 text-primary group-hover:translate-x-0.5 transition-transform" />
                     </a>
                   </div>
@@ -184,7 +184,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                         : 'bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c]'
                     }`}
                   >
-                    {isFeatured ? 'Reserve This System' : 'Configure Package'}
+                    {isFeatured ? 'Select this setup' : 'Configure package'}
                   </button>
                 </div>
               </div>
@@ -197,13 +197,13 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
       <section id="hardware-specs" className="max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-14 py-12 sm:py-16 lg:py-20 w-full scroll-mt-12">
         <div className="max-w-3xl mb-8 sm:mb-12">
           <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
-            Technical Transparency
+            Component guide
           </span>
           <h2 className="font-headline-xl text-2xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
-            Hardware Specs &amp; What They Mean
+            What each component does in plain language
           </h2>
           <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2 leading-relaxed">
-            Every component explained in terms of real-world home performance—not manufacturer marketing.
+            Every component explained in terms of real-world home performance, not manufacturer marketing.
           </p>
         </div>
 
@@ -216,12 +216,12 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                 Inverter:
               </span>
               <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
-                8kVA–10kVA Low-Frequency Hybrid
+                Low-frequency hybrid inverter
               </h3>
             </div>
             <div className="md:w-7/12">
               <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-                Heavy-duty inverter built to absorb heavy motor kicks when water pumps or large AC compressors kick on.
+                An inverter converts direct current (DC) power from your panels and batteries into alternating current (AC) power for your wall sockets. A hybrid unit can draw from solar, battery, grid, or generator automatically, and absorbs high startup kicks when pumps or AC compressors turn on.
               </p>
             </div>
           </div>
@@ -230,15 +230,15 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
           <div className="p-5 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-4">
             <div className="md:w-5/12">
               <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
-                Battery:
+                Battery storage:
               </span>
               <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
-                10.24kWh Blade LiFePO4 (6,000 cycles)
+                Lithium iron phosphate (LiFePO4) battery
               </h3>
             </div>
             <div className="md:w-7/12">
               <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-                Blade lithium pack providing 14–18 hours of overnight backup without exhaust or fumes.
+                The safest modern battery chemistry for home storage. It does not overheat easily and lasts 6,000 charge cycles (about 10 to 15 years of daily use), compared to older lead-acid batteries that usually fail within two years.
               </p>
             </div>
           </div>
@@ -247,15 +247,15 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
           <div className="p-5 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-4">
             <div className="md:w-5/12">
               <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
-                Solar Array:
+                Solar panels:
               </span>
               <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
-                12x 580W Bifacial Glass PVs
+                Bifacial monocrystalline solar panels
               </h3>
             </div>
             <div className="md:w-7/12">
               <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-                12 bifacial glass panels that produce electricity from direct sunlight and reflected light from your roof tiles.
+                Panels that generate electricity from overhead sun and light reflected off your roof tiles on the underside. Monocrystalline silicon maintains high output even under intense tropical heat.
               </p>
             </div>
           </div>
@@ -264,15 +264,15 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
           <div className="p-5 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-4">
             <div className="md:w-5/12">
               <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
-                Switch Speed:
+                Automatic transfer switch:
               </span>
               <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
-                &lt; 4ms (Instant transfer: continuous power changeover)
+                Sub-4 millisecond transfer speed
               </h3>
             </div>
             <div className="md:w-7/12">
               <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-                Instant handover under 4ms: your AC, television, and WiFi continue without restarting.
+                When grid power cuts out, the system takes over in under 4 milliseconds. Because that is faster than a monitor refreshes, desktop computers, Wi-Fi routers, and TVs stay on without rebooting.
               </p>
             </div>
           </div>
@@ -281,15 +281,15 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
           <div className="p-5 sm:p-8 border-l-4 border-primary flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-4">
             <div className="md:w-5/12">
               <span className="font-label-caps text-xs sm:text-sm text-primary font-bold uppercase tracking-wider block mb-1">
-                Surge Protection:
+                Earthing &amp; surge protection:
               </span>
               <h3 className="font-headline-sm text-lg sm:text-xl font-bold text-[#1a1c1c]">
-                4-Point Chemical Copper Earthing Array &amp; Surge Arrestors
+                Chemical copper grounding rod &amp; surge arrestors
               </h3>
             </div>
             <div className="md:w-7/12">
               <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-                Dedicated deep copper chemical grounding rod absorbing lightning and grid voltage spikes.
+                A copper rod driven deep into the soil with conductive chemical enhancement, plus surge arrestors on your board. Voltage spikes from lightning or the grid get diverted safely into the ground rather than through your appliances.
               </p>
             </div>
           </div>
@@ -307,13 +307,13 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
       <section className="max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-14 py-12 sm:py-16 lg:py-20 w-full">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
-            Installation Standards
+            Installation standards
           </span>
           <h2 className="font-headline-xl text-2xl sm:text-4xl text-[#1a1c1c] font-bold tracking-tight mt-1">
-            What’s Inside Every Complete SunGrid Installation
+            What goes into every SunGrid installation
           </h2>
           <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2 leading-relaxed">
-            Every breaker, cable, and mounting bracket is chosen to withstand tropical humidity and prolonged peak heat.
+            Every breaker, cable, and mounting bracket is chosen to withstand tropical humidity and prolonged heat.
           </p>
         </div>
 
@@ -324,10 +324,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
               <FlashIcon className="w-6 h-6" />
             </div>
             <h4 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
-              100% Pure Copper
+              Pure copper wiring
             </h4>
             <p className="font-body-sm text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-              We use thick electrolytic copper cabling (never aluminum or copper-clad wire) to prevent heat buildup and voltage drop under continuous heavy loads.
+              We use heavy electrolytic copper cabling (never aluminum or copper-clad wire) inside protective conduit to prevent heat buildup and voltage drop under continuous heavy loads.
             </p>
           </div>
 
@@ -337,10 +337,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
               <VolumeMute01Icon className="w-6 h-6" />
             </div>
             <h4 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
-              Whisper Inverter
+              Quiet inverter operation
             </h4>
             <p className="font-body-sm text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-              Smart magnetic cooling architecture keeps operating sound below 25 decibels, quieter than a light rustle of leaves in your hallway.
+              Smart magnetic cooling keeps operating noise under 25 decibels, which is quieter than a whisper in your hallway.
             </p>
           </div>
 
@@ -350,10 +350,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
               <BatteryCharging01Icon className="w-6 h-6" />
             </div>
             <h4 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
-              10–15 Year LiFePO4
+              10 to 15-year lithium batteries
             </h4>
             <p className="font-body-sm text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-              Automotive-grade prismatic lithium iron phosphate cells with built-in thermal run-away suppression and 6,000 deep cycle endurance.
+              Grade-A prismatic lithium iron phosphate cells with built-in thermal protection, safe management circuits, and 6,000 deep cycle endurance.
             </p>
           </div>
 
@@ -363,10 +363,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
               <Shield01Icon className="w-6 h-6" />
             </div>
             <h4 className="font-headline-sm text-lg font-bold text-[#1a1c1c] mb-1">
-              Leak-Proof Mounting
+              Leak-proof roof mountings
             </h4>
             <p className="font-body-sm text-sm sm:text-base text-[#5c4037] leading-relaxed font-medium">
-              EPDM rubber-sealed clamps and aircraft-grade anodized aluminum rails prevent roof penetration leaks during torrential tropical rainstorms.
+              EPDM rubber-sealed clamps and aircraft-grade aluminum rails secure panels to your roof without causing rainwater leaks during heavy storms.
             </p>
           </div>
         </div>
@@ -377,13 +377,13 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
         <div className="rounded-3xl bg-[#eeeeed] border border-[#dedfe5] p-6 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
           <div className="max-w-xl text-center sm:text-left">
             <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-wider font-bold mb-1 block">
-              Personalized Energy Audit
+              Load assessment
             </span>
             <h3 className="font-headline-lg text-2xl sm:text-3xl text-[#1a1c1c] font-bold tracking-tight mb-2">
               Not sure which package fits your appliances?
             </h3>
             <p className="font-body-md text-sm sm:text-base text-[#5c4037] leading-relaxed">
-              Use our 2-minute load calculator or book an on-site audit to have an electrical engineer evaluate your distribution board and roof space in Lagos, Abuja, or Port Harcourt.
+              Use our 2-minute load calculator or book an on-site audit to have an electrical engineer evaluate your distribution board and roof space in Lagos, Abuja, Port Harcourt, or Ibadan.
             </p>
           </div>
 
@@ -393,13 +393,13 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
               className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold hover:bg-neutral-50 transition-colors shadow-sm cursor-pointer min-h-[48px] touch-manipulation gap-2"
             >
               <Calculator01Icon className="w-5 h-5 text-primary" />
-              <span>Use Load Calculator</span>
+              <span>Use load calculator</span>
             </button>
             <button
               onClick={() => onOpenQuote()}
               className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-colors shadow-sm cursor-pointer min-h-[48px] touch-manipulation"
             >
-              <span>Book Free Home Visit</span>
+              <span>Book an on-site visit</span>
             </button>
           </div>
         </div>

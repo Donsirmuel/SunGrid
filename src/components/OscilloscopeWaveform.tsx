@@ -106,11 +106,11 @@ export const OscilloscopeWaveform: React.FC<OscilloscopeProps> = ({
       <div className="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-1.5 px-1">
         <div className="flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400" />
-          <span className="text-white font-semibold">OSCILLOSCOPE: 50.00 Hz</span>
+          <span className="text-white font-semibold">AC frequency: 50.00 Hz</span>
         </div>
         <div className="flex items-center gap-3 text-neutral-400">
           <span>THD: &lt;1.6%</span>
-          <span className="text-[#ff8e4d] font-bold">PURE SINE</span>
+          <span className="text-[#ff8e4d] font-bold">Pure sine wave</span>
         </div>
       </div>
 
@@ -126,9 +126,9 @@ export const OscilloscopeWaveform: React.FC<OscilloscopeProps> = ({
       </div>
 
       <div className="flex items-center justify-between text-[9px] font-mono text-neutral-500 mt-1 px-1">
-        <span>V_RMS: 230.2V ±0.5%</span>
-        <span>AC TRANSFER: 3.8ms</span>
-        <span>INVERTER: ACTIVE</span>
+        <span>Output: 230V steady</span>
+        <span>Transfer: 3.8ms</span>
+        <span>Inverter: active</span>
       </div>
     </div>
   );

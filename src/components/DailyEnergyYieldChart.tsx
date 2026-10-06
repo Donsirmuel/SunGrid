@@ -312,13 +312,13 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#dedfe5]">
         <div>
           <span className="font-label-caps text-[11px] uppercase tracking-wider text-primary font-bold">
-            Real-World Nigerian Generation Curve
+            Typical daily solar curve in Nigeria
           </span>
           <h3 className="font-headline-md text-2xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
-            24-Hour Solar Production vs. Home Demand
+            24-hour solar generation versus home consumption
           </h3>
           <p className="text-xs text-[#5c4037] mt-1 max-w-xl">
-            Watch how a SunGrid 10kVA Hybrid + 12-Panel Bifacial array powers your air conditioners directly with midday sunshine while fully recharging your lithium battery bank before 1:00 PM.
+            See how a 10kVA setup with 12 solar panels runs air conditioners directly during the day while recharging lithium batteries before 1:00 PM.
           </p>
         </div>
 
@@ -331,7 +331,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
             }`}
           >
             <Sun01Icon className="w-3.5 h-3.5" />
-            <span>Bright Dry Season</span>
+            <span>Dry season (clear sun)</span>
           </button>
           <button
             onClick={() => setActiveWeather('harmattan')}
@@ -339,7 +339,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               activeWeather === 'harmattan' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#5c5e63] hover:text-[#1a1c1c]'
             }`}
           >
-            <span>Harmattan Haze</span>
+            <span>Harmattan (hazy sky)</span>
           </button>
           <button
             onClick={() => setActiveWeather('rainy')}
@@ -347,7 +347,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               activeWeather === 'rainy' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#5c5e63] hover:text-[#1a1c1c]'
             }`}
           >
-            <span>Overcast / Wet Season</span>
+            <span>Rainy season (overcast)</span>
           </button>
         </div>
       </div>
@@ -362,11 +362,11 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               <div className="flex items-center gap-4 text-xs font-semibold">
                 <div className="flex items-center gap-1.5">
                   <span className="w-3.5 h-3.5 rounded-full bg-primary" />
-                  <span className="text-[#1a1c1c]">Solar Generation (kW)</span>
+                  <span className="text-[#1a1c1c]">Solar generation (kW)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-3.5 h-0.5 border-t-2 border-dashed border-slate-800" />
-                  <span className="text-[#5c5e63]">Household Consumption (kW)</span>
+                  <span className="text-[#5c5e63]">Home consumption (kW)</span>
                 </div>
               </div>
               <span className="text-[11px] text-[#5c5e63] font-mono">
@@ -385,18 +385,18 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
             <div className="flex items-center justify-between text-xs font-semibold text-[#1a1c1c] mb-2">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-primary" />
-                Selected Timeline: <strong>{currentPoint.label}</strong>
+                Selected hour: <strong>{currentPoint.label}</strong>
               </span>
               <span className="inline-flex items-center gap-1 text-xs text-[#5c5e63]">
                 {currentPoint.hour >= 6 && currentPoint.hour <= 18 ? (
                   <>
                     <Sun01Icon className="w-4 h-4 text-amber-600" />
-                    <span>Daylight Hours</span>
+                    <span>Daylight hours</span>
                   </>
                 ) : (
                   <>
                     <Moon02Icon className="w-4 h-4 text-indigo-500" />
-                    <span>Night Battery Mode</span>
+                    <span>Battery power</span>
                   </>
                 )}
               </span>
@@ -415,7 +415,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
             <div className="flex justify-between text-xs text-[#5c5e63] font-mono mt-1.5 font-semibold">
               <span>12 AM</span>
               <span>6 AM (Dawn)</span>
-              <span>12 PM (Peak Solar)</span>
+              <span>12 PM (Peak Sun)</span>
               <span>6 PM (Dusk)</span>
               <span>11 PM</span>
             </div>
@@ -427,21 +427,21 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-[#dedfe5] mb-4">
               <span className="font-label-caps text-xs sm:text-sm text-[#5c5e63] uppercase font-bold">
-                Hour {selectedHour}:00 Telemetry
+                Hour {selectedHour}:00 status
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#ffdbcf] text-primary">
                 {currentPoint.batteryStatus === 'charging' ? (
                   <>
                     <FlashIcon className="w-3.5 h-3.5 text-primary" />
-                    <span>Battery Fast Charging</span>
+                    <span>Battery charging</span>
                   </>
                 ) : currentPoint.batteryStatus === 'full' ? (
                   <>
                     <CheckmarkCircle02Icon className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Bank 100% Saturated</span>
+                    <span>Battery fully charged</span>
                   </>
                 ) : (
-                  <span>Lithium Discharge</span>
+                  <span>Battery discharging</span>
                 )}
               </span>
             </div>
@@ -449,19 +449,19 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
             {/* Instant Metrics */}
             <div className="grid grid-cols-2 gap-3 mb-5">
               <div className="p-3.5 rounded-2xl bg-[#ffdbcf]/30 border border-primary/20">
-                <span className="text-xs uppercase font-bold text-primary font-label-caps">Solar Harvest</span>
+                <span className="text-xs uppercase font-bold text-primary font-label-caps">Solar power</span>
                 <p className="font-metric-counter text-2xl font-bold text-primary mt-0.5">
                   {adjustedSolarKw} <span className="text-xs font-normal">kW</span>
                 </p>
-                <span className="text-xs text-[#5c4037] font-medium">Pure sunshine from roof</span>
+                <span className="text-xs text-[#5c4037] font-medium">Power from roof panels</span>
               </div>
 
               <div className="p-3.5 rounded-2xl bg-[#f3f4f3] border border-[#dedfe5]">
-                <span className="text-xs uppercase font-bold text-[#5c5e63] font-label-caps">Home Draw</span>
+                <span className="text-xs uppercase font-bold text-[#5c5e63] font-label-caps">Home draw</span>
                 <p className="font-metric-counter text-2xl font-bold text-[#1a1c1c] mt-0.5">
                   {currentPoint.homeConsumptionKw} <span className="text-xs font-normal">kW</span>
                 </p>
-                <span className="text-xs text-[#5c4037] font-medium">Appliances & AC load</span>
+                <span className="text-xs text-[#5c4037] font-medium">Appliances and ACs running</span>
               </div>
             </div>
 
@@ -469,7 +469,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
             <div className="p-4 rounded-2xl bg-[#f9f9f8] border border-[#dedfe5] mb-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-bold text-[#1a1c1c]">
-                  Blade LiFePO4 Reserve
+                  Lithium battery level
                 </span>
                 <span className="font-mono text-sm font-bold text-emerald-700">
                   {currentPoint.batterySoCPercent}%
@@ -496,7 +496,7 @@ export const DailyEnergyYieldChart: React.FC<DailyEnergyYieldChartProps> = ({ on
               onClick={() => onSelectPackage ? onSelectPackage('Duplex Family Comfort (10kVA)') : null}
               className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer min-h-[48px] touch-manipulation"
             >
-              <span>Explore 10kVA Complete Package</span>
+              <span>View 10kVA complete package</span>
               <ArrowRight01Icon className="w-4 h-4" />
             </button>
           </div>

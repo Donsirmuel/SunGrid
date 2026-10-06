@@ -93,15 +93,15 @@ export default function App() {
       {/* Persistent Floating Quick Action Bar for Nigeria */}
       <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-3 pointer-events-auto">
         <a
-          href="https://wa.me/2348007864743?text=Hello%20SunGrid%20Energy,%20I%20would%20like%20to%20speak%20with%20a%20solar%20engineer%20about%20a%20complete%20solar%20installation."
+          href="https://wa.me/2348007864743?text=Hello%20SunGrid,%20I%20would%20like%20to%20ask%20about%20a%20solar%20installation%20for%20my%20home."
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp with SunGrid Solar Engineer"
+          aria-label="Chat on WhatsApp with SunGrid"
           className="group flex items-center gap-2.5 px-4 py-3 sm:px-4 sm:py-3 rounded-2xl bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.35)] hover:bg-[#20ba59] transition-all hover:scale-105 active:scale-95 touch-manipulation"
         >
           <WhatsappIcon className="w-5 h-5" />
           <span className="font-label-ui text-sm font-bold tracking-tight hidden sm:inline">
-            Chat with Engineer
+            Chat on WhatsApp
           </span>
           <span className="font-label-ui text-xs font-bold tracking-tight sm:hidden">
             WhatsApp

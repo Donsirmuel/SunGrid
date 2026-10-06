@@ -27,10 +27,10 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems: { id: NavTab; label: string; icon: React.ElementType; desc: string }[] = [
-    { id: 'packages', label: 'Solar Packages', icon: Sun01Icon, desc: '5kVA to 20kVA Complete Setups' },
-    { id: 'pricing', label: 'Pricing', icon: Tag01Icon, desc: 'Transparent Capex & Payment Plans' },
-    { id: 'calculator', label: 'Load Calculator', icon: CalculatorIcon, desc: 'Size Your Inverter & Lithium Battery' },
-    { id: 'about', label: 'About', icon: InformationCircleIcon, desc: 'NERC Engineers & Spares Depot Network' }
+    { id: 'packages', label: 'Solar packages', icon: Sun01Icon, desc: '5kVA to 20kVA complete home setups' },
+    { id: 'pricing', label: 'Pricing & plans', icon: Tag01Icon, desc: 'Transparent costs with no surprise site fees' },
+    { id: 'calculator', label: 'Load calculator', icon: CalculatorIcon, desc: 'Find the right size inverter and battery' },
+    { id: 'about', label: 'Depots & engineers', icon: InformationCircleIcon, desc: 'Local parts hubs in Lagos, Abuja, PH & Ibadan' }
   ];
 
   const handleNavClick = (tab: NavTab) => {
@@ -80,7 +80,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={onOpenQuote}
             className="hidden md:inline-flex items-center gap-2 rounded-xl bg-[#ff5400] hover:bg-[#e04a00] px-5 py-2.5 text-sm text-white font-semibold transition-all active:scale-95 cursor-pointer shadow-[0_2px_12px_rgba(255,84,0,0.35)]"
           >
-            <span>Get a Free Quote</span>
+            <span>Request a quote</span>
             <ArrowRight01Icon className="w-4 h-4" />
           </button>
 
@@ -113,8 +113,8 @@ export const Header: React.FC<HeaderProps> = ({
                   <Home01Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-base font-semibold">Home Overview</div>
-                  <div className="text-xs text-neutral-400">Engineering Hero & Verified Installs</div>
+                  <div className="text-base font-semibold">Home overview</div>
+                  <div className="text-xs text-neutral-400">Overview of systems and installations</div>
                 </div>
               </div>
               <ArrowRight01Icon className="w-5 h-5 text-neutral-500" />
@@ -155,7 +155,7 @@ export const Header: React.FC<HeaderProps> = ({
                 className="flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-neutral-900 border border-neutral-800 text-sm font-medium text-neutral-200 hover:text-white hover:border-neutral-700 transition-colors min-h-[52px]"
               >
                 <Call02Icon className="w-5 h-5 text-[#ff8e4d]" />
-                <span>Direct Hotline: 0800-SUNGRID (Toll-Free)</span>
+                <span>Call direct: 0800-SUNGRID (toll-free)</span>
               </a>
             </div>
           </div>

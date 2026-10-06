@@ -9,7 +9,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 950,
     surgeWatts: 2200,
     defaultQty: 0,
-    description: 'Master/kids bedroom cooling (~950W nominal)'
+    description: 'Bedroom air conditioning (~950W when cooling)'
   },
   {
     id: 'ac15',
@@ -18,7 +18,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 1350,
     surgeWatts: 2900,
     defaultQty: 2,
-    description: 'Night-optimized sleep draw (~1,350W)'
+    description: 'Night cooling draw (~1,350W running power)'
   },
   {
     id: 'ac20',
@@ -27,7 +27,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 1850,
     surgeWatts: 3800,
     defaultQty: 0,
-    description: 'High capacity living room cooling'
+    description: 'Living room air conditioning (~1,850W running power)'
   },
   {
     id: 'fans',
@@ -47,7 +47,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 200,
     surgeWatts: 850,
     defaultQty: 1,
-    description: 'Compressor startup surge (~200W cycle)'
+    description: 'Compressor startup surge (~200W steady draw)'
   },
   {
     id: 'fridge',
@@ -56,7 +56,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 180,
     surgeWatts: 600,
     defaultQty: 1,
-    description: 'Linear inverter compressor (~180W)'
+    description: 'Inverter compressor (~180W steady draw)'
   },
   {
     id: 'microwave',
@@ -65,7 +65,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 1500,
     surgeWatts: 1600,
     defaultQty: 1,
-    description: 'Intermittent heavy heating load'
+    description: 'Short heating cycles (~1,500W)'
   },
   {
     id: 'kettle',
@@ -74,7 +74,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 2000,
     surgeWatts: 2000,
     defaultQty: 0,
-    description: 'Momentary pure resistive draw'
+    description: 'Boiling element (~2,000W momentary draw)'
   },
 
   // Water Pumping & Heating
@@ -85,7 +85,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 850,
     surgeWatts: 3400,
     defaultQty: 1,
-    description: 'High 4x induction motor startup surge'
+    description: 'Submersible water pump with 4x startup motor surge'
   },
   {
     id: 'waterheater',
@@ -94,7 +94,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 2000,
     surgeWatts: 2000,
     defaultQty: 0,
-    description: 'Scheduled water warming (~2kW)'
+    description: 'Water heating cylinder (~2,000W)'
   },
 
   // Work, Connectivity & Security
@@ -105,7 +105,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 120,
     surgeWatts: 150,
     defaultQty: 2,
-    description: 'Screen + soundbar family entertainment'
+    description: 'Television and soundbar draw (~120W)'
   },
   {
     id: 'starlink',
@@ -114,7 +114,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 75,
     surgeWatts: 100,
     defaultQty: 1,
-    description: 'Always-on home internet backbone'
+    description: 'Always-on Wi-Fi router and satellite dish (~75W)'
   },
   {
     id: 'laptops',
@@ -123,7 +123,7 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 90,
     surgeWatts: 110,
     defaultQty: 3,
-    description: 'Fast-charging & dual external monitors'
+    description: 'Laptops, monitors, and chargers (~90W each)'
   },
   {
     id: 'security',
@@ -132,6 +132,6 @@ export const APPLIANCE_CATALOG: ApplianceItem[] = [
     nominalWatts: 180,
     surgeWatts: 200,
     defaultQty: 1,
-    description: 'Dusk-to-dawn security cameras & LED array'
+    description: 'Security cameras and outdoor lights (~180W)'
   }
 ];

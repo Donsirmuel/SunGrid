@@ -108,21 +108,21 @@ export const CalculatorView: React.FC<CalculatorViewProps> = ({
   let priceRange = '';
 
   if (continuousKw <= 3.8 && surgeKva <= 7.5) {
-    tierName = 'Essential Flat & Urban Kit (5kVA)';
-    tierSpecs = '5kVA Smart Inverter • 5.12kWh LiFePO4 • 6x 550W Tier-1 Panels';
-    runtimeText = 'Designed for apartments & 2-3 bedroom setups. Runs 1 Inverter AC, refrigerator, WiFi, and entertainment continuously with 8–10hr night autonomy.';
+    tierName = 'Small flat and apartment setup (5kVA)';
+    tierSpecs = '5kVA inverter • 5.12kWh lithium battery • 6x 550W solar panels';
+    runtimeText = 'Designed for apartments and 2-3 bedroom flats. Runs 1 inverter AC, refrigerator, Wi-Fi, and TVs with 8 to 10 hours of night battery runtime.';
     fuelSaved = '₦140,000 – ₦190,000';
     priceRange = '₦3.4M – ₦4.25M';
   } else if (continuousKw <= 7.5 && surgeKva <= 14.0) {
-    tierName = 'Executive Duplex Package (10kVA)';
-    tierSpecs = '10kVA Pure Sine Inverter • 15.36kWh Lithium Bank • 12x 580W Tier-1 Panels';
-    runtimeText = `Runs ${activeACs > 0 ? activeACs + ' ACs' : 'multiple ACs'} with deep freezer, borehole pump, and Starlink. Starts water pumps without lights dimming or electronics tripping.`;
+    tierName = 'Duplex and family home setup (10kVA)';
+    tierSpecs = '10kVA inverter • 15.36kWh lithium battery bank • 12x 580W solar panels';
+    runtimeText = `Runs ${activeACs > 0 ? activeACs + ' ACs' : 'multiple ACs'} together with a freezer, borehole water pump, and Wi-Fi. Starts water pumps without flickering lights or resetting computers.`;
     fuelSaved = '₦260,000 – ₦340,000';
     priceRange = '₦6.8M – ₦8.85M';
   } else {
-    tierName = 'Estate Villa & Tri-Phase Power (15kVA+)';
-    tierSpecs = '15kVA+ Parallel Industrial Inverters • 25–30kWh Storage • 20x 580W Arrays';
-    runtimeText = 'Full home autonomy. Runs entire property including 4+ ACs simultaneously, central water heaters, multi-door refrigeration, and gate automation.';
+    tierName = 'Large home and commercial setup (15kVA+)';
+    tierSpecs = '15kVA+ parallel inverters • 25–30kWh lithium storage • 20x 580W solar panels';
+    runtimeText = 'Runs large households with 4+ ACs running simultaneously, water heaters, multiple freezers, and automatic gate motors.';
     fuelSaved = '₦450,000 – ₦650,000+';
     priceRange = '₦11.5M – ₦15.8M';
   }
@@ -134,12 +134,12 @@ export const CalculatorView: React.FC<CalculatorViewProps> = ({
   const workItems = APPLIANCE_CATALOG.filter((i) => i.category === 'work');
 
   const getWhatsAppLink = () => {
-    const msg = `Hello SunGrid Energy, I configured my home load using your Smart Sizer:
-- Peak Active Load: ${continuousKw.toFixed(1)} kW
-- Surge Buffer Margin: ${surgeKva.toFixed(1)} kVA
-- Recommended Setup: ${tierName}
-- Estimated Fuel Offset: ${fuelSaved}/mo
-Please send formal quote & schedule a site inspection.`;
+    const msg = `Hello SunGrid Energy, I configured my home load using your load calculator:
+- Continuous active load: ${continuousKw.toFixed(1)} kW
+- Surge buffer margin: ${surgeKva.toFixed(1)} kVA
+- Recommended setup: ${tierName}
+- Estimated fuel saved: ${fuelSaved}/mo
+Please send an itemized quote and let me know when a technician can visit.`;
     return `https://wa.me/2348007864743?text=${encodeURIComponent(msg)}`;
   };
 
@@ -151,7 +151,7 @@ Please send formal quote & schedule a site inspection.`;
           <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold block mb-1">
-                Load Sizing Engine
+                Load sizing calculator
               </span>
               <h1 className="font-headline-xl text-3xl sm:text-4xl lg:text-5xl text-[#1a1c1c] font-bold tracking-tight">
                 How much solar power does your home actually need?
@@ -169,14 +169,14 @@ Please send formal quote & schedule a site inspection.`;
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <h2 className="font-headline-lg text-xl sm:text-2xl font-bold text-[#1a1c1c]">
-                    SunGrid Smart Appliance Sizer
+                    SunGrid appliance load calculator
                   </h2>
                   <span className="px-2.5 py-0.5 rounded-md bg-white border border-primary/30 text-primary font-label-caps text-xs font-bold uppercase tracking-wider">
-                    INTERACTIVE
+                    Interactive tool
                   </span>
                 </div>
                 <p className="text-sm sm:text-base text-[#5c4037] max-w-2xl">
-                  Select what you run daily and we calculate the exact solar and lithium capacity so your power never trips.
+                  Pick the appliances you run at home. We calculate the inverter size and battery storage you need so your power never cuts out.
                 </p>
               </div>
 
@@ -187,7 +187,7 @@ Please send formal quote & schedule a site inspection.`;
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#dedfe5] text-sm font-semibold text-[#1a1c1c] hover:bg-neutral-50 transition-colors cursor-pointer shadow-xs min-h-[44px] touch-manipulation"
                 >
                   <Refresh01Icon className="w-4 h-4 text-primary" />
-                  <span>Reset Sizer</span>
+                  <span>Reset selections</span>
                 </button>
               </div>
             </div>
@@ -200,7 +200,7 @@ Please send formal quote & schedule a site inspection.`;
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
                     <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
-                      Air Conditioners & Fans
+                      Air conditioners and fans
                     </h3>
                   </div>
 
@@ -265,7 +265,7 @@ Please send formal quote & schedule a site inspection.`;
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
                     <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
-                      Kitchen & Refrigeration
+                      Kitchen and refrigeration
                     </h3>
                   </div>
 
@@ -330,7 +330,7 @@ Please send formal quote & schedule a site inspection.`;
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
                     <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
-                      Water Pumping & Heating
+                      Water pumps and water heaters
                     </h3>
                   </div>
 
@@ -395,7 +395,7 @@ Please send formal quote & schedule a site inspection.`;
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
                     <h3 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
-                      Work, Connectivity & Security
+                      Work devices, internet, and lighting
                     </h3>
                   </div>
 
@@ -463,11 +463,11 @@ Please send formal quote & schedule a site inspection.`;
                   {/* Telemetry Badge Header */}
                   <div className="flex items-center justify-between">
                     <span className="font-label-caps text-xs text-[#5c5e63] uppercase tracking-wider font-bold">
-                      Live System Sizing
+                      Calculated system sizing
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white text-primary text-xs font-semibold shadow-xs border border-[#dedfe5]">
                       <span className="w-2 h-2 rounded-full bg-primary"></span>
-                      Dynamic Sizing Engine
+                      Live calculation
                     </span>
                   </div>
 
@@ -475,7 +475,7 @@ Please send formal quote & schedule a site inspection.`;
                   <div className="grid grid-cols-2 gap-3 p-4 rounded-2xl bg-white border border-[#dedfe5] shadow-xs">
                     <div>
                       <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider block">
-                        Switchover Time
+                        Switchover time
                       </span>
                       <div className="flex items-baseline gap-1 mt-0.5">
                         <span className="font-metric-counter text-2xl font-bold text-[#1a1c1c] tabular-nums">
@@ -489,7 +489,7 @@ Please send formal quote & schedule a site inspection.`;
 
                     <div>
                       <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider block">
-                        THD (Waveform Purity)
+                        Waveform quality (THD)
                       </span>
                       <div className="flex items-baseline gap-1 mt-0.5">
                         <span className="font-metric-counter text-2xl font-bold text-[#1a1c1c] tabular-nums">
@@ -507,7 +507,7 @@ Please send formal quote & schedule a site inspection.`;
                     <div className="bg-white p-4 rounded-2xl shadow-xs border border-[#dedfe5] space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider">
-                          Normal Running Load
+                          Normal running load
                         </span>
                         <span className="text-xs font-mono text-neutral-500 font-semibold">
                           {loadPercentage}%
@@ -537,10 +537,10 @@ Please send formal quote & schedule a site inspection.`;
                     <div className="bg-white p-4 rounded-2xl shadow-xs border border-[#dedfe5] space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider">
-                          Starting Surge (kVA)
+                          Starting surge (kVA)
                         </span>
                         <span className="text-xs font-mono text-primary font-bold">
-                          Trip Protection
+                          Surge buffer
                         </span>
                       </div>
                       <div className="flex items-baseline gap-1">
@@ -560,7 +560,7 @@ Please send formal quote & schedule a site inspection.`;
                         />
                       </div>
                       <p className="text-xs sm:text-sm text-[#5c4037] leading-snug font-medium">
-                        Extra kick required when AC or water pumps kick on
+                        Extra headroom needed when air conditioner or water pump compressors start
                       </p>
                     </div>
                   </div>
@@ -572,11 +572,11 @@ Please send formal quote & schedule a site inspection.`;
                   >
                     <div className="flex items-center justify-between relative z-10">
                       <span className="px-2.5 py-1 rounded-md bg-primary text-white font-label-caps text-xs uppercase font-bold tracking-wider">
-                        System Recommended
+                        Recommended setup
                       </span>
                       <span className="text-xs sm:text-sm text-neutral-300 flex items-center gap-1.5">
                         <FlashIcon className="w-3.5 h-3.5 text-primary" />
-                        <span>Grade-A LiFePO4</span>
+                        <span>Lithium battery storage</span>
                       </span>
                     </div>
 
@@ -591,7 +591,7 @@ Please send formal quote & schedule a site inspection.`;
                     <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 relative z-10 space-y-1">
                       <div className="flex items-center gap-1.5 text-[#ff8e4d] text-xs sm:text-sm font-semibold">
                         <Shield01Icon className="w-4 h-4" />
-                        <span>Calculated Performance Profile</span>
+                        <span>What this system runs</span>
                       </div>
                       <p className="text-sm text-neutral-200 leading-relaxed font-normal">
                         {runtimeText}
@@ -601,11 +601,11 @@ Please send formal quote & schedule a site inspection.`;
                     {/* Savings & Cost */}
                     <div className="relative z-10 pt-1 space-y-2 border-t border-neutral-800 text-sm">
                       <div className="flex items-center justify-between">
-                        <span className="text-neutral-400">Estimated Monthly Generator Fuel Saved:</span>
+                        <span className="text-neutral-400">Estimated monthly generator fuel saved:</span>
                         <span className="font-semibold text-white">{fuelSaved}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-neutral-400">Estimated Complete Package Price:</span>
+                        <span className="text-neutral-400">Estimated complete package price:</span>
                         <span className="font-bold text-base text-[#ff8e4d]">{priceRange}</span>
                       </div>
                     </div>
@@ -613,7 +613,7 @@ Please send formal quote & schedule a site inspection.`;
                     {/* Guarantee Seal Inside Card */}
                     <div className="relative z-10 pt-2 flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
                       <Shield01Icon className="w-4 h-4 text-primary shrink-0" />
-                      <span>Backed by SunGrid 10-Year Warranty & Local Depot Support</span>
+                      <span>Backed by SunGrid 10-year warranty and local depot replacement support</span>
                     </div>
                   </div>
 
@@ -629,17 +629,17 @@ Please send formal quote & schedule a site inspection.`;
 
                     <div className="p-2.5 rounded-xl bg-white border border-[#dedfe5] shadow-xs">
                       <span className="font-label-caps text-[11px] text-[#5c5e63] block uppercase font-bold">
-                        Daily Yield
+                        Daily yield
                       </span>
                       <span className="font-headline-sm text-base font-bold text-primary">28–35</span>
-                      <span className="block text-xs text-[#5c4037] font-medium">kWh / Day</span>
+                      <span className="block text-xs text-[#5c4037] font-medium">kWh / day</span>
                     </div>
 
                     <div className="p-2.5 rounded-xl bg-white border border-[#dedfe5] shadow-xs">
                       <span className="font-label-caps text-[11px] text-[#5c5e63] block uppercase font-bold">
                         Warranty
                       </span>
-                      <span className="font-headline-sm text-base font-bold text-[#1a1c1c]">10 Yrs</span>
+                      <span className="font-headline-sm text-base font-bold text-[#1a1c1c]">10 yrs</span>
                       <span className="block text-xs text-[#5c4037] font-medium">6,000 cycles</span>
                     </div>
                   </div>
@@ -654,7 +654,7 @@ Please send formal quote & schedule a site inspection.`;
                     className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-all shadow-md cursor-pointer active:scale-[0.98]"
                   >
                     <WhatsappIcon className="w-5 h-5" />
-                    <span>Send Sizing to Solar Engineer on WhatsApp</span>
+                    <span>Send this calculation to a technician on WhatsApp</span>
                   </a>
 
                   <div className="flex items-center justify-between px-2">
@@ -663,7 +663,7 @@ Please send formal quote & schedule a site inspection.`;
                       onClick={() => onOpenQuote(tierName)}
                       className="font-label-ui text-sm sm:text-base font-semibold text-[#5c4037] hover:text-primary transition-colors flex items-center gap-1.5 cursor-pointer py-2"
                     >
-                      <span>Get Formal Line-Item PDF Quote</span>
+                      <span>Get itemized quote</span>
                       <ArrowRight01Icon className="w-4 h-4" />
                     </button>
                     <span className="text-xs text-[#5c5e63] font-medium">Takes ~45 seconds</span>
@@ -681,10 +681,10 @@ Please send formal quote & schedule a site inspection.`;
               </div>
               <div>
                 <h4 className="font-headline-sm text-base font-bold text-[#1a1c1c]">
-                  Unsure about heavy industrial workshop tools or central ducted ACs?
+                  Unsure about heavy workshop equipment or central ducted ACs?
                 </h4>
                 <p className="text-xs sm:text-sm text-[#5c4037]">
-                  Our certified NERC field engineers perform on-site data-logging audits in Lagos, Abuja, and Port Harcourt.
+                  Our technicians visit your home with electrical clamp meters to measure actual draw in Lagos, Abuja, Ibadan, and Port Harcourt.
                 </p>
               </div>
             </div>
@@ -692,7 +692,7 @@ Please send formal quote & schedule a site inspection.`;
               onClick={() => onOpenQuote()}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-neutral-50 text-[#1a1c1c] border border-[#dedfe5] text-xs sm:text-sm font-semibold transition-colors shrink-0 shadow-xs cursor-pointer"
             >
-              <span>Book an On-Site Audit</span>
+              <span>Book an on-site inspection</span>
               <Calendar01Icon className="w-4 h-4 text-primary" />
             </button>
           </div>
@@ -701,13 +701,13 @@ Please send formal quote & schedule a site inspection.`;
           <div className="mt-16 space-y-8">
             <div className="max-w-2xl">
               <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
-                Engineering Clarity
+                Common questions
               </span>
               <h2 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] mt-1">
-                Frequently Addressed Sizing Questions
+                Frequently asked questions about solar sizing
               </h2>
               <p className="text-sm sm:text-base text-[#5c4037] mt-1.5 leading-relaxed">
-                How SunGrid handles Nigeria's unique residential spikes, pump inductive loads, and overcast wet-season months.
+                How we handle sudden motor spikes, borehole pumps, and cloudy days during the rainy season.
               </p>
             </div>
 

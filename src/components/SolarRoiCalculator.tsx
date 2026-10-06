@@ -51,20 +51,20 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 sm:pb-8 border-b border-[#dedfe5]">
         <div className="max-w-xl">
           <span className="font-label-caps text-xs sm:text-sm text-primary uppercase tracking-widest font-bold block mb-2">
-            Financial Return Analysis
+            Savings breakdown
           </span>
           <h3 className="font-headline-xl text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1a1c1c] tracking-tight">
-            Solar ROI & Lifetime Savings Calculator
+            Solar return and payback calculator
           </h3>
           <p className="font-body-md text-sm sm:text-base text-[#5c4037] mt-2 leading-relaxed">
-            Stop pouring hard-earned money into generator fuel tanks and unstable grid tariffs. See exactly when your SunGrid installation pays for itself and how many millions you keep in your pocket.
+            Compare what you currently spend on fuel and electricity against the one-off cost of a solar installation. See how quickly the system pays for itself.
           </p>
         </div>
 
         {/* Selected Package Selector Pill */}
         <div className="flex flex-col items-start lg:items-end w-full lg:w-auto">
           <label className="text-xs sm:text-sm font-semibold text-[#5c5e63] mb-1.5 uppercase font-label-caps">
-            Target Solar Setup
+            Choose a package
           </label>
           <div className="flex items-center gap-1.5 p-1.5 bg-[#eeeeed] rounded-2xl flex-wrap w-full sm:w-auto">
             {SOLAR_PACKAGES.filter((p) => p.category !== 'portable').map((pkg) => (
@@ -82,7 +82,7 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
             ))}
           </div>
           <span className="text-xs sm:text-sm text-primary font-bold mt-2">
-            Total Price: ₦{selectedPkg.priceNgn.toLocaleString('en-NG')}
+            Package price: ₦{selectedPkg.priceNgn.toLocaleString('en-NG')}
           </span>
         </div>
       </div>
@@ -92,14 +92,14 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
         {/* LEFT COLUMN: 2 Straightforward Sliders */}
         <div className="lg:col-span-6 space-y-5 sm:space-y-6">
           <h4 className="font-headline-sm text-base sm:text-lg font-bold text-[#1a1c1c]">
-            1. Your Current Monthly Energy Expenses
+            1. Your current monthly energy spending
           </h4>
 
           {/* Generator Spend Slider */}
           <div className="p-4 sm:p-5 rounded-2xl bg-[#f9f9f8] border border-[#dedfe5]">
             <div className="flex justify-between items-baseline mb-2 gap-2">
               <label className="text-xs sm:text-sm font-bold text-[#1a1c1c]">
-                Monthly Generator Fuel + Servicing:
+                Monthly petrol or diesel and generator servicing:
               </label>
               <span className="font-headline-md text-xl sm:text-2xl font-bold text-primary tabular-nums shrink-0">
                 ₦{monthlyFuelSpend.toLocaleString('en-NG')}
@@ -115,9 +115,9 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
               className="w-full h-3 bg-[#dedfe5] rounded-lg appearance-none cursor-pointer accent-primary my-2"
             />
             <div className="flex justify-between text-xs sm:text-sm text-[#5c5e63] font-semibold mt-1">
-              <span>₦50k (Small Gen)</span>
+              <span>₦50k (Small generator)</span>
               <span>₦500k (Duplex)</span>
-              <span>₦1.5M (Mansion)</span>
+              <span>₦1.5M (Large house)</span>
             </div>
           </div>
 
@@ -125,7 +125,7 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
           <div className="p-4 sm:p-5 rounded-2xl bg-[#f9f9f8] border border-[#dedfe5]">
             <div className="flex justify-between items-baseline mb-2 gap-2">
               <label className="text-xs sm:text-sm font-bold text-[#1a1c1c]">
-                Monthly DisCo / NEPA Bill (Band A):
+                Monthly grid electricity bill:
               </label>
               <span className="font-headline-md text-xl sm:text-2xl font-bold text-[#1a1c1c] tabular-nums shrink-0">
                 ₦{monthlyDisCoBill.toLocaleString('en-NG')}
@@ -150,9 +150,9 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
           {/* Current Spending Summary Box */}
           <div className="p-4 sm:p-5 rounded-2xl bg-rose-50 border border-rose-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div>
-              <p className="text-sm font-bold text-rose-900">Total Money Burned Each Year Right Now:</p>
+              <p className="text-sm font-bold text-rose-900">Total annual spending without solar:</p>
               <p className="text-xs sm:text-sm text-rose-700 mt-0.5">
-                Without solar, this money is gone forever with 0 asset equity.
+                This is an ongoing operating expense that produces no asset ownership.
               </p>
             </div>
             <div className="text-left sm:text-right shrink-0">
@@ -160,7 +160,7 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
                 ₦{currentAnnualCost.toLocaleString('en-NG')}
               </span>
               <span className="text-xs text-rose-700 font-semibold font-mono">
-                / year sunk expense
+                / year recurring expense
               </span>
             </div>
           </div>
@@ -172,10 +172,10 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
             <div className="flex items-center justify-between pb-3 border-b border-[#dedfe5] mb-5">
               <h4 className="font-headline-sm text-base font-bold text-[#1a1c1c] flex items-center gap-2">
                 <SparklesIcon className="w-4 h-4 text-primary" />
-                <span>2. Your Guaranteed Solar Payback</span>
+                <span>2. Estimated payback timeline</span>
               </h4>
               <span className="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 text-xs font-bold">
-                Silent Operation
+                Quiet power
               </span>
             </div>
 
@@ -185,26 +185,26 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
               <div className="bg-white rounded-2xl p-5 border border-[#dedfe5] shadow-xs">
                 <div className="flex items-center gap-1.5 text-xs sm:text-sm text-[#5c5e63] font-semibold mb-1">
                   <Clock01Icon className="w-4 h-4 text-primary" />
-                  <span>Full System Payback Time</span>
+                  <span>Estimated payback period</span>
                 </div>
                 <div className="font-metric-counter text-3xl font-bold text-primary">
-                  {paybackYears} <span className="text-lg font-normal text-[#1a1c1c]">Years</span>
+                  {paybackYears} <span className="text-lg font-normal text-[#1a1c1c]">years</span>
                 </div>
                 <p className="text-sm text-[#5c4037] mt-1 font-medium leading-relaxed">
-                  After ~{paybackMonths} months, your entire system has completely paid for itself!
+                  In about {paybackMonths} months, cumulative fuel and grid savings equal the full purchase price of the system.
                 </p>
               </div>
 
               {/* Box 2: Monthly Cash Kept */}
               <div className="bg-white rounded-2xl p-5 border border-[#dedfe5] shadow-xs">
                 <div className="text-xs sm:text-sm text-[#5c5e63] font-semibold mb-1">
-                  Monthly Cash Kept In Pocket
+                  Estimated monthly savings
                 </div>
                 <div className="font-metric-counter text-3xl font-bold text-emerald-700">
                   +₦{monthlySavings.toLocaleString('en-NG')}
                 </div>
                 <p className="text-sm text-[#5c4037] mt-1 font-medium leading-relaxed">
-                  Direct monthly savings you redirect to school fees, food or business.
+                  Money saved each month after accounting for small residual grid tariffs during cloudy weeks.
                 </p>
               </div>
             </div>
@@ -213,8 +213,8 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
             <div className="space-y-3 mb-5 sm:mb-6">
               <div className="bg-white rounded-2xl p-4 border border-[#dedfe5] flex items-center justify-between gap-3">
                 <div>
-                  <span className="text-sm sm:text-base font-bold text-[#1a1c1c] block">5-Year Retained Wealth</span>
-                  <span className="text-xs sm:text-sm text-[#5c4037]">Money saved after deducting initial solar installation</span>
+                  <span className="text-sm sm:text-base font-bold text-[#1a1c1c] block">5-year cumulative savings</span>
+                  <span className="text-xs sm:text-sm text-[#5c4037]">Net savings after subtracting the initial installation cost</span>
                 </div>
                 <span className="font-metric-counter text-xl sm:text-2xl font-bold text-primary shrink-0 tabular-nums">
                   ₦{fiveYearNetSavings.toLocaleString('en-NG')}
@@ -223,8 +223,8 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
 
               <div className="bg-white rounded-2xl p-4 border border-[#dedfe5] flex items-center justify-between gap-3">
                 <div>
-                  <span className="text-sm sm:text-base font-bold text-[#1a1c1c] block">10-Year Cumulative Savings</span>
-                  <span className="text-xs sm:text-sm text-[#5c4037]">Solar panels guaranteed for 25 years of free sun</span>
+                  <span className="text-sm sm:text-base font-bold text-[#1a1c1c] block">10-year cumulative savings</span>
+                  <span className="text-xs sm:text-sm text-[#5c4037]">Net savings over 10 years of operation</span>
                 </div>
                 <span className="font-metric-counter text-xl sm:text-2xl font-bold text-emerald-700 shrink-0 tabular-nums">
                   ₦{tenYearNetSavings.toLocaleString('en-NG')}
@@ -239,7 +239,7 @@ export const SolarRoiCalculator: React.FC<SolarRoiCalculatorProps> = ({ onSelect
               onClick={() => onSelectPackage ? onSelectPackage(selectedPkg.name) : null}
               className="w-full py-4 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer min-h-[48px] touch-manipulation active:scale-[0.98]"
             >
-              <span>Lock In This Complete Setup ({selectedPkg.name})</span>
+              <span>Request quote for this package ({selectedPkg.name})</span>
               <ArrowRight01Icon className="w-5 h-5" />
             </button>
           </div>

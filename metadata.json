@@ -1,6 +1,6 @@
 {
   "name": "SunGrid Systems",
-  "description": "Engineered, quiet residential and commercial turnkey solar infrastructure for Nigerian homes and facilities.",
+  "description": "Solar installations, lithium battery storage, and inverter power systems for Nigerian homes and businesses.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

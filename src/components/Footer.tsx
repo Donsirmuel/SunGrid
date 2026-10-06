@@ -20,13 +20,12 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
             </div>
 
             <p className="font-body-md text-sm text-[#5c4037]/90 max-w-sm mb-6 leading-relaxed">
-              Complete residential and commercial solar installations, Grade-A lithium storage,
-              and dedicated depot warranty support across Nigeria.
+              Solar power systems, long-life lithium battery storage, and physical spare parts depots across Nigeria.
             </p>
 
             <div className="flex flex-col gap-1 p-3.5 rounded-2xl bg-white/80 border border-neutral-300/60 w-full sm:w-auto">
               <span className="font-label-caps text-xs text-[#5c4037] uppercase font-bold tracking-wider">
-                Priority Engineering & Client Line
+                Engineering and support line
               </span>
               <a
                 className="font-headline-sm text-lg text-primary font-bold hover:text-primary-container transition-colors inline-flex items-center gap-2"
@@ -41,19 +40,19 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
           {/* Col 3: Regional Hubs */}
           <div className="flex flex-col gap-2">
             <span className="font-label-caps text-xs text-[#1a1c1c] uppercase tracking-wider font-bold mb-1">
-              Regional Hubs
+              Regional depots
             </span>
             <span className="font-body-sm text-sm text-[#5c4037]">
               Lagos (Victoria Island & Lekki)
             </span>
             <span className="font-body-sm text-sm text-[#5c4037]">
-              Abuja (Maitama Energy Lab)
+              Abuja (Maitama & Idu Industrial)
             </span>
             <span className="font-body-sm text-sm text-[#5c4037]">
-              Port Harcourt (GRA Phase 2)
+              Port Harcourt (Trans-Amadi)
             </span>
             <span className="font-body-sm text-sm text-[#5c4037]">
-              Ibadan (Bodija Operations)
+              Ibadan (Bodija & Ring Road)
             </span>
             <button
               onClick={() => {
@@ -62,14 +61,14 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
               }}
               className="text-left text-sm font-semibold text-primary hover:underline mt-2 cursor-pointer"
             >
-              View Regional Hubs & Depots →
+              View regional depots & stock →
             </button>
           </div>
 
           {/* Col 4: Systems */}
           <div className="flex flex-col gap-2">
             <span className="font-label-caps text-xs text-[#1a1c1c] uppercase tracking-wider font-bold mb-1">
-              Engineered Systems
+              Solar packages
             </span>
             <button
               onClick={() => {
@@ -78,7 +77,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
               }}
               className="text-left font-body-sm text-sm text-[#5c4037] hover:text-[#1a1c1c] transition-colors cursor-pointer"
             >
-              Small Flat & Work (3.5kVA)
+              Small flat & apartment (3.5kVA)
             </button>
             <button
               onClick={() => {
@@ -87,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
               }}
               className="text-left font-body-sm text-sm text-[#5c4037] hover:text-[#1a1c1c] transition-colors cursor-pointer"
             >
-              Duplex Family Comfort (8-10kVA)
+              Family duplex (8-10kVA)
             </button>
             <button
               onClick={() => {
@@ -96,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
               }}
               className="text-left font-body-sm text-sm text-[#5c4037] hover:text-[#1a1c1c] transition-colors cursor-pointer"
             >
-              Estate Villa & Clinic (15kVA+)
+              Mansion & clinic (15kVA+)
             </button>
             <button
               onClick={() => {
@@ -105,7 +104,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
               }}
               className="text-left font-body-sm text-sm text-[#5c4037] hover:text-[#1a1c1c] transition-colors cursor-pointer"
             >
-              SunGrid Nomad Portable (2.4kW)
+              Nomad portable power (2.4kW)
             </button>
             <button
               onClick={() => {
@@ -114,20 +113,20 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
               }}
               className="text-left font-body-sm text-sm text-primary font-semibold hover:underline mt-1 cursor-pointer"
             >
-              Smart Load Telemetry Sizer →
+              Calculate your load size →
             </button>
           </div>
 
           {/* Col 5: SunGrid Standards */}
           <div className="flex flex-col gap-2">
             <span className="font-label-caps text-xs text-[#1a1c1c] uppercase tracking-wider font-bold mb-1">
-              SunGrid Standards
+              Installation standards
             </span>
-            <span className="text-sm text-[#5c4037] font-medium">10-Year Inverter Warranty</span>
-            <span className="text-sm text-[#5c4037] font-medium">6,000 Cycle LiFePO4</span>
-            <span className="text-sm text-[#5c4037] font-medium">24hr Rapid Field Support</span>
-            <span className="text-sm text-[#5c4037] font-medium">Fast &lt;4ms Transfer Switch</span>
-            <span className="text-sm text-[#5c4037] font-medium">Pure Electrolytic Copper Conduits</span>
+            <span className="text-sm text-[#5c4037] font-medium">10-year inverter warranty</span>
+            <span className="text-sm text-[#5c4037] font-medium">6,000-cycle LiFePO4 batteries</span>
+            <span className="text-sm text-[#5c4037] font-medium">24-hour equipment replacement</span>
+            <span className="text-sm text-[#5c4037] font-medium">&lt;4ms automatic transfer switch</span>
+            <span className="text-sm text-[#5c4037] font-medium">Pure electrolytic copper wiring</span>
           </div>
         </div>
 
@@ -135,15 +134,15 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenQuote }) => {
         <div className="mt-12 pt-8 border-t border-[#dedfe5] flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-[#5c4037]">
           <p>© 2025 SunGrid Systems Nigeria Limited. RC 1892044. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <span className="text-neutral-500">NERC Certified Solar Engineering</span>
+            <span className="text-neutral-500">NERC-certified electrical engineers</span>
             <span className="text-neutral-500 hidden sm:inline">•</span>
-            <span className="text-neutral-500">IEEE 1547 Grid Standard Compliant</span>
+            <span className="text-neutral-500">IEEE 1547 grid standard compliant</span>
             <span className="text-neutral-500 hidden sm:inline">•</span>
             <button
               onClick={onOpenQuote}
               className="text-primary font-semibold hover:underline cursor-pointer"
             >
-              Book Physical Site Audit
+              Book an on-site audit
             </button>
           </div>
         </div>
