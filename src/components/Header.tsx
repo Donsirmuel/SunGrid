@@ -100,16 +100,16 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Toll-free Hotline Ghost Pill */}
             <a
               href="tel:08007864743"
-              className="hidden sm:inline-flex items-center gap-2 h-[44px] px-4.5 rounded-full border border-[#0C0730]/16 hover:border-[#0C0730]/40 hover:bg-white text-[14px] font-medium text-[#0C0730] transition-all cursor-pointer"
+              className="hidden xl:inline-flex items-center gap-2 h-[44px] px-4.5 rounded-full border border-[#0C0730]/16 hover:border-[#0C0730]/40 hover:bg-white text-[14px] font-medium text-[#0C0730] transition-all cursor-pointer"
             >
               <Call02Icon className="w-4 h-4 text-[#ff5400]" />
               <span>0800-SUNGRID</span>
             </a>
 
-            {/* Solid Ink Action Control */}
+            {/* Solid Ink Action Control (hidden on mobile to prevent overflow) */}
             <button
               onClick={onOpenQuote}
-              className="inline-flex items-center gap-2 h-[44px] px-5 sm:px-5.5 rounded-full bg-[#0A0A0D] hover:bg-[#22184A] text-white text-[14px] font-medium transition-all cursor-pointer active:scale-95 shadow-xs group"
+              className="hidden md:inline-flex items-center gap-2 h-[44px] px-5 sm:px-5.5 rounded-full bg-[#0A0A0D] hover:bg-[#22184A] text-white text-[14px] font-medium transition-all cursor-pointer active:scale-95 shadow-xs group"
             >
               <span>Request a quote</span>
               <ArrowRight01Icon className="w-4 h-4 transition-transform group-hover:translate-x-1" />

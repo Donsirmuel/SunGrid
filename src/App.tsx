@@ -31,7 +31,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0C0730] selection:bg-orange-500/20 selection:text-[#ff5400] relative font-sans antialiased pb-safe">
+    <div className="min-h-screen flex flex-col bg-white text-[#0C0730] selection:bg-orange-500/20 selection:text-[#ff5400] relative font-sans antialiased pb-safe overflow-x-hidden max-w-full">
       {/* Navigation Header */}
       <Header
         currentTab={currentTab}
