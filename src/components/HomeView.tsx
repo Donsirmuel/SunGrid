@@ -145,68 +145,82 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab, onOpenQuote }) 
   }
 
   return (
-    <div className="w-full flex flex-col bg-[#f9f9f8]">
-      {/* SECTION 1: CINEMATIC FULL-BLEED HERO STAGE */}
-      <section 
-        id="hero-container"
-        className="relative w-full min-h-[760px] lg:min-h-[860px] h-[92vh] max-h-[960px] overflow-hidden bg-neutral-950 flex flex-col justify-center"
-      >
-        {/* 40-Frame Interactive Canvas Engine */}
-        <HeroCanvas />
+    <div className="w-full flex flex-col bg-white">
+      {/* SECTION 1: INSET ROUNDED CINEMATIC HERO STAGE (QuickFleet architecture) */}
+      <div className="w-full px-2.5 sm:px-4 lg:px-6 pt-2 sm:pt-3">
+        <section 
+          id="hero-container"
+          className="relative w-full rounded-[22px] sm:rounded-[28px] lg:rounded-[32px] overflow-hidden bg-[#0A0A0D] h-[min(calc(100svh-96px),880px)] min-h-[580px] sm:min-h-[640px] flex flex-col justify-center shadow-xl shadow-black/8 select-none"
+        >
+          {/* 40-Frame Interactive Canvas / H.264 Video Engine */}
+          <HeroCanvas />
 
-        {/* Hero Copy Overlay positioned in open dusk sky negative space */}
-        <div className="relative z-10 max-w-2xl px-6 sm:px-12 lg:px-16 pt-24 pb-20 text-left pointer-events-none">
-          {/* Main Headline with Outfit exclusively & -0.03em tracking */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Outfit'] font-bold tracking-[-0.03em] text-white leading-[1.08]">
-            <span 
-              id="hero-synced-line-1"
-              className="block drop-shadow-md hero-state-hidden"
-            >
-              Say goodbye to blackouts.
-            </span>
-            <span 
-              id="hero-synced-line-2" 
-              className="block text-white mt-1 drop-shadow-md hero-state-hidden"
-            >
-              Power your home quietly, day and night.
-            </span>
-          </h1>
+          {/* Hero Copy Overlay positioned on the left with QuickFleet layout */}
+          <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-12 lg:px-16 py-12 flex flex-col justify-center h-full pointer-events-none">
+            <div className="max-w-[700px]">
+              {/* Main Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-['Outfit'] font-bold text-white tracking-[-0.028em] leading-[1.04]">
+                <span 
+                  id="hero-synced-line-1"
+                  className="block hero-state-hidden text-white"
+                >
+                  Say goodbye to blackouts.
+                </span>
+                <span 
+                  id="hero-synced-line-2" 
+                  className="block text-[#ff8e4d] mt-1 hero-state-hidden"
+                >
+                  Quiet solar power for your home.
+                </span>
+              </h1>
 
-          {/* Sub-paragraph narrative with Plus Jakarta Sans at 500 weight and subtle blur transitions */}
-          <p 
-            id="hero-synced-p"
-            className="mt-6 text-sm sm:text-base text-neutral-300 font-['Plus_Jakarta_Sans'] font-medium leading-relaxed max-w-xl hero-state-hidden"
-          >
-            Keep your air conditioners, refrigerator, and Wi-Fi running through power cuts without generator noise or petrol queues.
-          </p>
+              {/* Sub-paragraph narrative */}
+              <p 
+                id="hero-synced-p"
+                className="mt-5 text-base sm:text-lg lg:text-[18px] text-white/90 font-['Plus_Jakarta_Sans'] font-normal leading-relaxed max-w-[500px] hero-state-hidden"
+              >
+                Keep your air conditioners, refrigerator, and Wi-Fi running through power cuts without generator noise or petrol queues.
+              </p>
 
-          {/* Focused Call-to-Action buttons */}
-          <div 
-            id="hero-synced-cta" 
-            className="mt-8 flex items-center gap-4 hero-state-hidden"
-          >
-            <button
-              onClick={() => {
-                const el = document.getElementById('home-sizer-section');
-                el?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#b93800] hover:bg-[#a03000] text-white font-['Plus_Jakarta_Sans'] font-medium rounded-xl text-sm sm:text-[15px] transition-all shadow-lg shadow-[#b93800]/30 cursor-pointer active:scale-95 pointer-events-auto border border-orange-500/20"
-            >
-              <span>Calculate what size you need</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-              </svg>
-            </button>
+              {/* Focused Call-to-Action Pill Buttons */}
+              <div 
+                id="hero-synced-cta" 
+                className="mt-8 sm:mt-10 flex flex-wrap items-center gap-3 sm:gap-4 hero-state-hidden pointer-events-auto"
+              >
+                {/* Primary Button: Solid White Pill with Dark Ink Text */}
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('home-sizer-section');
+                    el?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center gap-2.5 h-[52px] sm:h-[56px] px-6 sm:px-7 rounded-full bg-white hover:bg-[#F3EFE8] text-[#0C0730] font-['Plus_Jakarta_Sans'] font-semibold text-[15px] sm:text-base transition-all transform hover:-translate-y-0.5 active:scale-95 shadow-lg shadow-black/20 cursor-pointer group"
+                >
+                  <span>Calculate what size you need</span>
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </button>
 
-            <button
-              onClick={() => onOpenQuote()}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-['Plus_Jakarta_Sans'] font-medium text-sm backdrop-blur-sm border border-white/15 transition-all cursor-pointer pointer-events-auto active:scale-95"
-            >
-              <span>Request a quote</span>
-            </button>
+                {/* Ghost Button: Frosted Glass Pill with White Border */}
+                <button
+                  onClick={() => onOpenQuote()}
+                  className="inline-flex items-center gap-2.5 h-[52px] sm:h-[56px] px-6 sm:px-7 rounded-full bg-white/18 hover:bg-white/28 text-white font-['Plus_Jakarta_Sans'] font-semibold text-[15px] sm:text-base border border-white/80 backdrop-blur-md transition-all transform hover:-translate-y-0.5 active:scale-95 cursor-pointer group"
+                >
+                  <span>Request a quote</span>
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+
+          {/* QuickFleet Corner Annotations */}
+          <div className="hidden sm:block absolute bottom-6 sm:bottom-8 left-6 sm:left-12 lg:left-16 z-10 text-xs sm:text-[13px] text-white/70 font-medium pointer-events-none">
+            Field depots open in Lagos · Abuja · Port Harcourt · Ibadan
+          </div>
+        </section>
+      </div>
 
       {/* SECTION 2: AUDITED PROOF METRICS ROW */}
       <section 

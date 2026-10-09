@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { NavTab, SolarPackage } from '../types';
-import { SOLAR_PACKAGES } from '../data/packages';
-import { LazyImage } from './LazyImage';
+import { NavTab } from '../types';
+import { PACKAGES, formatFullNaira, formatMonthlyNaira, formatKva } from '../data/packages';
 import { DailyEnergyYieldChart } from './DailyEnergyYieldChart';
 import { 
   FlashIcon, 
   VolumeMute01Icon, 
   Shield01Icon, 
-  ArrowRight01Icon, 
   Calculator01Icon, 
   BatteryCharging01Icon
 } from 'hugeicons-react';
@@ -28,7 +26,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
     { id: 'portable', label: 'Renters & Portable' }
   ];
 
-  const filteredPackages = SOLAR_PACKAGES.filter((pkg) => {
+  const filteredPackages = PACKAGES.filter((pkg) => {
     if (selectedCategory === 'all') return true;
     return pkg.category === selectedCategory;
   });
@@ -47,6 +45,17 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
             and surface-trunked copper wiring designed for Nigerian grid conditions.
           </p>
 
+          {/* Single intro line + comparison link */}
+          <div className="mt-3 flex items-center justify-center flex-wrap gap-2 text-sm text-[#5c4037]">
+            <span>Every price includes panels, battery, copper cabling and installation.</span>
+            <button
+              onClick={() => onSelectTab('pricing')}
+              className="text-[#111418] font-semibold underline underline-offset-[3px] hover:text-black cursor-pointer inline-flex items-center min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111418] focus-visible:ring-offset-2"
+            >
+              Compare prices side by side
+            </button>
+          </div>
+
           {/* Category Filter Tabs - Mobile Scrollable */}
           <div className="w-full overflow-x-auto pb-2 sm:pb-0 scrollbar-none flex justify-start sm:justify-center mt-6 sm:mt-8">
             <div className="inline-flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#eeeeed] border border-[#dedfe5] shrink-0">
@@ -56,7 +65,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-4 py-2.5 rounded-xl font-label-ui text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer touch-manipulation whitespace-nowrap min-h-[44px] ${
+                    className={`px-4 py-2.5 rounded-xl font-label-ui text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer touch-manipulation whitespace-nowrap min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111418] focus-visible:ring-offset-2 ${
                       active
                         ? 'bg-white text-primary font-bold shadow-xs border border-[#dedfe5]'
                         : 'text-[#5c5e63] hover:text-[#1a1c1c]'
@@ -71,121 +80,129 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectTab, onOpenQ
         </div>
       </section>
 
-      {/* SECTION: PACKAGES GRID */}
+      {/* SECTION: PACKAGE ROWS (Single column, 24px apart) */}
       <section className="max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-14 pb-16 sm:pb-20 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="flex flex-col space-y-6">
           {filteredPackages.map((pkg) => {
-            const isFeatured = pkg.id === 'duplex-executive';
+            const isFeatured = pkg.featured;
 
             return (
               <div
+                id={pkg.id}
                 key={pkg.id}
-                className={`flex flex-col justify-between rounded-2xl bg-white p-5 sm:p-6 transition-all duration-300 relative ${
+                className={`w-full rounded-3xl transition-colors ${
                   isFeatured
-                    ? 'ring-2 ring-primary shadow-xl md:-translate-y-2'
-                    : 'border border-[#dedfe5] shadow-sm hover:shadow-md'
-                }`}
+                    ? 'border-2 border-primary bg-white'
+                    : 'border border-[#EAEAE7] bg-white'
+                } p-6 md:p-8 flex flex-col gap-6`}
               >
-                {isFeatured && (
-                  <div className="absolute -top-3 left-6 px-3 py-1 rounded-md bg-primary text-white font-label-caps text-xs uppercase tracking-wider font-bold shadow-xs">
-                    {pkg.badge || "Nigeria's #1 Most Selected"}
-                  </div>
-                )}
-
-                <div>
-                  {/* Image container */}
-                  <div className="relative w-full h-44 rounded-xl overflow-hidden bg-neutral-200 mb-5">
-                    <LazyImage
-                      src={pkg.image}
-                      alt={pkg.name}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                    <span
-                      className={`absolute top-3 left-3 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider backdrop-blur-md z-10 ${
-                        isFeatured
-                          ? 'bg-primary text-white'
-                          : 'bg-white/95 text-[#1a1c1c] shadow-xs'
-                      }`}
-                    >
-                      {pkg.powerKva}
-                    </span>
-                  </div>
-
-                  {/* Title & Tagline */}
-                  <h3 className="font-headline-sm text-xl font-bold text-[#1a1c1c] mb-1">
-                    {pkg.name}
-                  </h3>
-                  <p className="font-body-sm text-sm sm:text-base text-[#5c4037] mb-4 line-clamp-2 leading-relaxed">
-                    {pkg.description}
-                  </p>
-
-                  {/* Price Box */}
-                  <div className="mb-5 pb-4 border-b border-[#dedfe5]">
-                    <span className="font-label-caps text-xs text-[#5c5e63] uppercase font-bold tracking-wider block">
-                      Complete setup investment
-                    </span>
-                    <div
-                      className={`font-metric-counter text-2xl sm:text-3xl font-bold tracking-tight mt-0.5 ${
-                        isFeatured ? 'text-primary' : 'text-[#1a1c1c]'
-                      }`}
-                    >
-                      ₦{pkg.priceNgn.toLocaleString('en-NG')}
-                    </div>
-                    {pkg.monthlyInstallment && (
-                      <p className="text-sm sm:text-base text-primary font-bold mt-0.5">
-                        Or ₦{pkg.monthlyInstallment.toLocaleString('en-NG')} / month
-                      </p>
+                {/* Zone 1: Header zone (Name & meta on left, Price, monthly & button on right, top-aligned) */}
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                  {/* Left: Most popular badge, name, meta line, description sentence (max 52ch) */}
+                  <div className="flex flex-col items-start max-w-[52ch]">
+                    {isFeatured && (
+                      <span className="inline-block px-3 py-1 rounded-full bg-primary text-white text-[13px] font-semibold tracking-wide mb-3">
+                        Most popular
+                      </span>
                     )}
-                    <span className="text-xs sm:text-sm text-[#5c5e63] block mt-1 font-medium">
-                      Includes panels, battery, copper cabling & installation
-                    </span>
-                  </div>
-
-                  {/* Simple Plain-English Summary Banner */}
-                  {pkg.simpleSummary && (
-                    <div className="mb-4 p-3 rounded-xl bg-[#fdf2ec] border border-[#ffdbcf] text-sm sm:text-base text-[#5c4037] leading-relaxed">
-                      {pkg.simpleSummary}
+                    <h2 className="text-[24px] font-semibold text-[#111418] font-['Outfit'] leading-tight">
+                      {pkg.name}
+                    </h2>
+                    <div className="text-[14px] font-medium text-[#5A6169] mt-1">
+                      {pkg.homeSize} · {formatKva(pkg.kva)}
                     </div>
-                  )}
-
-                  {/* Highlights List without excessive check icons */}
-                  <div
-                    className={`space-y-2.5 py-3.5 rounded-xl px-3.5 mb-4 ${
-                      isFeatured ? 'bg-[#ffdbcf]/30' : 'bg-[#f3f4f3]'
-                    }`}
-                  >
-                    {pkg.highlights.map((h, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-sm sm:text-base text-[#1a1c1c]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                        <span>{h}</span>
-                      </div>
-                    ))}
+                    <p className="mt-2 text-[14px] leading-[1.5] text-[#5A6169] max-w-[52ch]">
+                      {pkg.descriptionSentence}
+                    </p>
                   </div>
 
-                  {/* Link to Dedicated Hardware Specs Section */}
-                  <div className="pt-2 border-t border-dashed border-[#dedfe5]">
-                    <a
-                      href="#hardware-specs"
-                      className="flex items-center justify-between w-full font-label-ui text-sm sm:text-base text-[#5c5e63] hover:text-primary transition-colors py-2 cursor-pointer group"
+                  {/* Right: Price, monthly line, and button, top-aligned */}
+                  <div className="flex flex-col items-start md:items-end shrink-0 w-full md:w-auto">
+                    <div className="text-[32px] font-bold text-[#111418] font-['Outfit'] [font-variant-numeric:tabular-nums] leading-none">
+                      {formatFullNaira(pkg.priceNgn)}
+                    </div>
+                    <div className="text-[15px] font-medium text-[#3A3F45] mt-1.5">
+                      {formatMonthlyNaira(pkg.monthlyNgn, pkg.monthlyNote)}
+                    </div>
+                    <button
+                      onClick={() => onOpenQuote(`${pkg.name} (${formatFullNaira(pkg.priceNgn)})`)}
+                      className={`w-full md:w-[200px] h-[48px] rounded-full mt-4 text-[15px] font-semibold cursor-pointer transition-colors flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111418] focus-visible:ring-offset-2 ${
+                        isFeatured
+                          ? 'bg-primary hover:bg-primary-container text-white shadow-none'
+                          : 'border border-[#111418] bg-transparent text-[#111418] hover:bg-[#F3F4F3] shadow-none'
+                      }`}
                     >
-                      <span className="font-semibold group-hover:underline">Hardware specs &amp; plain meaning</span>
-                      <ArrowRight01Icon className="w-4 h-4 text-primary group-hover:translate-x-0.5 transition-transform" />
-                    </a>
+                      Select package
+                    </button>
                   </div>
                 </div>
 
-                {/* Card Action Button */}
-                <div className="pt-4">
-                  <button
-                    onClick={() => onOpenQuote(pkg.name)}
-                    className={`w-full py-4 rounded-xl font-label-ui text-sm sm:text-base font-semibold transition-all cursor-pointer min-h-[48px] touch-manipulation active:scale-[0.98] ${
-                      isFeatured
-                        ? 'bg-primary hover:bg-primary-container text-white shadow-md'
-                        : 'bg-[#eeeeed] hover:bg-[#e2e2e2] text-[#1a1c1c]'
-                    }`}
-                  >
-                    {isFeatured ? 'Select this setup' : 'Configure package'}
-                  </button>
+                {/* Zone 2: Body zone (Two equal columns with 40px gap, items-start, collapses to 1 col below 768px) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-start">
+                  {/* Left Column: What it runs */}
+                  <div className="flex flex-col items-start">
+                    <div className="text-[14px] font-semibold text-[#5A6169] mb-3">
+                      What it runs
+                    </div>
+                    <ul className="space-y-2 list-disc list-outside pl-4 text-[15px] text-[#111418] marker:text-[#3A3F45] leading-relaxed">
+                      {pkg.runs.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Right Column: Hardware */}
+                  <div className="flex flex-col items-start">
+                    <div className="text-[14px] font-semibold text-[#5A6169] mb-3">
+                      Hardware
+                    </div>
+                    <div className="space-y-4 w-full">
+                      {/* Inverter */}
+                      <div>
+                        <div className="text-[14px] font-semibold text-[#5A6169]">
+                          Inverter
+                        </div>
+                        <div className="text-[15px] font-semibold text-[#111418] mt-0.5">
+                          {pkg.hardware.inverter.value}
+                        </div>
+                        {pkg.hardware.inverter.plainMeaning && (
+                          <div className="text-[14px] text-[#5A6169] mt-0.5 leading-[1.5] max-w-[60ch]">
+                            {pkg.hardware.inverter.plainMeaning}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Battery */}
+                      <div>
+                        <div className="text-[14px] font-semibold text-[#5A6169]">
+                          Battery
+                        </div>
+                        <div className="text-[15px] font-semibold text-[#111418] mt-0.5">
+                          {pkg.hardware.battery.value}
+                        </div>
+                        {pkg.hardware.battery.plainMeaning && (
+                          <div className="text-[14px] text-[#5A6169] mt-0.5 leading-[1.5] max-w-[60ch]">
+                            {pkg.hardware.battery.plainMeaning}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Solar panels */}
+                      <div>
+                        <div className="text-[14px] font-semibold text-[#5A6169]">
+                          Solar panels
+                        </div>
+                        <div className="text-[15px] font-semibold text-[#111418] mt-0.5">
+                          {pkg.hardware.solarPanels.value}
+                        </div>
+                        {pkg.hardware.solarPanels.plainMeaning && (
+                          <div className="text-[14px] text-[#5A6169] mt-0.5 leading-[1.5] max-w-[60ch]">
+                            {pkg.hardware.solarPanels.plainMeaning}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             );

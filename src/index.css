@@ -245,3 +245,34 @@ select,
 .beam-travel-active {
   animation: beam-travel 2.4s linear infinite;
 }
+
+/* QuickFleet-style pulse and bounce micro-interactions */
+@keyframes qf-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 84, 0, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 84, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 84, 0, 0);
+  }
+}
+
+.qf-pulse-dot {
+  animation: qf-pulse 2.4s infinite;
+}
+
+@keyframes qf-nudge {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+.qf-nudge {
+  animation: qf-nudge 2s ease-in-out infinite;
+}
+

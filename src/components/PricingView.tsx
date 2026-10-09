@@ -2,21 +2,20 @@ import React, { useState } from 'react';
 import { NavTab } from '../types';
 import { IMAGES } from '../data/assets';
 import { LazyImage } from './LazyImage';
+import { PRICING_PACKAGES, formatCompactNaira, formatMonthlyNaira, formatKva } from '../data/packages';
 import { SolarRoiCalculator } from './SolarRoiCalculator';
 import { 
   Shield01Icon, 
   Clock01Icon, 
   SecurityLockIcon, 
   ArrowRight01Icon, 
-  ArrowDown01Icon, 
-  ArrowUp01Icon, 
-  Add01Icon, 
-  Remove01Icon,
   SparklesIcon,
-  Award01Icon,
+  CheckmarkCircle02Icon,
   FlashIcon,
-  Call02Icon,
-  CheckmarkCircle02Icon
+  Award01Icon,
+  Remove01Icon,
+  Add01Icon,
+  Call02Icon
 } from 'hugeicons-react';
 
 interface PricingViewProps {
@@ -25,28 +24,41 @@ interface PricingViewProps {
 }
 
 export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuote }) => {
-  // Package full spec toggles
-  const [openSpecs, setOpenSpecs] = useState<{ [key: string]: boolean }>({
-    'duplex': false
-  });
+  // Mobile selected package tab state (defaults to featured duplex package)
+  const [mobileSelectedId, setMobileSelectedId] = useState<string>('duplex');
 
   // FAQ accordion state
   const [openFaqs, setOpenFaqs] = useState<{ [key: number]: boolean }>({
     0: true // first open by default
   });
 
-  const toggleSpec = (id: string) => {
-    setOpenSpecs((prev) => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
-
   const toggleFaq = (idx: number) => {
     setOpenFaqs((prev) => ({
       ...prev,
       [idx]: !prev[idx]
     }));
+  };
+
+  const handleMobileTabKeyDown = (e: React.KeyboardEvent, currentIndex: number) => {
+    let nextIndex = currentIndex;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      nextIndex = (currentIndex + 1) % PRICING_PACKAGES.length;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      nextIndex = (currentIndex - 1 + PRICING_PACKAGES.length) % PRICING_PACKAGES.length;
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      nextIndex = PRICING_PACKAGES.length - 1;
+    }
+    if (nextIndex !== currentIndex) {
+      const nextPkg = PRICING_PACKAGES[nextIndex];
+      setMobileSelectedId(nextPkg.id);
+      document.getElementById(`tab-${nextPkg.id}`)?.focus();
+    }
   };
 
   const faqs = [
@@ -158,281 +170,353 @@ export const PricingView: React.FC<PricingViewProps> = ({ onSelectTab, onOpenQuo
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-            {/* Card 1: 3.5kVA Urban */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-1 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
-                    3.5kVA urban setup
-                  </span>
-                  <span className="text-sm text-[#5c5e63] font-semibold">1-2 bed</span>
-                </div>
-                <div>
-                  <p className="text-sm text-[#5c5e63] font-medium">Complete setup & installation</p>
-                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
-                    ₦4.25M
-                  </h3>
-                  <p className="text-sm text-primary font-bold mt-0.5">Or ₦145,000 / month</p>
-                </div>
+          {/* DESKTOP COMPARISON TABLE (768px and up) */}
+          <div className="hidden md:block w-full">
+            <table className="w-full table-fixed border-collapse border border-[#EAEAE7] bg-white rounded-3xl">
+              <caption className="sr-only">Certified complete solar package comparison</caption>
+              <colgroup>
+                <col className="w-[180px] lg:w-[200px]" />
+                <col className="w-1/4" />
+                <col className="w-1/4" />
+                <col className="w-1/4" />
+                <col className="w-1/4" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th
+                    scope="col"
+                    className="p-4 lg:p-6 border-b border-[#EAEAE7] text-left align-bottom bg-white rounded-tl-3xl"
+                  >
+                  </th>
+                  {PRICING_PACKAGES.map((pkg, idx) => {
+                    const isLast = idx === PRICING_PACKAGES.length - 1;
+                    return (
+                      <th
+                        key={pkg.id}
+                        scope="col"
+                        className={`p-4 lg:p-6 border-b border-[#EAEAE7] text-left align-top relative transition-colors ${
+                          pkg.featured
+                            ? 'border-t-2 border-x-2 border-primary bg-[#ffdbcf]/40'
+                            : 'bg-white'
+                        } ${isLast ? 'rounded-tr-3xl' : ''}`}
+                      >
+                        {/* Fixed-height pill container to ensure horizontal button alignment */}
+                        <div className="h-7 mb-2 flex items-center justify-start">
+                          {pkg.featured && (
+                            <span className="inline-block px-3 py-1 rounded-full bg-primary text-white text-[13px] font-semibold tracking-wide">
+                              Most popular
+                            </span>
+                          )}
+                        </div>
 
-                <div className="w-full h-px bg-[#dedfe5] my-4" />
+                        {/* Package name: 20px, weight 600, heading font, #111418 */}
+                        <h3 className="text-[20px] font-semibold text-[#111418] font-['Outfit'] leading-tight h-7 flex items-center justify-start text-left">
+                          {pkg.name}
+                        </h3>
 
-                <ul className="space-y-3 text-sm sm:text-base text-[#5c4037]">
-                  <li className="flex items-start gap-2.5 text-[#1a1c1c] font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                    <span>Powers 1 bedroom inverter AC (1.0 HP) overnight</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>5.12 kWh long-life lithium battery (10+ year lifespan)</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>6 rooftop solar panels (550W monocrystalline)</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>Pumps water to overhead tank (0.5 HP pump)</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>Runs fridge, TV, Starlink Wi-Fi & LED lights 24/7</span>
-                  </li>
-                </ul>
-              </div>
+                        {/* kVA: 14px, weight 500, grey #5A6169 */}
+                        <div className="text-[14px] font-medium text-[#5A6169] mt-1 h-5 flex items-center justify-start text-left">
+                          {formatKva(pkg.kva)}
+                        </div>
 
-              <div className="mt-6 pt-4 border-t border-[#dedfe5]">
-                <button
-                  onClick={() => toggleSpec('urban')}
-                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer py-1"
-                >
-                  <span>Specs & plain meaning</span>
-                  {openSpecs['urban'] ? <ArrowUp01Icon className="w-4 h-4" /> : <ArrowDown01Icon className="w-4 h-4" />}
-                </button>
-                {openSpecs['urban'] && (
-                  <div className="text-sm text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3.5 rounded-xl mb-3 leading-relaxed">
-                    <p><strong className="text-[#1a1c1c]">Pure sine wave:</strong> Smooth electricity without motor hum or flickering lights.</p>
-                    <p><strong className="text-[#1a1c1c]">100% copper wiring:</strong> Heavy 16mm wiring inside conduit prevents dangerous heating.</p>
-                    <p><strong className="text-[#1a1c1c]">Surge protector:</strong> Absorbs sudden national grid voltage spikes safely.</p>
-                    <p><strong className="text-[#1a1c1c]">1-day setup:</strong> Installed, wired, and tested within 24 hours.</p>
-                  </div>
-                )}
-                <button
-                  onClick={() => onOpenQuote('3.5kVA Urban Package (₦4.25M)')}
-                  className="w-full py-3.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer min-h-[48px] touch-manipulation"
-                >
-                  Select package
-                </button>
-              </div>
+                        {/* Price: 40px, weight 700, heading font, #111418, letter-spacing -0.02em, tabular-nums */}
+                        <div className="text-[40px] font-bold text-[#111418] font-['Outfit'] tracking-[-0.02em] [font-variant-numeric:tabular-nums] mt-3 h-12 flex items-center justify-start text-left">
+                          {formatCompactNaira(pkg.priceNgn)}
+                        </div>
+
+                        {/* Monthly line: 15px, weight 500, dark grey #3A3F45 (NOT orange) */}
+                        <div className="text-[15px] font-medium text-[#3A3F45] mt-1 h-6 flex items-center justify-start text-left">
+                          {formatMonthlyNaira(pkg.monthlyNgn, pkg.monthlyNote)}
+                        </div>
+
+                        {/* Button: full column width, 48px tall, pill radius, label 'Select package' */}
+                        <button
+                          onClick={() => onOpenQuote(`${pkg.name} (${formatCompactNaira(pkg.priceNgn)})`)}
+                          className={`w-full h-[48px] rounded-full mt-4 text-[15px] font-semibold cursor-pointer transition-colors flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111418] focus-visible:ring-offset-2 ${
+                            pkg.featured
+                              ? 'bg-primary hover:bg-primary-container text-white shadow-none'
+                              : 'border border-[#111418] bg-transparent text-[#111418] hover:bg-[#F3F4F3] shadow-none'
+                          }`}
+                        >
+                          Select package
+                        </button>
+                      </th>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {/* Row 1: Best for */}
+                <tr className="h-[72px]">
+                  <th
+                    scope="row"
+                    className="px-4 lg:px-6 py-4 text-left text-[14px] font-semibold text-[#5A6169] border-b border-[#EAEAE7] bg-white"
+                  >
+                    Best for
+                  </th>
+                  {PRICING_PACKAGES.map((pkg) => (
+                    <td
+                      key={`best-for-${pkg.id}`}
+                      className={`px-4 lg:px-6 py-4 text-left text-[15px] leading-[1.5] text-[#111418] border-b border-[#EAEAE7] ${
+                        pkg.featured ? 'border-x-2 border-primary bg-[#ffdbcf]/40' : 'bg-white'
+                      }`}
+                    >
+                      {pkg.homeSize}
+                    </td>
+                  ))}
+                </tr>
+
+                {/* Row 2: Runs */}
+                <tr className="h-[72px]">
+                  <th
+                    scope="row"
+                    className="px-4 lg:px-6 py-4 text-left text-[14px] font-semibold text-[#5A6169] border-b border-[#EAEAE7] bg-white"
+                  >
+                    Runs
+                  </th>
+                  {PRICING_PACKAGES.map((pkg) => (
+                    <td
+                      key={`runs-${pkg.id}`}
+                      className={`px-4 lg:px-6 py-4 text-left text-[15px] leading-[1.5] text-[#111418] border-b border-[#EAEAE7] ${
+                        pkg.featured ? 'border-x-2 border-primary bg-[#ffdbcf]/40' : 'bg-white'
+                      }`}
+                    >
+                      {pkg.runsShort}
+                    </td>
+                  ))}
+                </tr>
+
+                {/* Row 3: Battery */}
+                <tr className="h-[72px]">
+                  <th
+                    scope="row"
+                    className="px-4 lg:px-6 py-4 text-left text-[14px] font-semibold text-[#5A6169] border-b border-[#EAEAE7] bg-white"
+                  >
+                    Battery
+                  </th>
+                  {PRICING_PACKAGES.map((pkg) => (
+                    <td
+                      key={`battery-${pkg.id}`}
+                      className={`px-4 lg:px-6 py-4 text-left text-[15px] leading-[1.5] text-[#111418] border-b border-[#EAEAE7] ${
+                        pkg.featured ? 'border-x-2 border-primary bg-[#ffdbcf]/40' : 'bg-white'
+                      }`}
+                    >
+                      {pkg.batteryKwh} kWh lithium
+                    </td>
+                  ))}
+                </tr>
+
+                {/* Row 4: Solar panels */}
+                <tr className="h-[72px]">
+                  <th
+                    scope="row"
+                    className="px-4 lg:px-6 py-4 text-left text-[14px] font-semibold text-[#5A6169] border-b border-[#EAEAE7] bg-white"
+                  >
+                    Solar panels
+                  </th>
+                  {PRICING_PACKAGES.map((pkg) => (
+                    <td
+                      key={`panels-${pkg.id}`}
+                      className={`px-4 lg:px-6 py-4 text-left text-[15px] leading-[1.5] text-[#111418] border-b border-[#EAEAE7] ${
+                        pkg.featured ? 'border-x-2 border-primary bg-[#ffdbcf]/40' : 'bg-white'
+                      }`}
+                    >
+                      {pkg.panelCount} x {pkg.panelWatts} W
+                    </td>
+                  ))}
+                </tr>
+
+                {/* Row 5: Water pump */}
+                <tr className="h-[72px]">
+                  <th
+                    scope="row"
+                    className="px-4 lg:px-6 py-4 text-left text-[14px] font-semibold text-[#5A6169] border-b border-[#EAEAE7] bg-white"
+                  >
+                    Water pump
+                  </th>
+                  {PRICING_PACKAGES.map((pkg) => (
+                    <td
+                      key={`pump-${pkg.id}`}
+                      className={`px-4 lg:px-6 py-4 text-left text-[15px] leading-[1.5] text-[#111418] border-b border-[#EAEAE7] ${
+                        pkg.featured ? 'border-x-2 border-primary bg-[#ffdbcf]/40' : 'bg-white'
+                      }`}
+                    >
+                      {pkg.pumpDescription || '—'}
+                    </td>
+                  ))}
+                </tr>
+
+                {/* Row 6: Full specs */}
+                <tr className="h-[72px]">
+                  <th
+                    scope="row"
+                    className="px-4 lg:px-6 py-4 text-left text-[14px] font-semibold text-[#5A6169] bg-white rounded-bl-3xl"
+                  >
+                    Full specs
+                  </th>
+                  {PRICING_PACKAGES.map((pkg, idx) => {
+                    const isLast = idx === PRICING_PACKAGES.length - 1;
+                    return (
+                      <td
+                        key={`specs-${pkg.id}`}
+                        className={`px-4 lg:px-6 py-4 text-left text-[15px] leading-[1.5] text-[#111418] ${
+                          pkg.featured
+                            ? 'border-b-2 border-x-2 border-primary bg-[#ffdbcf]/40'
+                            : 'bg-white'
+                        } ${isLast ? 'rounded-br-3xl' : ''}`}
+                      >
+                        <a
+                          href={`#${pkg.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            onSelectTab('packages');
+                            setTimeout(() => {
+                              const el = document.getElementById(pkg.id);
+                              el?.scrollIntoView({ behavior: 'smooth' });
+                            }, 50);
+                          }}
+                          className="text-[15px] font-semibold text-[#111418] underline underline-offset-[3px] hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111418] focus-visible:ring-offset-2"
+                        >
+                          See full specs
+                        </a>
+                      </td>
+                    );
+                  })}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* MOBILE VIEW (under 768px): Segmented control tablist + Single tabpanel */}
+          <div className="block md:hidden w-full">
+            {/* Segmented Control */}
+            <div
+              role="tablist"
+              aria-label="Solar packages by kVA"
+              className="grid grid-cols-4 gap-1 p-1 bg-[#eeeeed] rounded-2xl border border-[#dedfe5] mb-6"
+            >
+              {PRICING_PACKAGES.map((pkg, idx) => {
+                const isSelected = mobileSelectedId === pkg.id;
+                return (
+                  <button
+                    key={pkg.id}
+                    id={`tab-${pkg.id}`}
+                    role="tab"
+                    aria-selected={isSelected}
+                    aria-controls={`panel-${pkg.id}`}
+                    tabIndex={isSelected ? 0 : -1}
+                    onClick={() => setMobileSelectedId(pkg.id)}
+                    onKeyDown={(e) => handleMobileTabKeyDown(e, idx)}
+                    className={`h-[44px] min-h-[44px] rounded-xl text-[14px] transition-all cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111418] focus-visible:ring-offset-2 ${
+                      isSelected
+                        ? 'bg-white text-[#111418] font-bold shadow-xs border border-[#dedfe5]'
+                        : 'text-[#5A6169] font-medium hover:text-[#111418]'
+                    }`}
+                  >
+                    {formatKva(pkg.kva)}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Card 2: 10kVA Duplex (Most Popular) */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border-2 border-primary shadow-lg relative md:-translate-y-1 z-10">
-              <div className="absolute -top-3 left-6 px-3 py-1 rounded-md bg-primary text-white font-label-caps text-xs uppercase tracking-wider font-bold shadow-xs">
-                MOST POPULAR IN NIGERIA
-              </div>
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-1 rounded-md bg-[#ffdbcf] text-primary font-label-caps text-xs uppercase font-bold">
-                    10kVA duplex comfort
-                  </span>
-                  <span className="text-sm text-[#5c5e63] font-semibold">3-4 bed</span>
-                </div>
-                <div>
-                  <p className="text-sm text-[#5c5e63] font-medium">Complete setup & installation</p>
-                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
-                    ₦8.85M
+            {/* Selected Package Tabpanel */}
+            {(() => {
+              const selectedPkg = PRICING_PACKAGES.find((p) => p.id === mobileSelectedId) || PRICING_PACKAGES[1];
+              return (
+                <div
+                  key={selectedPkg.id}
+                  id={`panel-${selectedPkg.id}`}
+                  role="tabpanel"
+                  aria-labelledby={`tab-${selectedPkg.id}`}
+                  tabIndex={0}
+                  className={`rounded-2xl p-6 ${
+                    selectedPkg.featured
+                      ? 'border-2 border-primary bg-[#ffdbcf]/40'
+                      : 'border border-[#EAEAE7] bg-white'
+                  }`}
+                >
+                  {selectedPkg.featured && (
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary text-white text-[13px] font-semibold tracking-wide mb-3">
+                      Most popular
+                    </span>
+                  )}
+
+                  <h3 className="text-[20px] font-semibold text-[#111418] font-['Outfit']">
+                    {selectedPkg.name}
                   </h3>
-                  <p className="text-sm text-primary font-bold mt-0.5">Or ₦285,000 / month</p>
-                </div>
 
-                <div className="w-full h-px bg-[#dedfe5] my-4" />
-
-                <ul className="space-y-3 text-sm sm:text-base text-[#5c4037]">
-                  <li className="flex items-start gap-2.5 text-[#1a1c1c] font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                    <span>Runs 3 inverter ACs (1.5 HP) overnight silently</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>10.24 kWh blade lithium battery (EV-grade safety cells)</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>12 bifacial solar panels (absorb light from both sides)</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>Pumps borehole water from standard 1.0 HP wells</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>Runs deep freezer, kitchen fridge & TV all day</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-[#dedfe5]">
-                <button
-                  onClick={() => toggleSpec('duplex')}
-                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer py-1"
-                >
-                  <span>Specs & plain meaning</span>
-                  {openSpecs['duplex'] ? <ArrowUp01Icon className="w-4 h-4" /> : <ArrowDown01Icon className="w-4 h-4" />}
-                </button>
-                {openSpecs['duplex'] && (
-                  <div className="text-sm text-[#5c4037] pb-3 space-y-2 bg-[#fdf2ec] p-3.5 rounded-xl mb-3 leading-relaxed">
-                    <p><strong className="text-[#1a1c1c]">Instant transfer (&lt;4ms):</strong> Switches so fast that televisions and laptops continue without restarting.</p>
-                    <p><strong className="text-[#1a1c1c]">Dual MPPT controllers:</strong> Extracts high solar output even if part of your roof has tree shade.</p>
-                    <p><strong className="text-[#1a1c1c]">Chemical earthing:</strong> Real copper earth rod protecting from lightning and grid surges.</p>
-                    <p><strong className="text-[#1a1c1c]">Phone app:</strong> Check your live solar generation and battery percent on your smartphone.</p>
+                  <div className="text-[14px] font-medium text-[#5A6169] mt-0.5">
+                    {formatKva(selectedPkg.kva)}
                   </div>
-                )}
-                <button
-                  onClick={() => onOpenQuote('10kVA Duplex Comfort (₦8.85M)')}
-                  className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-container text-white font-label-ui text-sm sm:text-base font-semibold shadow-md transition-colors cursor-pointer min-h-[48px] touch-manipulation"
-                >
-                  Select package
-                </button>
-              </div>
-            </div>
 
-            {/* Card 3: 15kVA Estate */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-1 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
-                    15kVA estate & clinic
-                  </span>
-                  <span className="text-sm text-[#5c5e63] font-semibold">5+ bed</span>
-                </div>
-                <div>
-                  <p className="text-sm text-[#5c5e63] font-medium">Complete setup & installation</p>
-                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
-                    ₦14.9M
-                  </h3>
-                  <p className="text-sm text-primary font-bold mt-0.5">Or ₦490,000 / month</p>
-                </div>
-
-                <div className="w-full h-px bg-[#dedfe5] my-4" />
-
-                <ul className="space-y-3 text-sm sm:text-base text-[#5c4037]">
-                  <li className="flex items-start gap-2.5 text-[#1a1c1c] font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                    <span>Powers 5-7 ACs across all rooms and building wings</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>20.48 kWh server-rack lithium battery bank</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>20 high-output solar panels (600W each)</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>Pumps water from 2.0 HP deep borehole wells</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>Microwave, electric cooker, and compound gate motor</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-[#dedfe5]">
-                <button
-                  onClick={() => toggleSpec('estate')}
-                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer py-1"
-                >
-                  <span>Specs & plain meaning</span>
-                  {openSpecs['estate'] ? <ArrowUp01Icon className="w-4 h-4" /> : <ArrowDown01Icon className="w-4 h-4" />}
-                </button>
-                {openSpecs['estate'] && (
-                  <div className="text-sm text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3.5 rounded-xl mb-3 leading-relaxed">
-                    <p><strong className="text-[#1a1c1c]">Dual inverters in parallel:</strong> Two machines sharing the load so power never drops if one unit is serviced.</p>
-                    <p><strong className="text-[#1a1c1c]">Clean sine wave:</strong> Safe for medical analyzers, sound systems, and compound elevators.</p>
-                    <p><strong className="text-[#1a1c1c]">Master distribution board:</strong> One central switch neatly controlling the building power phases.</p>
-                    <p><strong className="text-[#1a1c1c]">Registered engineer sign-off:</strong> NERC-certified engineer performs final safety checks before handover.</p>
+                  <div className="text-[36px] font-bold text-[#111418] font-['Outfit'] tracking-[-0.02em] [font-variant-numeric:tabular-nums] mt-2">
+                    {formatCompactNaira(selectedPkg.priceNgn)}
                   </div>
-                )}
-                <button
-                  onClick={() => onOpenQuote('15kVA Estate Package (₦14.9M)')}
-                  className="w-full py-3.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer min-h-[48px] touch-manipulation"
-                >
-                  Select package
-                </button>
-              </div>
-            </div>
 
-            {/* Card 4: 25kVA Commercial */}
-            <div className="bg-white rounded-2xl p-6 flex flex-col justify-between border border-[#dedfe5] shadow-sm hover:shadow-md transition-shadow">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-1 rounded-md bg-[#eeeeed] text-[#1a1c1c] font-label-caps text-xs uppercase font-bold">
-                    25kVA commercial
-                  </span>
-                  <span className="text-sm text-[#5c5e63] font-semibold">Offices / clinics</span>
-                </div>
-                <div>
-                  <p className="text-sm text-[#5c5e63] font-medium">Complete setup & installation</p>
-                  <h3 className="font-headline-lg text-2xl sm:text-3xl font-bold text-[#1a1c1c] tracking-tight mt-0.5">
-                    ₦24.5M
-                  </h3>
-                  <p className="text-sm text-primary font-bold mt-0.5">Corporate payment plans available</p>
-                </div>
-
-                <div className="w-full h-px bg-[#dedfe5] my-4" />
-
-                <ul className="space-y-3 text-sm sm:text-base text-[#5c4037]">
-                  <li className="flex items-start gap-2.5 text-[#1a1c1c] font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                    <span>Powers whole office or clinic across all 3 phases</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>40.96 kWh server-rack lithium battery bank</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>36 commercial high-density solar panels (650W each)</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>Runs server racks, cold rooms, HVAC & passenger lifts</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
-                    <span>Automatic generator controller (runs gen only when needed)</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-[#dedfe5]">
-                <button
-                  onClick={() => toggleSpec('industrial')}
-                  className="text-sm font-semibold text-[#5c5e63] hover:text-primary flex items-center justify-between w-full mb-3 cursor-pointer py-1"
-                >
-                  <span>Specs & plain meaning</span>
-                  {openSpecs['industrial'] ? <ArrowUp01Icon className="w-4 h-4" /> : <ArrowDown01Icon className="w-4 h-4" />}
-                </button>
-                {openSpecs['industrial'] && (
-                  <div className="text-sm text-[#5c4037] pb-3 space-y-2 bg-[#f3f4f3] p-3.5 rounded-xl mb-3 leading-relaxed">
-                    <p><strong className="text-[#1a1c1c]">3-phase balancing:</strong> Balanced load on each phase so heavy industrial motors don't overheat.</p>
-                    <p><strong className="text-[#1a1c1c]">Class T safety fuses:</strong> Fast-acting fuses that cut electrical faults in milliseconds.</p>
-                    <p><strong className="text-[#1a1c1c]">Certified commissioning:</strong> Supervised testing with full safety certification on site.</p>
-                    <p><strong className="text-[#1a1c1c]">Scheduled servicing:</strong> Routine checkups to clean panels and check battery balancing.</p>
+                  <div className="text-[15px] font-medium text-[#3A3F45] mt-0.5">
+                    {formatMonthlyNaira(selectedPkg.monthlyNgn, selectedPkg.monthlyNote)}
                   </div>
-                )}
-                <button
-                  onClick={() => onOpenQuote('25kVA Commercial (₦24.5M)')}
-                  className="w-full py-3.5 rounded-xl bg-[#eeeeed] hover:bg-[#12161a] hover:text-white text-[#1a1c1c] font-label-ui text-sm sm:text-base font-semibold transition-colors cursor-pointer min-h-[48px] touch-manipulation"
-                >
-                  Select package
-                </button>
-              </div>
-            </div>
+
+                  <button
+                    onClick={() => onOpenQuote(`${selectedPkg.name} (${formatCompactNaira(selectedPkg.priceNgn)})`)}
+                    className={`w-full h-[48px] rounded-full mt-5 text-[15px] font-semibold cursor-pointer transition-colors flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111418] focus-visible:ring-offset-2 ${
+                      selectedPkg.featured
+                        ? 'bg-primary hover:bg-primary-container text-white shadow-none'
+                        : 'border border-[#111418] bg-transparent text-[#111418] hover:bg-[#F3F4F3] shadow-none'
+                    }`}
+                  >
+                    Select package
+                  </button>
+
+                  <dl className="mt-6 border-t border-[#EAEAE7]">
+                    <div className="py-4 border-b border-[#EAEAE7]">
+                      <dt className="text-[14px] font-semibold text-[#5A6169]">Best for</dt>
+                      <dd className="text-[16px] text-[#111418] mt-1">{selectedPkg.homeSize}</dd>
+                    </div>
+
+                    <div className="py-4 border-b border-[#EAEAE7]">
+                      <dt className="text-[14px] font-semibold text-[#5A6169]">Runs</dt>
+                      <dd className="text-[16px] text-[#111418] mt-1 leading-relaxed">{selectedPkg.runsShort}</dd>
+                    </div>
+
+                    <div className="py-4 border-b border-[#EAEAE7]">
+                      <dt className="text-[14px] font-semibold text-[#5A6169]">Battery</dt>
+                      <dd className="text-[16px] text-[#111418] mt-1">{selectedPkg.batteryKwh} kWh lithium</dd>
+                    </div>
+
+                    <div className="py-4 border-b border-[#EAEAE7]">
+                      <dt className="text-[14px] font-semibold text-[#5A6169]">Solar panels</dt>
+                      <dd className="text-[16px] text-[#111418] mt-1">{selectedPkg.panelCount} x {selectedPkg.panelWatts} W</dd>
+                    </div>
+
+                    <div className="py-4 border-b border-[#EAEAE7]">
+                      <dt className="text-[14px] font-semibold text-[#5A6169]">Water pump</dt>
+                      <dd className="text-[16px] text-[#111418] mt-1">{selectedPkg.pumpDescription || '—'}</dd>
+                    </div>
+
+                    <div className="py-4">
+                      <dt className="text-[14px] font-semibold text-[#5A6169]">Full specs</dt>
+                      <dd className="mt-1">
+                        <a
+                          href={`#${selectedPkg.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            onSelectTab('packages');
+                            setTimeout(() => {
+                              const el = document.getElementById(selectedPkg.id);
+                              el?.scrollIntoView({ behavior: 'smooth' });
+                            }, 50);
+                          }}
+                          className="text-[16px] font-semibold text-[#111418] underline underline-offset-[3px] hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111418] focus-visible:ring-offset-2"
+                        >
+                          See full specs
+                        </a>
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              );
+            })()}
           </div>
         </div>
       </section>

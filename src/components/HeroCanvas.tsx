@@ -131,7 +131,7 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ onFrameUpdate }) => {
   }, [triggerCtaAnimation, triggerLine1Animation, triggerLine2Animation, triggerPAnimation]);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden bg-neutral-950 select-none">
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0A0A0D] select-none">
       {/* Native 720p H.264 Muted 60 FPS Video - Plays once and stays frozen at final frame */}
       <video
         ref={videoRef}
@@ -142,12 +142,20 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ onFrameUpdate }) => {
         preload="auto"
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleVideoEnded}
-        className="w-full h-full object-cover pointer-events-none"
+        className="w-full h-full object-cover pointer-events-none brightness-105 contrast-[1.02] saturate-105"
       />
 
-      {/* Subtle Directional Overlays ensuring text legibility over dusk sky while keeping house crisp */}
-      <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/80 via-neutral-950/30 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/50 via-transparent to-transparent pointer-events-none" />
+      {/* Directional contrast overlay: feathery black and strongest on the left side to make hero texts crisp and visible without blue tint */}
+      <div
+        className="absolute inset-0 pointer-events-none z-1"
+        style={{
+          background: `
+            linear-gradient(90deg, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.52) 28%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.05) 68%, rgba(0,0,0,0) 84%),
+            linear-gradient(0deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.08) 18%, rgba(0,0,0,0) 32%),
+            linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 18%)
+          `
+        }}
+      />
     </div>
   );
 };

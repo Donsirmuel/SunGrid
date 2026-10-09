@@ -1,6 +1,275 @@
 import { SolarPackage } from '../types';
 import { IMAGES } from './assets';
 
+export interface PackageHardwareSpec {
+  value: string;
+  plainMeaning?: string;
+}
+
+export interface PackageData {
+  id: string;
+  name: string;
+  category: 'apartments' | 'duplex' | 'mansions' | 'portable';
+  kva: number;
+  priceNgn: number;
+  monthlyNgn: number | null;
+  monthlyNote: string | null;
+  homeSize: string;
+  batteryKwh: number;
+  batteryDescription: string;
+  panelCount: number;
+  panelWatts: number;
+  panelType: string;
+  pumpHp: number | null;
+  pumpDescription: string | null;
+  runs: string[];
+  featured: boolean;
+  // Exact copy fields for Pricing table & Packages row display
+  runsMerged: string;
+  runsShort: string;
+  descriptionSentence: string;
+  hardware: {
+    inverter: PackageHardwareSpec;
+    battery: PackageHardwareSpec;
+    solarPanels: PackageHardwareSpec;
+  };
+}
+
+export const PACKAGES: PackageData[] = [
+  {
+    id: 'urban',
+    name: 'Urban Setup',
+    category: 'apartments',
+    kva: 3.5,
+    priceNgn: 4250000,
+    monthlyNgn: 145000,
+    monthlyNote: null,
+    homeSize: '1-2 bed',
+    batteryKwh: 5.12,
+    batteryDescription: '5.12 kWh lithium',
+    panelCount: 6,
+    panelWatts: 550,
+    panelType: 'monocrystalline',
+    pumpHp: 0.5,
+    pumpDescription: '0.5 HP to overhead tank',
+    runs: [
+      'Powers 1 inverter AC (1.0 HP) overnight in the bedroom',
+      'Runs a 0.5 HP surface water pump for overhead tanks',
+      'Keeps double-door fridge, TV, Wi-Fi, and lights running 24/7'
+    ],
+    runsMerged: '1 bedroom inverter AC (1.0 HP) overnight, fridge, TV, Starlink Wi-Fi & LED lights 24/7.',
+    runsShort: '1 AC, fridge, TV, Wi-Fi',
+    descriptionSentence: 'Runs your work computer, refrigerator, Starlink, fans, and smart television when grid power cuts out.',
+    featured: false,
+    hardware: {
+      inverter: {
+        value: 'Pure sine wave hybrid inverter',
+        plainMeaning: 'The unit that turns stored battery power into standard wall-socket electricity without flicker.'
+      },
+      battery: {
+        value: '5.12 kWh LiFePO4',
+        plainMeaning: 'Stores enough energy to run your essential appliances for 10 to 14 hours overnight without starting a generator.'
+      },
+      solarPanels: {
+        value: '6 x 550 W monocrystalline panels',
+        plainMeaning: '6 rooftop panels that generate electricity during the day, even in cloudy or harmattan weather.'
+      }
+    }
+  },
+  {
+    id: 'duplex',
+    name: 'Duplex Comfort',
+    category: 'duplex',
+    kva: 10,
+    priceNgn: 8850000,
+    monthlyNgn: 285000,
+    monthlyNote: null,
+    homeSize: '3-4 bed',
+    batteryKwh: 10.24,
+    batteryDescription: '10.24 kWh blade lithium battery bank',
+    panelCount: 12,
+    panelWatts: 580,
+    panelType: 'bifacial',
+    pumpHp: 1.0,
+    pumpDescription: '1.0 HP borehole',
+    runs: [
+      'Runs 2-3 inverter ACs (1.5 HP each) overnight without noise',
+      'Pumps water from standard 1.0 HP borehole wells',
+      'Runs large chest freezer, refrigerator, and home entertainment'
+    ],
+    runsMerged: '2-3 inverter ACs (1.5 HP) overnight, large chest freezer, fridge & TV all day.',
+    runsShort: '2-3 ACs, freezer, fridge',
+    descriptionSentence: 'Runs 2 to 3 inverter air conditioners through the night, a large chest freezer, and your borehole water pump.',
+    featured: true,
+    hardware: {
+      inverter: {
+        value: 'Low-frequency hybrid inverter',
+        plainMeaning: 'Heavy-duty inverter built to absorb the initial kick when water pumps or air conditioners turn on.'
+      },
+      battery: {
+        value: '10.24 kWh blade LiFePO4',
+        plainMeaning: 'Blade lithium battery giving 14 to 18 hours of overnight power without noise or fumes.'
+      },
+      solarPanels: {
+        value: '12 x 580 W bifacial glass solar panels',
+        plainMeaning: '12 bifacial panels that generate electricity from overhead sun and light reflected off your roof tiles.'
+      }
+    }
+  },
+  {
+    id: 'estate',
+    name: 'Estate & Clinic',
+    category: 'mansions',
+    kva: 15,
+    priceNgn: 14900000,
+    monthlyNgn: 490000,
+    monthlyNote: null,
+    homeSize: '5+ bed',
+    batteryKwh: 20.48,
+    batteryDescription: '20.48 kWh server-rack lithium battery bank',
+    panelCount: 20,
+    panelWatts: 600,
+    panelType: 'high-output',
+    pumpHp: 2.0,
+    pumpDescription: '2.0 HP deep borehole',
+    runs: [
+      'Powers 5 to 7 ACs across all rooms and building wings',
+      'Pumps water from 2.0 HP deep borehole wells',
+      'Runs microwave, induction cooker, and compound gate motor'
+    ],
+    runsMerged: '5-7 ACs across all wings, microwave, electric cooker, and compound gate motor.',
+    runsShort: '5-7 ACs, cooker, gate motor',
+    descriptionSentence: 'Three-phase system for large residences, medical facilities, and multi-unit offices that need balanced power across all wings.',
+    featured: false,
+    hardware: {
+      inverter: {
+        value: '3-phase balanced array',
+        plainMeaning: 'Three-phase commercial inverter that delivers equal voltage to every wing of a large building.'
+      },
+      battery: {
+        value: '20.48 kWh high-voltage rackmount LiFePO4',
+        plainMeaning: 'Server-rack modular lithium bank providing multi-day backup during overcast wet season days.'
+      },
+      solarPanels: {
+        value: '20 x 600 W high-output solar panels',
+        plainMeaning: '20 high-output panels producing enough daytime electricity to run multiple ACs and borehole pumps together.'
+      }
+    }
+  },
+  {
+    id: 'commercial',
+    name: 'Commercial',
+    category: 'mansions',
+    kva: 25,
+    priceNgn: 24500000,
+    monthlyNgn: null,
+    monthlyNote: 'Corporate payment plans available',
+    homeSize: 'Offices / clinics',
+    batteryKwh: 40.96,
+    batteryDescription: '40.96 kWh server-rack lithium battery bank',
+    panelCount: 36,
+    panelWatts: 650,
+    panelType: 'commercial high-density',
+    pumpHp: null,
+    pumpDescription: null,
+    runs: [
+      'Powers entire commercial premises across all three phases',
+      'Runs elevators, cold rooms, HVAC chillers, and server rooms',
+      'Automatic generator starter (runs the generator only as a rare backup)'
+    ],
+    runsMerged: 'Whole facility across 3 phases: server racks, cold rooms, HVAC, passenger lifts & automatic generator controller.',
+    runsShort: 'Offices, server racks, cold rooms',
+    descriptionSentence: 'Commercial microgrid engineered for three-phase balance, passenger elevators, cold rooms, and continuous lab equipment.',
+    featured: false,
+    hardware: {
+      inverter: {
+        value: 'Parallel industrial dual inverters',
+        plainMeaning: 'Twin industrial inverters sharing heavy workplace loads so work never stops if one unit is serviced.'
+      },
+      battery: {
+        value: '40.96 kWh modular server-rack LiFePO4',
+        plainMeaning: 'Server-rack batteries storing enough energy to run critical business equipment through the night.'
+      },
+      solarPanels: {
+        value: '36 x 650 W high-density solar panels',
+        plainMeaning: 'Commercial rooftop array that cuts your monthly utility and fuel bills by over 80%.'
+      }
+    }
+  },
+  {
+    id: 'nomad',
+    name: 'SunGrid Nomad',
+    category: 'portable',
+    kva: 2.4,
+    priceNgn: 1850000,
+    monthlyNgn: null,
+    monthlyNote: null,
+    homeSize: 'Renters & portable',
+    batteryKwh: 2.048,
+    batteryDescription: '2,048 Wh long-life LiFePO4 battery',
+    panelCount: 1,
+    panelWatts: 800,
+    panelType: 'foldable balcony',
+    pumpHp: null,
+    pumpDescription: null,
+    runs: [
+      'Runs work laptops, monitors, TV, and Starlink Wi-Fi',
+      'Powers tabletop fridge and standing fans for hours',
+      'Charges from any wall socket in 84 minutes, or plugs into balcony panels'
+    ],
+    runsMerged: 'Runs work laptops, monitors, TV, Starlink Wi-Fi, tabletop fridge and fans.',
+    runsShort: 'Laptops, TV, Starlink, fans',
+    descriptionSentence: 'Portable generator replacement. No roof installation, no drilling, and no landlord permission needed.',
+    featured: false,
+    hardware: {
+      inverter: {
+        value: 'Pure sine wave inverter',
+        plainMeaning: 'Quiet built-in inverter providing clean wall-socket electricity anywhere in your apartment.'
+      },
+      battery: {
+        value: '2,048 Wh long-life LiFePO4 battery',
+        plainMeaning: 'Lithium battery rated for 10 years of daily recharges without losing useful capacity.'
+      },
+      solarPanels: {
+        value: '800 W foldable balcony solar panels',
+        plainMeaning: 'Foldable panels you can hang over an apartment balcony or set up in a courtyard.'
+      }
+    }
+  }
+];
+
+export const PRICING_PACKAGES: PackageData[] = PACKAGES.filter((p) => p.id !== 'nomad');
+
+/**
+ * Formatters shared across Pricing and Packages pages
+ */
+
+// Pricing page shows compact naira ("₦4.25M", "₦8.85M", "₦14.9M", "₦24.5M": millions, up to 2 decimals, trailing zeros trimmed).
+export function formatCompactNaira(amount: number): string {
+  const millions = amount / 1_000_000;
+  const formatted = parseFloat(millions.toFixed(2)).toString();
+  return `₦${formatted}M`;
+}
+
+// Packages page shows full naira with thousands separators ("₦4,250,000").
+export function formatFullNaira(amount: number): string {
+  return `₦${amount.toLocaleString('en-US')}`;
+}
+
+// Monthly always reads "or ₦145,000 / month". For commercial, shows monthlyNote.
+export function formatMonthlyNaira(monthlyNgn: number | null, monthlyNote?: string | null): string {
+  if (monthlyNgn !== null && monthlyNgn !== undefined) {
+    return `or ₦${monthlyNgn.toLocaleString('en-US')} / month`;
+  }
+  return monthlyNote || '';
+}
+
+// kVA is written "3.5 kVA", with a space and this exact casing, everywhere.
+export function formatKva(kva: number): string {
+  return `${kva} kVA`;
+}
+
+// Legacy SOLAR_PACKAGES maintained for SolarRoiCalculator backwards compatibility
 export const SOLAR_PACKAGES: SolarPackage[] = [
   {
     id: 'urban-flat',
