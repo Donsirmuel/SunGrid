@@ -95,17 +95,8 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </nav>
 
-          {/* Action Right: Ghost Control + Ink CTA + Mobile Burger */}
+          {/* Action Right: Ink CTA + Mobile Burger */}
           <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-            {/* Toll-free Hotline Ghost Pill */}
-            <a
-              href="tel:08007864743"
-              className="hidden xl:inline-flex items-center gap-2 h-[44px] px-4.5 rounded-full border border-[#0C0730]/16 hover:border-[#0C0730]/40 hover:bg-white text-[14px] font-medium text-[#0C0730] transition-all cursor-pointer"
-            >
-              <Call02Icon className="w-4 h-4 text-[#ff5400]" />
-              <span>0800-SUNGRID</span>
-            </a>
-
             {/* Solid Ink Action Control (hidden on mobile to prevent overflow) */}
             <button
               onClick={onOpenQuote}
